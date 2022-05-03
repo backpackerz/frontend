@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
-import Calendar from "../Calendar";
-import { rangeShape } from "../DayCell";
-import { findNextRangeIndex, generateStyles } from "../../utils";
+import * as PropTypes from "prop-types";
+import classnames from "classnames";
 import {
 	isBefore,
 	differenceInCalendarDays,
@@ -11,7 +9,10 @@ import {
 	isWithinInterval,
 	max,
 } from "date-fns";
-import classnames from "classnames";
+
+import Calendar from "../Calendar";
+import { rangeShape } from "../DayCell";
+import { findNextRangeIndex, generateStyles } from "../../utils";
 import coreStyles from "../../styles";
 
 class DateRange extends Component {

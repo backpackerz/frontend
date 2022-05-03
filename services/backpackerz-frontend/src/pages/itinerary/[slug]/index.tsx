@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import * as React from "react";
 import { GetServerSidePropsContext } from "next";
 import { useRouter } from "next/router";
 import { wrapper } from "modules";
@@ -38,6 +38,6 @@ export default function Page(props: inferSSRProps<typeof getServerSideProps>) {
 	return <>{renderResult()}</>;
 }
 
-Page.getLayout = function getLayout(page: ReactElement) {
+Page.getLayout = function getLayout(page: React.ReactElement) {
 	return <DefaultLayout>{page}</DefaultLayout>;
 };

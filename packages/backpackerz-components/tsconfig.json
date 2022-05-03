@@ -4,28 +4,17 @@
 		"baseUrl": "./src",
 		"allowJs": true,
 		"jsx": "preserve",
-		"allowSyntheticDefaultImports": true,
 		"lib": ["dom", "ES2020"],
-		"declaration": true,
 		"module": "esnext",
 		"target": "esnext",
 		"strict": true,
 		"moduleResolution": "node",
-		"noUnusedLocals": true,
-		"noUnusedParameters": true,
-		"preserveConstEnums": true,
-		"removeComments": false,
-		"skipLibCheck": true,
-		"sourceMap": true,
-		"forceConsistentCasingInFileNames": true,
-		"esModuleInterop": true,
-		"resolveJsonModule": true,
 		"isolatedModules": true,
 		"experimentalDecorators": true,
-		"incremental": true,
-		"noEmit": true,
-		"paths": {}
+		"paths": {
+			"@components/*": ["./*"]
+		}
 	},
 	"exclude": ["node_modules", "coverage", "dist"],
-	"include": ["src/**/*.tsx", "src/**/*.ts"]
+	"include": ["./**/*.tsx", "./**/*.ts"]
 }

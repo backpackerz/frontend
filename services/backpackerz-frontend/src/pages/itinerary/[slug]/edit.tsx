@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import * as React from "react";
 import { GetServerSidePropsContext } from "next";
 import { connect } from "react-redux";
 import { wrapper } from "modules";
@@ -63,7 +63,7 @@ function Page(props: inferSSRProps<typeof getServerSideProps>) {
 	return <>{renderResult()}</>;
 }
 
-Page.getLayout = function getLayout(page: ReactElement) {
+Page.getLayout = function getLayout(page: React.ReactElement) {
 	return <EmptiedLayout>{page}</EmptiedLayout>;
 };
 

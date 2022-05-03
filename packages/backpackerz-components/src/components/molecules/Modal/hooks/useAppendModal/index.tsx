@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from "react";
+import * as React from "react";
 import { createPortal } from "react-dom";
 import disableScroll from "disable-scroll";
 import useOverlay from "../useOverlay";
@@ -14,7 +14,7 @@ const AppendModal: React.FC<AppendModalProps> = ({
 	component = Modal,
 	...rest
 }) => {
-	const ref = useRef<HTMLDivElement>(null);
+	const ref = React.useRef<HTMLDivElement>(null);
 	const ModalComponent = component || Modal;
 	useOverlay(isOpen, close, ref);
 
@@ -49,22 +49,22 @@ function useAppendModal<P>(
 		beforeClose = () => null,
 		component = Modal,
 	} = options;
-	const [isOpen, setOpen] = useState<boolean>(false);
-	const open = useCallback(() => {
+	const [isOpen, setOpen] = React.useState<boolean>(false);
+	const open = React.useCallback(() => {
 		setOpen(true);
 		if (preventScroll) {
 			disableScroll.on();
 		}
 	}, [setOpen, preventScroll]);
 
-	const close = useCallback(() => {
+	const close = React.useCallback(() => {
 		beforeClose();
 		setOpen(false);
 		if (preventScroll) {
 			disableScroll.off();
 		}
 	}, [setOpen, preventScroll]);
-	const onOverlayClick = useCallback(
+	const onOverlayClick = React.useCallback(
 		(event: React.MouseEvent<HTMLDivElement>) => {
 			event.stopPropagation();
 			if (closeOnOverlayClick) {
@@ -74,7 +74,7 @@ function useAppendModal<P>(
 		[closeOnOverlayClick, close],
 	);
 
-	const ModalWrapper = useCallback(
+	const ModalWrapper = React.useCallback(
 		({ children, ...rest }: React.PropsWithChildren<any>) => {
 			return (
 				<AppendModal

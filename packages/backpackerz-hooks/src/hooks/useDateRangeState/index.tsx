@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { format, getDistanceDate, checkRange } from "./utils";
 import { DateYMDString, UseDateRangeState } from "../../@types";
 

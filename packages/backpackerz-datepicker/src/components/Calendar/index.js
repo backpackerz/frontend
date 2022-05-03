@@ -1,5 +1,9 @@
-import React, { PureComponent } from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
+import * as PropTypes from "prop-types";
+import classnames from "classnames";
+import ReactList from "react-list";
+import { shallowEqualObjects } from "shallow-equal";
+
 import { rangeShape } from "../DayCell";
 import Month from "../Month";
 import DateInput from "../DateInput";
@@ -8,9 +12,6 @@ import {
 	generateStyles,
 	getMonthDisplayRange,
 } from "../../utils";
-import classnames from "classnames";
-import ReactList from "react-list";
-import { shallowEqualObjects } from "shallow-equal";
 
 import {
 	addMonths,
@@ -36,7 +37,7 @@ import defaultLocale from "date-fns/locale/en-US";
 import coreStyles from "../../styles";
 import { ariaLabelsShape } from "../../accessibility";
 
-class Calendar extends PureComponent {
+class Calendar extends React.PureComponent {
 	constructor(props, context) {
 		super(props, context);
 		this.dateOptions = { locale: props.locale };

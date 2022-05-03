@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 
 import { Button, Input, Label, Alert } from "@backpackerz/components";
 import useSignUp from "hooks/use-sign-up";

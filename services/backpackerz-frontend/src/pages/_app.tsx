@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import Head from "next/head";
 import App, { AppContext } from "next/app";
 import { Store } from "redux";

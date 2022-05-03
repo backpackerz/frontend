@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import * as React from "react";
 import {
 	Transition as AlertTransition,
 	TransitionStatus,
@@ -44,7 +44,7 @@ const transitionStyles = {
 };
 export default function Transition(props: TransitionProps) {
 	const { children, type, ...rest } = props;
-	const ref = useRef(null);
+	const ref = React.useRef(null);
 
 	return (
 		<AlertTransition nodeRef={ref} {...rest} timeout={duration}>

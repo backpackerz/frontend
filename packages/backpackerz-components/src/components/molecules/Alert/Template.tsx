@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import InfoIcon from "./Icons/InfoIcon";
 import SuccessIcon from "./Icons/SuccessIcon";
 import ErrorIcon from "./Icons/ErrorIcon";

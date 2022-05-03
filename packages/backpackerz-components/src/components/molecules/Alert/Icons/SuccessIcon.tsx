@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import BaseIcon from "./BaseIcon";
 
 export default function SuccessIcon() {

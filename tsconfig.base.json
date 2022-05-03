@@ -1,11 +1,24 @@
 {
-	"compilerOptions": {},
+	"compilerOptions": {
+		"baseUrl": ".",
+		"composite": true,
+		"incremental": true,
+		"noEmit": false,
+		"skipLibCheck": true,
+		"declaration": true,
+		"declarationMap": true,
+		"forceConsistentCasingInFileNames": false,
+		"sourceMap": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"preserveConstEnums": true,
+		"removeComments": true,
+		"resolveJsonModule": true,
+		"allowSyntheticDefaultImports": false,
+		"esModuleInterop": true
+	},
 	"typeRoots": ["./node_modules/@types"],
 	"types": ["react", "node", "jest", "enzyme"],
 	"exclude": ["node_modules", "coverage", "dist"],
-	"include": ["@types/*"],
-	"paths": {
-		"@backpackerz/core": ["packages/backpackerz-core/src"],
-		"@backpackerz/components": ["packages/backpackerz-components/src"]
-	}
+	"include": ["@types/*"]
 }

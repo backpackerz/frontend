@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 
 import Button, { Props as ButtonProps } from "../../../components/atoms/Button";
 

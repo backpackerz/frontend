@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import * as React from "react";
 import { POSITIONS } from "./constants";
 
 export type Props = {
@@ -88,7 +88,7 @@ export default function Wrapper(props: Props) {
 		options: { position, containerStyle },
 		...rest
 	} = props;
-	const styles = useMemo(() => getWrapperStyles(position), [position]);
+	const styles = React.useMemo(() => getWrapperStyles(position), [position]);
 
 	return (
 		React.Children.count(children) > 0 && (

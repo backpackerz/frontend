@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { ThemeProvider } from "@emotion/react";
 import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";

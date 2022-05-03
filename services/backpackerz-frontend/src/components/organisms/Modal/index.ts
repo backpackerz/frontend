@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 
 import { Modal } from "@backpackerz/components";
 import BaseModal, { Props } from "./base/Modal.default";

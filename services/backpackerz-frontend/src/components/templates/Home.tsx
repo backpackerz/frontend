@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 
 import { Types } from "@backpackerz/core";
 import ItinerariesGrid from "components/organisms/ItineraryGrid";

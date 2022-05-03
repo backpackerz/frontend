@@ -1,4 +1,8 @@
-import { POSITIONS, TYPES, TRANSITIONS } from "./constants";
+import {
+	POSITIONS,
+	TYPES,
+	TRANSITIONS,
+} from "../../../variables/constants/alert";
 import Provider from "./Provider";
 import useAlert from "./hooks/use-alert";
 import Template from "./Template";
