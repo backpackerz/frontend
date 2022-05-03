@@ -1,0 +1,36 @@
+{
+	"name": "backpackerz-hooks",
+	"version": "1.0.0",
+	"description": "backpackerz hooks",
+	"author": "Yongkuk Kim <k0603156@gmail.com>",
+	"homepage": "",
+	"private": true,
+	"license": "ISC",
+	"scripts": {
+		"dev": "set ENVIRONMENT=local&&next dev",
+		"build": "next build",
+		"start": "set ENVIRONMENT=product&&next start",
+		"pretty": "prettier --write src/**/*.{ts,tsx}",
+		"lint": "eslint ./src/**/* --ext .{ts,tsx}",
+		"lint:fix": "yarn run lint --fix",
+		"test": "jest",
+		"test:ci": "jest --ci",
+		"test:watch": "jest --watchAll",
+		"test:coverage": "jest — coverage"
+	},
+	"dependencies": {
+		"@emotion/babel-plugin": "^11.3.0",
+		"@emotion/react": "^11.4.0",
+		"@emotion/styled": "^11.6.0",
+		"clsx": "^1.1.1",
+		"lodash": "^4.17.21"
+	},
+	"devDependencies": {
+		"@types/lodash": "^4.14.178"
+	},
+	"peerDependencies": {
+		"react": "^17.0.0",
+		"react-dom": "^17.0.0"
+	},
+	"_moduleAliases": {}
+}

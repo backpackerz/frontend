@@ -1,0 +1,11 @@
+{
+	"compilerOptions": {},
+	"typeRoots": ["./node_modules/@types"],
+	"types": ["react", "node", "jest", "enzyme"],
+	"exclude": ["node_modules", "coverage", "dist"],
+	"include": ["@types/*"],
+	"paths": {
+		"@backpackerz/core": ["packages/backpackerz-core/src"],
+		"@backpackerz/components": ["packages/backpackerz-components/src"]
+	}
+}

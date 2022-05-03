@@ -1,0 +1,17 @@
+{
+	"name": "backpackerz-core",
+	"version": "1.0.0",
+	"description": "backpackerz core",
+	"author": "Yongkuk Kim <k0603156@gmail.com>",
+	"homepage": "",
+	"private": true,
+	"license": "ISC",
+	"scripts": {},
+	"dependencies": {},
+	"devDependencies": {},
+	"peerDependencies": {
+		"react": "^17.0.0",
+		"react-dom": "^17.0.0"
+	},
+	"_moduleAliases": {}
+}

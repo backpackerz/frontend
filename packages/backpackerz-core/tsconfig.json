@@ -1,0 +1,34 @@
+{
+	"extends": "../../tsconfig.base.json",
+	"compilerOptions": {
+		"baseUrl": "./src",
+		"allowJs": true,
+		"allowSyntheticDefaultImports": true,
+		"jsx": "preserve",
+		"lib": ["dom", "ES2020"],
+		"declaration": true,
+		"module": "esnext",
+		"target": "esnext",
+		"moduleResolution": "node",
+		"noEmit": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"preserveConstEnums": true,
+		"removeComments": false,
+		"skipLibCheck": true,
+		"sourceMap": true,
+		"strict": true,
+		"forceConsistentCasingInFileNames": true,
+		"esModuleInterop": true,
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"experimentalDecorators": true,
+		"paths": {
+			"@core/*": ["../../backpackerz-core/src/*"],
+			"@app/*": ["../../backpackerz-backend/src/*"]
+		},
+		"incremental": true
+	},
+	"exclude": ["node_modules", "next.config.js", ".next", "coverage", "dist"],
+	"include": ["src/**/*.ts"]
+}
