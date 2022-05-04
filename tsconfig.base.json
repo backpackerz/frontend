@@ -24,9 +24,6 @@
 			"@backpackerz/components/*": [
 				"../../../packages/backpackerz-components/src/*"
 			],
-			"@backpackerz/hooks/*": [
-				"../../../packages/backpackerz-hooks/src/*"
-			],
 			"@backpackerz/datepicker/*": [
 				"../../../packages/backpackerz-datepicker/src/*"
 			],
@@ -34,7 +31,6 @@
 			"@backpackerz/components": [
 				"../../../packages/backpackerz-components/src"
 			],
-			"@backpackerz/hooks": ["../../../packages/backpackerz-hooks/src"],
 			"@backpackerz/datepicker": [
 				"../../../packages/backpackerz-datepicker/src"
 			]

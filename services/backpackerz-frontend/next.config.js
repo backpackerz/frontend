@@ -3,7 +3,6 @@ const withPlugins = require("next-compose-plugins");
 const withTM = require("next-transpile-modules")([
 	"backpackerz-core",
 	"backpackerz-components",
-	"backpackerz-hooks",
 	"backpackerz-datepicker",
 ]);
 
