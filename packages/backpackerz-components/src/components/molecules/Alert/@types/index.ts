@@ -1,7 +1,8 @@
-import { POSITIONS, TYPES } from "../constants";
-import DefaultContext from "../Context";
-
-export type ValueOf<T> = T[keyof T];
+import {
+	POSITIONS,
+	TYPES,
+} from "@backpackerz/components/variables/constants/alert";
+import DefaultContext from "../hooks/use-alert/Context";
 
 export type DefaultContextType = typeof DefaultContext;
 

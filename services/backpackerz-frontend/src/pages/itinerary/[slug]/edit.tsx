@@ -1,9 +1,10 @@
-import React, { ReactElement } from "react";
+import * as React from "react";
 import { GetServerSidePropsContext } from "next";
 import { connect } from "react-redux";
+
 import { wrapper } from "modules";
-import EmptiedLayout from "layouts/empied";
-import ItineraryEditTemplate from "components/templates/ItineraryEdit";
+import EmptiedLayout from "components/global/layouts/empied";
+import ItineraryEditTemplate from "components/Itinerary/template/Edit";
 import { useRouter } from "next/router";
 import useItinerary, { useItineraryServer } from "hooks/use-Itinerary";
 import useItineraryMutate from "hooks/use-Itinerary-mutate";
@@ -63,7 +64,7 @@ function Page(props: inferSSRProps<typeof getServerSideProps>) {
 	return <>{renderResult()}</>;
 }
 
-Page.getLayout = function getLayout(page: ReactElement) {
+Page.getLayout = function getLayout(page: React.ReactElement) {
 	return <EmptiedLayout>{page}</EmptiedLayout>;
 };
 

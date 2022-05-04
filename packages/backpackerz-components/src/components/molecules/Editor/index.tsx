@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from "react";
+import * as React from "react";
 import styled from "@emotion/styled";
 import { createEditor, Descendant } from "slate";
 import { Slate, Editable, withReact } from "slate-react";
@@ -39,11 +39,12 @@ export function BPEditor(props: Props) {
 					children: [{ text: "" }],
 				},
 		  ];
-	const editor = useMemo(() => withReact(createEditor()), []);
-	const [tempValue, setTempValue] = useState<Descendant[]>(defaultValue);
-	const renderLeaf = useCallback(Render.Leaf, []);
-	const renderElement = useCallback(Render.Element, []);
-	const handleKeyDown = useCallback((event: any) => {
+	const editor = React.useMemo(() => withReact(createEditor()), []);
+	const [tempValue, setTempValue] =
+		React.useState<Descendant[]>(defaultValue);
+	const renderLeaf = React.useCallback(Render.Leaf, []);
+	const renderElement = React.useCallback(Render.Element, []);
+	const handleKeyDown = React.useCallback((event: any) => {
 		if (!event.ctrlKey) {
 			return;
 		}
@@ -60,7 +61,7 @@ export function BPEditor(props: Props) {
 			}
 		}
 	}, []);
-	const handleOnChange = useCallback(
+	const handleOnChange = React.useCallback(
 		(value: Descendant[]) => {
 			// const isAstChange = editor.operations.some(
 			// 	(op) => "set_selection" !== op.type,

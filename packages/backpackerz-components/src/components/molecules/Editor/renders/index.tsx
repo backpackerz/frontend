@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { RenderElementProps, RenderLeafProps } from "slate-react";
 import Element from "../components/Element";
 import Leaf from "../components/Leaf";

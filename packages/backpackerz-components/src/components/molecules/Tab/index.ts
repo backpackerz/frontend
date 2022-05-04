@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 
 import TabButton, { Props as TabProps } from "./Tab";
 import Tabs, { Props as TabsProps } from "./Tabs";

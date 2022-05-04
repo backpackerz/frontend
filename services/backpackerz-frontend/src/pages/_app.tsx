@@ -1,16 +1,11 @@
-import React from "react";
 import Head from "next/head";
 import App, { AppContext } from "next/app";
-import { Store } from "redux";
+
 import { http } from "@backpackerz/core";
-import Core from "components/Core";
-import { wrapper, RootState } from "modules";
+import Core from "components/global/Core";
+import { wrapper } from "modules";
 import { globalStyles } from "styles";
 import { actions } from "modules/app/user";
-
-export type BackpackerzAppContext = AppContext & {
-	store: Store<RootState>;
-};
 
 const METADATA = {
 	description: "Backpackerz",
@@ -19,7 +14,7 @@ const METADATA = {
 };
 
 export default wrapper.withRedux(
-	class extends App<BackpackerzAppProps> {
+	class CustomApp extends App<BackpackerzAppProps> {
 		public static getInitialProps = wrapper.getInitialAppProps(
 			(store) => async (appContext: AppContext) => {
 				const { ctx } = appContext;
@@ -41,7 +36,6 @@ export default wrapper.withRedux(
 				};
 			},
 		);
-
 		render() {
 			const { Component, pageProps } = this.props;
 			const getLayout =

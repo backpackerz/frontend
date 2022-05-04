@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import cx from "classnames";
+
 import styles from "../../styles";
 import { defaultInputRanges, defaultStaticRanges } from "../../defaultRanges";
 import { rangeShape } from "../DayCell";
 import InputRangeField from "../InputRangeField";
-import cx from "classnames";
 
 class DefinedRange extends Component {
 	constructor(props) {

@@ -1,9 +1,10 @@
-import React, { ReactElement } from "react";
+import * as React from "react";
 import { GetServerSidePropsContext } from "next";
 import { useRouter } from "next/router";
+
 import { wrapper } from "modules";
-import DefaultLayout from "layouts/default";
-import ItineraryViewTemplate from "components/templates/ItineraryView";
+import DefaultLayout from "components/global/layouts/default";
+import ItineraryViewTemplate from "components/Itinerary/template/View";
 import useItinerary, { useItineraryServer } from "hooks/use-Itinerary";
 
 export const getServerSideProps = wrapper.getServerSideProps(
@@ -38,6 +39,6 @@ export default function Page(props: inferSSRProps<typeof getServerSideProps>) {
 	return <>{renderResult()}</>;
 }
 
-Page.getLayout = function getLayout(page: ReactElement) {
+Page.getLayout = function getLayout(page: React.ReactElement) {
 	return <DefaultLayout>{page}</DefaultLayout>;
 };

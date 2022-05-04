@@ -1,6 +1,6 @@
-import React from "react";
+import * as React from "react";
 import styled from "@emotion/styled";
-import { ModalProps, ModalComponentType } from "../hooks/useAppendModal/@types";
+import { ModalDefaultProps, ModalComponentType } from "../@types";
 
 const Modal: ModalComponentType = (
 	{ className, onOverlayClick, headerRender, footerRender, children },
@@ -60,4 +60,4 @@ const Body = styled.div`
 	flex: 1;
 `;
 const Footer = styled.div``;
-export default React.forwardRef<HTMLDivElement, ModalProps>(Modal);
+export default React.forwardRef<HTMLDivElement, ModalDefaultProps>(Modal);

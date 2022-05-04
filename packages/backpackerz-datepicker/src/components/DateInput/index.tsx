@@ -1,6 +1,6 @@
 import * as React from "react";
+import * as PropTypes from "prop-types";
 import styled from "@emotion/styled";
-import PropTypes from "prop-types";
 import classnames from "classnames";
 import { format, parse, isValid } from "date-fns";
 
