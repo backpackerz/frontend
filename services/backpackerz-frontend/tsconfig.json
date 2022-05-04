@@ -18,9 +18,6 @@
 			"path": "../../packages/backpackerz-components"
 		},
 		{
-			"path": "../../packages/backpackerz-hooks"
-		},
-		{
 			"path": "../../packages/backpackerz-datepicker"
 		}
 	],
