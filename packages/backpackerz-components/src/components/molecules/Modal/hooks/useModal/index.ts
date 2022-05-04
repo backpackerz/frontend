@@ -1,6 +1,6 @@
 import { useContext, useMemo } from "react";
 import DefaultContext from "./Context";
-import { ModalContext } from "./@types";
+import { ModalContext } from "../../@types";
 
 function useModal(context?: typeof DefaultContext): ModalContext {
 	const modalContext = useContext(context || DefaultContext);

@@ -4,9 +4,7 @@
 		"baseUrl": "./src",
 		"allowJs": true,
 		"jsx": "preserve",
-		"lib": ["dom", "ES2020"],
 		"module": "esnext",
-		"target": "esnext",
 		"moduleResolution": "node",
 		"strict": true,
 		"isolatedModules": true,
@@ -16,5 +14,5 @@
 		"esModuleInterop": true
 	},
 	"exclude": ["node_modules", "coverage", "dist"],
-	"include": ["src/**/*.tsx", "src/**/*.ts"]
+	"include": ["src/**/*.tsx", "src/**/*.ts", "src/**/*.js"]
 }

@@ -99,7 +99,29 @@ const DocumentHead = () => {
 		</Head>
 	);
 };
-class CustomDocument extends Document<BackpackerzDocumentProps> {
+export default class CustomDocument extends Document<BackpackerzDocumentProps> {
+	public static getInitialProps = async function (
+		documentContext: DocumentContext,
+	) {
+		const originalRenderPage = documentContext.renderPage;
+		documentContext.renderPage = async () => {
+			const page = await originalRenderPage({
+				enhanceApp: (App: AppType) => {
+					const app: AppType = (props) => {
+						return <App {...props} />;
+					};
+					return app;
+				},
+				enhanceComponent: (Component) => Component,
+			});
+			return page;
+		};
+
+		const initialProps = await Document.getInitialProps(documentContext);
+
+		return initialProps;
+	};
+
 	render() {
 		return (
 			<Html lang="ko">
@@ -112,25 +134,3 @@ class CustomDocument extends Document<BackpackerzDocumentProps> {
 		);
 	}
 }
-
-CustomDocument.getInitialProps = async (documentContext: DocumentContext) => {
-	const originalRenderPage = documentContext.renderPage;
-	documentContext.renderPage = async () => {
-		const page = await originalRenderPage({
-			enhanceApp: (App: AppType) => {
-				const app: AppType = (props) => {
-					return <App {...props} />;
-				};
-				return app;
-			},
-			enhanceComponent: (Component) => Component,
-		});
-		return page;
-	};
-
-	const initialProps = await Document.getInitialProps(documentContext);
-
-	return initialProps;
-};
-
-export default CustomDocument;

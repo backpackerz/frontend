@@ -8,7 +8,7 @@ import {
 	ModalOptions,
 	ModalType,
 	ProviderProps,
-} from "./@types";
+} from "../../@types";
 import DefaultContext from "./Context";
 import useOverlay from "../useOverlay";
 import Modal from "../../components/Modal";

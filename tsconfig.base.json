@@ -1,6 +1,8 @@
 {
 	"compilerOptions": {
 		"baseUrl": ".",
+		"target": "es6",
+		"lib": ["dom", "ES2020"],
 		"composite": true,
 		"incremental": true,
 		"noEmit": false,
@@ -14,11 +16,31 @@
 		"preserveConstEnums": true,
 		"removeComments": true,
 		"resolveJsonModule": true,
-		"allowSyntheticDefaultImports": false,
-		"esModuleInterop": true
+		"allowSyntheticDefaultImports": true,
+		"esModuleInterop": true,
+		"types": ["react", "node", "jest"],
+		"paths": {
+			"@backpackerz/core/*": ["../../../packages/backpackerz-core/src/*"],
+			"@backpackerz/components/*": [
+				"../../../packages/backpackerz-components/src/*"
+			],
+			"@backpackerz/hooks/*": [
+				"../../../packages/backpackerz-hooks/src/*"
+			],
+			"@backpackerz/datepicker/*": [
+				"../../../packages/backpackerz-datepicker/src/*"
+			],
+			"@backpackerz/core": ["../../../packages/backpackerz-core/src"],
+			"@backpackerz/components": [
+				"../../../packages/backpackerz-components/src"
+			],
+			"@backpackerz/hooks": ["../../../packages/backpackerz-hooks/src"],
+			"@backpackerz/datepicker": [
+				"../../../packages/backpackerz-datepicker/src"
+			]
+		}
 	},
-	"typeRoots": ["./node_modules/@types"],
-	"types": ["react", "node", "jest", "enzyme"],
-	"exclude": ["node_modules", "coverage", "dist"],
+	"typeRoots": ["node_modules/@types"],
+	"exclude": ["node_modules"],
 	"include": ["@types/*"]
 }

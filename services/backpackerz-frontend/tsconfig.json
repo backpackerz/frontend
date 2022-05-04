@@ -4,23 +4,11 @@
 		"baseUrl": "./src",
 		"allowJs": true,
 		"jsx": "preserve",
-		"lib": ["dom", "ES2020"],
 		"module": "esnext",
-		"target": "esnext",
 		"strict": true,
 		"moduleResolution": "node",
 		"isolatedModules": true,
-		"experimentalDecorators": true,
-		"paths": {
-			"@backpackerz/core": ["../../../packages/backpackerz-core/src"],
-			"@backpackerz/components": [
-				"../../../packages/backpackerz-components/src"
-			],
-			"@backpackerz/hooks": ["../../../packages/backpackerz-hooks/src"],
-			"@backpackerz/datepicker": [
-				"../../../packages/backpackerz-datepicker/src"
-			]
-		}
+		"experimentalDecorators": true
 	},
 	"references": [
 		{
@@ -36,11 +24,6 @@
 			"path": "../../packages/backpackerz-datepicker"
 		}
 	],
-	"exclude": [
-		"node_modules",
-		"next.config.js",
-		".next",
-		"src/**/*.stories.tsx"
-	],
+	"exclude": ["node_modules", "next.config.js", ".next", "**/*.stories.tsx"],
 	"include": ["next-env.d.ts", "types.d.ts", "**/*.ts", "**/*.tsx"]
 }

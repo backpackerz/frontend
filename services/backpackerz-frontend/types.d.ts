@@ -1,3 +1,4 @@
+/// <reference types="react" />
 import { ReactNode, ReactElement } from "react";
 import {
 	NextPage,
@@ -6,7 +7,8 @@ import {
 	NextPageContext,
 	GetServerSideProps,
 } from "next";
-import { AppProps } from "next/app";
+import { BaseContext } from "next/dist/shared/lib/utils";
+import type { AppProps } from "next/app";
 import { DocumentProps } from "next/document";
 import { Store } from "redux";
 import "@emotion/react";
@@ -43,7 +45,7 @@ declare global {
 		C extends BaseContext = NextPageContext,
 		IP = {},
 		P = {},
-	> = AppProps & {
+	> = Omit<AppProps<P>, "Component"> & {
 		Component: BackpackerzComponent<C, IP, P>;
 	};
 	export type BackpackerzDocumentProps<P = {}> = DocumentProps & {

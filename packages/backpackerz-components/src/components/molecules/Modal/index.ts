@@ -1,4 +1,4 @@
-import * as Types from "./hooks/useModal/@types";
+import * as Types from "./@types";
 export { default as Component } from "./components/Modal";
 
 export { default as Provider } from "./hooks/useModal/Provider";
