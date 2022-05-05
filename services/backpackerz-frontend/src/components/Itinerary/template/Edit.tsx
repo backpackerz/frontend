@@ -8,7 +8,7 @@ import {
 	Input,
 	Select,
 	Button,
-	Tab,
+	Tabs,
 	Modal,
 	Timetable,
 	Editor,
@@ -144,28 +144,32 @@ export default function ItineraryEditTemplate(props: Props) {
 							})
 						}
 					/>
-					<Tab.Tabs value={tab} onChange={setTab}>
-						<Tab value={0}>스토리</Tab>
-						<Tab value={1}>일정표</Tab>
-					</Tab.Tabs>
-					<div>
-						<Tab.TabPannel index={0} value={tab}>
-							타임라인
-						</Tab.TabPannel>
-						<Tab.TabPannel index={1} value={tab}>
-							<TimeEventTable
-								arrivalDate={new Date(itinerary.arrivalDate)}
-								departureDate={
-									new Date(itinerary.departureDate)
-								}
-								events={events}
-								onClickSlot={handleOpenModalEventCreate}
-								onClickEvent={({ event }) => {
-									console.log(event);
-								}}
-							/>
-						</Tab.TabPannel>
-					</div>
+					<Tabs
+						tabs={[
+							{
+								label: "일정표",
+								render: () => (
+									<TimeEventTable
+										arrivalDate={
+											new Date(itinerary.arrivalDate)
+										}
+										departureDate={
+											new Date(itinerary.departureDate)
+										}
+										events={events}
+										onClickSlot={handleOpenModalEventCreate}
+										onClickEvent={({ event }) => {
+											console.log(event);
+										}}
+									/>
+								),
+							},
+							{
+								label: "스토리",
+								render: () => <div>타임라인</div>,
+							},
+						]}
+					/>
 				</DetailBlock>
 			</BodyBlock>
 		</Container>

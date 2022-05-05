@@ -12,17 +12,16 @@ export type Props = React.ComponentPropsWithoutRef<"button"> &
 
 const CustomButton = styled(ButtonUnstyled)`
 	&.${buttonUnstyledClasses.root} {
+		padding: 8px 14px;
+		border-radius: 0.4rem;
+		background-color: ${palette.gray7};
+		color: ${palette.gray0};
 		font-family: IBM Plex Sans, sans-serif;
 		font-weight: bold;
 		font-size: 1.275rem;
-		background-color: ${palette.gray7};
-		padding: 8px 14px;
-		border-radius: 0.4rem;
-		color: ${palette.gray0};
 		transition: all 150ms ease;
 		cursor: pointer;
 		border: none;
-
 		&:hover {
 			background-color: ${palette.gray8}};
 		}
