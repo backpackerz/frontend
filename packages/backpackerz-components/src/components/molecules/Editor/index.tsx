@@ -9,6 +9,7 @@ import * as actions from "./actions";
 import { serialize } from "./serialize";
 import { deserialize } from "./deserialize";
 export { parseText } from "./deserialize";
+import { palette } from "@backpackerz/components/styles/palette";
 
 type Props = {
 	className?: string;
@@ -102,6 +103,7 @@ const EditorBlock = styled.div`
 		padding: 0.8rem 0.6rem;
 		border: 1px solid #dee2e6;
 		border-radius: 0.4rem;
+		border: 1px solid ${palette.gray6};
 	}
 `;
 const EditableBlock = styled(Editable)`

@@ -22,7 +22,7 @@ const StyledButton = styled("button")`
 	min-width: 320px;
 	background: ${palette.gray0};
 	border: 1px solid ${palette.gray6};
-	border-radius: 0.75em;
+	border-radius: 0.4rem;
 	padding: 10px;
 	text-align: left;
 	line-height: 1.5;

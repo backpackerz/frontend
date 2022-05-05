@@ -16,7 +16,7 @@ const StyledInputRoot = styled.div(
 		align-items: center;
 		justify-content: center;
 		border: 1px solid ${palette.gray6};
-		border-radius: 0.75em;
+		border-radius: 0.4rem;
 		background: ${palette.gray0};
 		font-family: IBM Plex Sans, sans-serif;
 		font-weight: 500;
