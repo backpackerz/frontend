@@ -19,7 +19,7 @@ const StyledInputRoot = styled.div(
 		font-weight: 500;
 		border: 1px solid ${palette.gray6};
 		border-radius: 8px;
-		background:${palette.gray0};
+		background: ${palette.gray0};
 
 		&.${inputUnstyledClasses.focused} {
 			outline: 3px solid ${palette.gray3};
@@ -27,7 +27,7 @@ const StyledInputRoot = styled.div(
 		}
 
 		&:hover {
-			background: ${palette.gray1};
+			background: ${palette.gray0};
 			border-color: ${palette.gray8};
 		}
 `,
@@ -46,6 +46,13 @@ const StyledInputElement = styled.input(
 		border: none;
 		border-radius: inherit;
 		outline: 0;
+		&:-webkit-autofill,
+		&:-webkit-autofill:focus {
+			box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0), inset 0 0 0 100px ${palette.gray0};
+		}
+		&:-webkit-autofill:hover {
+			box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0), inset 0 0 0 100px ${palette.gray0};
+		}
 	`,
 );
 

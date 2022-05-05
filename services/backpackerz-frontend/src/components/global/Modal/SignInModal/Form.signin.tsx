@@ -36,7 +36,8 @@ export default function FormSignin(props: Props) {
 			<Label htmlFor="email">Email</Label>
 			<Input
 				id="email"
-				type="text"
+				type="email"
+				autoComplete="email"
 				placeholder="Email"
 				value={email}
 				onChange={setEmail}
