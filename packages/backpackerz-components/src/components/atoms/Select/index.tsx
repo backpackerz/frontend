@@ -1,216 +1,144 @@
 import * as React from "react";
 import styled from "@emotion/styled";
-import { v4 as uuidv4 } from "uuid";
+import SelectUnstyled, {
+	SelectUnstyledProps,
+	selectUnstyledClasses,
+	SelectUnstyledPopperSlotProps,
+} from "@mui/base/SelectUnstyled";
+import OptionUnstyled, {
+	OptionUnstyledProps,
+	optionUnstyledClasses,
+} from "@mui/base/OptionUnstyled";
+import PopperUnstyled from "@mui/base/PopperUnstyled";
 
-import SelectOption, { OptionType } from "./Option";
+import { palette } from "@backpackerz/components/styles/palette";
 
-import useOutsideClick from "../../../hooks/useOutsideClick";
-import { palette } from "../../../styles/palette";
+const StyledButton = styled("button")`
+	font-size: 1.275rem;
+	font-family: IBM Plex Sans, sans-serif;
+	font-weight: 400;
+	box-sizing: border-box;
+	min-height: calc(1.5em + 22px);
+	min-width: 320px;
+	background: ${palette.gray0};
+	border: 1px solid ${palette.gray6};
+	border-radius: 0.75em;
+	padding: 10px;
+	text-align: left;
+	line-height: 1.5;
+	color: ${palette.gray8};
 
-export type Props = React.PropsWithChildren<
-	Pick<React.HTMLProps<HTMLDivElement>, "aria-labelledby"> & {
-		className?: string;
-		options: OptionType[];
-		selectedOption: OptionType["value"];
-		onSelected:
-			| ((value: OptionType["value"]) => void)
-			| React.Dispatch<React.SetStateAction<OptionType>>;
-	}
->;
-
-const defaultProps: Required<{}> = {};
-
-// function measureTextWidth(text: string, font: string) {
-// 	const canvas = document.createElement("canvas");
-// 	const context: CanvasRenderingContext2D = canvas.getContext("2d")!;
-
-// 	context.font = font || getComputedStyle(document.body).font;
-
-// 	return context.measureText(text).width;
-// }
-
-function getMaxText(strArr: string[]) {
-	return Math.max(...strArr.map((value) => value.length));
-}
-
-export default function Select(props: Props) {
-	const {
-		className,
-		options,
-		selectedOption,
-		onSelected,
-		children,
-		...htmlProps
-	} = { ...defaultProps, ...props };
-	const selectedOptionIndex = options.findIndex(
-		({ value }) => value == selectedOption,
-	);
-	const [isFocused, setIsFocused] = React.useState(false);
-	const [isPopupExpanded, setIsPopupExpanded] =
-		React.useState<boolean>(false);
-	const [focusedOptionIndex, setFocusedOptionIndex] = React.useState(() => {
-		return options.findIndex(({ value }) => value == selectedOption);
-	});
-
-	let labelId = htmlProps["aria-labelledby"];
-	React.useEffect(() => {
-		if (!labelId) labelId = uuidv4();
-	}, []);
-
-	const handleClickOutsideTargetRef = useOutsideClick<HTMLDivElement>(() => {
-		setIsPopupExpanded(false);
-	});
-	const maxTextLength = getMaxText(options.map(({ label }) => label));
-
-	const handleFocus: React.FocusEventHandler = () => {
-		setIsFocused(true);
-		setFocusedOptionIndex(selectedOptionIndex);
-	};
-	const handleBlur: React.FocusEventHandler = (event) => {
-		setIsFocused(false);
-		setFocusedOptionIndex(selectedOptionIndex);
-	};
-	const handleOptionMouseOver = (index: number) => () => {
-		setFocusedOptionIndex(index);
-	};
-	const handleKeyDown: React.KeyboardEventHandler = (event) => {
-		event.preventDefault();
-		const key = event.key || event.keyCode;
-		switch (key) {
-			case "ArrowDown":
-			case "40":
-				if (!isPopupExpanded) setIsPopupExpanded(true);
-				else {
-					setFocusedOptionIndex((idx) => {
-						return idx >= options.length - 1 ? 0 : idx + 1;
-					});
-				}
-				break;
-			case "ArrowUp":
-			case 38:
-				if (isPopupExpanded) {
-					setFocusedOptionIndex((idx) => {
-						return idx == 0 ? options.length - 1 : idx - 1;
-					});
-				}
-				break;
-			case "Enter":
-			case 13:
-				if (isPopupExpanded) {
-					onSelected(options[focusedOptionIndex].value);
-					setIsPopupExpanded(false);
-				}
-				break;
-			case "Tab":
-			case 9:
-				setIsPopupExpanded(false);
-				break;
-		}
-	};
-	const handleButtonClick: React.MouseEventHandler<HTMLButtonElement> = (
-		event,
-	) => {
-		event.preventDefault();
-		setIsPopupExpanded((preventState) => !preventState);
-	};
-	const handleSelectOption = (option: OptionType) => () => {
-		onSelected(option.value);
-		setIsPopupExpanded(false);
-	};
-	const optionElements = options.map((option, index) => (
-		<SelectOption
-			key={option.value}
-			isFocus={focusedOptionIndex === index}
-			value={option.value}
-			label={option.label}
-			onMouseOver={handleOptionMouseOver(index)}
-			onClick={handleSelectOption(option)}
-		/>
-	));
-	return (
-		<SelectBlock
-			className={className}
-			maxTextLength={maxTextLength}
-			onFocus={handleFocus}
-			onBlur={handleBlur}
-			onKeyDown={handleKeyDown}
-			ref={handleClickOutsideTargetRef}
-			{...(htmlProps as any)}
-		>
-			<SelectButton
-				onClick={handleButtonClick}
-				aria-haspopup="listbox"
-				aria-labelledby={labelId}
-				aria-expanded={isPopupExpanded}
-				role="button"
-			>
-				<div className="pseudo-value" id={labelId}>
-					{options[selectedOptionIndex].label}
-				</div>
-			</SelectButton>
-			<SelectList
-				visible={isPopupExpanded}
-				maxTextLength={maxTextLength}
-				aria-activedescendant=""
-				data-cached-selected={options[selectedOptionIndex].label}
-				role="listbox"
-			>
-				{optionElements}
-			</SelectList>
-		</SelectBlock>
-	);
-}
-
-const SelectBlock = styled.span<{ maxTextLength: number }>`
-	display: inline-flex;
-	position: relative;
-	height: 3.4em;
-	min-width: ${(props) => Number(props.maxTextLength) * 1.4 + 2}em;
-`;
-
-const SelectButton = styled.button`
-	height: 2.5em;
-	width: 100%;
-	min-width: 7.6rem;
-	line-height: 2.5em;
-
-	padding: 1px 2px;
-	border: 1px solid transparent;
-	border-radius: 0.4em;
-	background-color: #ffffff;
-	font-size: 1.4em;
-	user-select: none;
-	box-shadow: 0 1px 2px 0 rgb(35 57 66 / 21%);
-	cursor: pointer;
-	color: #7d888d;
 	&:hover,
-	&:focus {
-		outline: none;
-		box-shadow: 0 1px 2px 0 ${(props) => palette.gray7};
-		transition: border-color 0.2s;
+	&[aria-expanded="true"] {
+		background: ${palette.gray0};
+		border-color: ${palette.gray8};
 	}
+
+	&.${selectUnstyledClasses.focusVisible} {
+		outline: 3px solid ${palette.gray4};
+		border-color: ${palette.gray8};
+	}
+
+	&.${selectUnstyledClasses.expanded} {
+		&::after {
+			content: "▴";
+		}
+	}
+
 	&::after {
-		position: absolute;
-		right: 2px;
-		top: 0px;
-		font-size: 1em;
-		content: ${(props) => (props["aria-expanded"] ? `"△"` : `"▽"`)};
-	}
-	.pseudo-value {
-		margin-right: 1.4em;
+		content: "▾";
+		float: right;
 	}
 `;
 
-const SelectList = styled.ul<{ visible: boolean; maxTextLength: number }>`
-	position: absolute;
-	top: 100%;
-	display: ${(props) => (props.visible ? "block" : "none")};
-	width: 100%;
-	min-width: ${(props) => Number(props.maxTextLength) * 1.4 + 3}em;
-	margin: 0.4em 0 0 0;
-	padding: 0;
-	background-color: #fff;
-	border: 1px solid ${(props) => palette.gray3};
-	border-radius: 0.4em;
+const StyledListbox = styled("ul")`
+	font-family: IBM Plex Sans, sans-serif;
+	font-size: 1.275rem;
+	box-sizing: border-box;
+	margin: 1rem 0 0 0;
+	padding: 5px;
+	min-width: 320px;
+	background: ${palette.gray0};
+	border: 1px solid ${palette.gray6};
+	border-radius: 0.75em;
+	color: ${palette.gray8};
+	overflow: auto;
+	outline: 0px;
+`;
+
+const StyledOption = styled(OptionUnstyled)`
+	list-style: none;
+	padding: 8px;
+	cursor: default;
+	color: ${palette.gray9};
+
+	& + & {
+		margin: 0.4rem 0 0 0;
+	}
+
+	&:last-of-type {
+		border-bottom: none;
+	}
+
+	&.${optionUnstyledClasses.selected} {
+		font-weight: 600;
+		color: ${palette.gray9};
+	}
+
+	&.${optionUnstyledClasses.highlighted} {
+		font-weight: 600;
+		color: ${palette.gray9};
+	}
+
+	&.${optionUnstyledClasses.highlighted}.${optionUnstyledClasses.selected} {
+		font-weight: 600;
+		color: ${palette.gray9};
+	}
+
+	&.${optionUnstyledClasses.disabled} {
+		color: ${palette.gray9};
+	}
+
+	&:hover:not(.${optionUnstyledClasses.disabled}) {
+		font-weight: 600;
+		color: ${palette.gray9};
+	}
+`;
+
+const StyledPopper = styled(PopperUnstyled)`
 	z-index: 1;
 `;
+
+const CustomSelect = React.forwardRef(function CustomSelect<TValue>(
+	props: SelectUnstyledProps<TValue>,
+	ref: React.ForwardedRef<HTMLUListElement>,
+) {
+	const components: SelectUnstyledProps<TValue>["components"] = {
+		Root: StyledButton,
+		Listbox: StyledListbox,
+		Popper: StyledPopper as React.ComponentType<
+			SelectUnstyledPopperSlotProps<TValue>
+		>,
+		...props.components,
+	};
+
+	return <SelectUnstyled {...props} ref={ref} components={components} />;
+}) as <TValue>(
+	props: SelectUnstyledProps<TValue> & React.RefAttributes<HTMLUListElement>,
+) => JSX.Element;
+
+export type Props<TValue> = SelectUnstyledProps<TValue> & {
+	options: OptionUnstyledProps<TValue>[];
+	defaultValue: TValue;
+};
+// Props<TValue>["options"][number]["value"]
+export default function Select(props: Props<any>) {
+	const { options, defaultValue, ...htmlProps } = props;
+	return (
+		<CustomSelect defaultValue={defaultValue} {...htmlProps}>
+			{options.map((option) => (
+				<StyledOption {...option}>{option.label}</StyledOption>
+			))}
+		</CustomSelect>
+	);
+}

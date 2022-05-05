@@ -15,14 +15,13 @@ const StyledInputRoot = styled.div(
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		border: 1px solid ${palette.gray6};
+		border-radius: 0.75em;
+		background: ${palette.gray0};
 		font-family: IBM Plex Sans, sans-serif;
 		font-weight: 500;
-		border: 1px solid ${palette.gray6};
-		border-radius: 8px;
-		background: ${palette.gray0};
-
 		&.${inputUnstyledClasses.focused} {
-			outline: 3px solid ${palette.gray3};
+			outline: 3px solid ${palette.gray4};
 			border-color: ${palette.gray8};
 		}
 

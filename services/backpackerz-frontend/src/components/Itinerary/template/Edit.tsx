@@ -11,8 +11,8 @@ import {
 	Tab,
 	Modal,
 	Timetable,
+	Editor,
 } from "@backpackerz/components";
-import { Editor } from "@backpackerz/components";
 import { DateRangePicker } from "@backpackerz/datepicker";
 import { mq } from "styles/mediaQuery";
 import * as MODAL_KEYS from "variables/constants/modals";
@@ -70,12 +70,12 @@ export default function ItineraryEditTemplate(props: Props) {
 				<div>
 					<StateSelect
 						options={UI_VARIABLES.STATE_OPTIONS}
-						selectedOption={
+						defaultValue={
 							UI_VARIABLES.STATE_OPTIONS.find(
 								({ value }) => value == itinerary.state,
 							)?.value
 						}
-						onSelected={(value: any) =>
+						onChange={(value: any) =>
 							onChange({
 								...itinerary,
 								state: value,
@@ -84,8 +84,8 @@ export default function ItineraryEditTemplate(props: Props) {
 					/>
 					<PersonnelSelect
 						options={UI_VARIABLES.PERSONNEL_OPTIONS}
-						selectedOption={itinerary.personnel}
-						onSelected={(value: any) =>
+						defaultValue={itinerary.personnel}
+						onChange={(value: any) =>
 							onChange({
 								...itinerary,
 								personnel: value,

@@ -95,22 +95,18 @@ export default React.forwardRef<HTMLDivElement, Modal.ModalProps>(
 							calendarFocus="backwards"
 							isToggleCalendarBox
 						/>
-						<FlexBox>
-							<Label htmlFor="period">상태</Label>
-							<Label htmlFor="period">인원</Label>
-						</FlexBox>
-						<FlexBox>
-							<StateSelect
-								options={UI_VARIABLES.STATE_OPTIONS}
-								selectedOption={state}
-								onSelected={setState}
-							/>
-							<PersonnelSelect
-								options={UI_VARIABLES.PERSONNEL_OPTIONS}
-								selectedOption={personnel}
-								onSelected={setPersonnel}
-							/>
-						</FlexBox>
+						<Label htmlFor="period">상태</Label>
+						<StateSelect
+							options={UI_VARIABLES.STATE_OPTIONS}
+							defaultValue={state}
+							onChange={setState}
+						/>
+						<Label htmlFor="period">인원</Label>
+						<PersonnelSelect
+							options={UI_VARIABLES.PERSONNEL_OPTIONS}
+							defaultValue={personnel}
+							onChange={setPersonnel}
+						/>
 						<Button
 							className="btn-submit"
 							onClick={handleCreateItinerary}
@@ -161,11 +157,4 @@ const StateSelect = styled(Select)`
 const PersonnelSelect = styled(Select)`
 	flex-grow: 1;
 	margin-top: 1.2rem;
-`;
-const FlexBox = styled.div`
-	display: flex;
-	width: 100%;
-	> * {
-		flex: 1;
-	}
 `;
