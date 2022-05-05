@@ -14,6 +14,7 @@ import {
 	Editor,
 } from "@backpackerz/components";
 import { DateRangePicker } from "@backpackerz/datepicker";
+import { ItineraryState } from "@backpackerz/core/variables/enums";
 import { mq } from "styles/mediaQuery";
 import * as MODAL_KEYS from "variables/constants/modals";
 import * as UI_VARIABLES from "variables/constants/user-interface";
@@ -30,16 +31,16 @@ const defaultProps = {};
 export default function ItineraryEditTemplate(props: Props) {
 	const { itinerary, onChange, onClickSave } = { ...defaultProps, ...props };
 
-	const [tab, setTab] = React.useState(0);
 	const router = useRouter();
 	const modal = Modal.useModal();
 
-	const handleOpenModalEventCreate = ({ start, end }: any) => {
-		modal.show(
-			{ type: MODAL_KEYS.MODAL_STORY_CREATE },
-			{ slug: router.query.slug, start, end },
-		);
-	};
+	const dateRanges = [
+		{
+			startDate: new Date(itinerary.departureDate),
+			endDate: new Date(itinerary.arrivalDate),
+			key: "selection",
+		},
+	];
 	const events = [
 		itinerary.stories.map((story) => {
 			return {
@@ -53,62 +54,93 @@ export default function ItineraryEditTemplate(props: Props) {
 			};
 		}),
 	];
+	const defaultValueState = React.useMemo(
+		() =>
+			UI_VARIABLES.STATE_OPTIONS.find(
+				({ value }) => value == itinerary.state,
+			)?.value,
+		[itinerary.state],
+	);
 
+	const TimeTable = () => (
+		<TimeEventTable
+			arrivalDate={new Date(itinerary.arrivalDate)}
+			departureDate={new Date(itinerary.departureDate)}
+			events={events}
+			onClickSlot={handleOpenModalEventCreate}
+			onClickEvent={({ event }) => {
+				console.log(event);
+			}}
+		/>
+	);
+	const Map = () => <div>타임라인</div>;
+
+	const handleOpenModalEventCreate = ({ start, end }: any) => {
+		modal.show(
+			{ type: MODAL_KEYS.MODAL_STORY_CREATE },
+			{ slug: router.query.slug, start, end },
+		);
+	};
+	const handleChangeTitle = (value: string) => {
+		onChange({
+			...itinerary,
+			title: value,
+		});
+	};
+	const handleChangeDescription = (value: string) => {
+		onChange({
+			...itinerary,
+			description: value,
+		});
+	};
+	const handleChangeBody = (value: string) => {
+		onChange({
+			...itinerary,
+			body: value,
+		});
+	};
+	const handleChangeState = (value: ItineraryState) => {
+		onChange({
+			...itinerary,
+			state: value,
+		});
+	};
+	const handleChangePersonnel = (value: number) => {
+		onChange({
+			...itinerary,
+			personnel: value,
+		});
+	};
+	const handleChangeDateRange = ({ selection }: any) => {
+		onChange({
+			...itinerary,
+			departureDate: selection.startDate,
+			arrivalDate: selection.endDate,
+		});
+	};
 	return (
 		<Container>
 			<HeaderBlock>
 				<TitleInput
 					value={itinerary.title}
-					maxLength={80}
-					onChange={(value) =>
-						onChange({
-							...itinerary,
-							title: value,
-						})
-					}
+					maxLength={UI_VARIABLES.TITLE_MAX_LENGTH}
+					onChange={handleChangeTitle}
 				/>
 				<div>
 					<StateSelect
 						options={UI_VARIABLES.STATE_OPTIONS}
-						defaultValue={
-							UI_VARIABLES.STATE_OPTIONS.find(
-								({ value }) => value == itinerary.state,
-							)?.value
-						}
-						onChange={(value: any) =>
-							onChange({
-								...itinerary,
-								state: value,
-							})
-						}
+						defaultValue={defaultValueState}
+						onChange={handleChangeState}
 					/>
 					<PersonnelSelect
 						options={UI_VARIABLES.PERSONNEL_OPTIONS}
 						defaultValue={itinerary.personnel}
-						onChange={(value: any) =>
-							onChange({
-								...itinerary,
-								personnel: value,
-							})
-						}
+						onChange={handleChangePersonnel}
 					/>
-					<DateRangePicker
+					<DatePicker
 						locale={ko}
-						ranges={[
-							{
-								startDate: new Date(itinerary.departureDate),
-								endDate: new Date(itinerary.arrivalDate),
-								key: "selection",
-							},
-						]}
-						onChange={(item: any) => {
-							onChange({
-								...itinerary,
-								departureDate: item.selection.startDate,
-								arrivalDate: item.selection.endDate,
-							});
-						}}
-						showSelectionPreview={true}
+						ranges={dateRanges}
+						onChange={handleChangeDateRange}
 						moveRangeOnFirstSelection={false}
 						months={1}
 						direction="horizontal"
@@ -125,48 +157,26 @@ export default function ItineraryEditTemplate(props: Props) {
 				</AsideBlock>
 				<DetailBlock>
 					<DescriptionInput
-						placeholder="여행을 간단하게 설명해주세요"
-						value={itinerary.description}
-						onChange={(value) =>
-							onChange({
-								...itinerary,
-								description: value,
-							})
+						placeholder={
+							UI_VARIABLES.ITINERARY_DESCRIPTION_PLACEHOLDER
 						}
+						value={itinerary.description}
+						onChange={handleChangeDescription}
 					/>
 					<BodyEditor
-						placeholder="여행을 간단하게 설명해주세요"
+						placeholder={UI_VARIABLES.ITINERARY_BODY_PLACEHOLDER}
 						value={itinerary.body}
-						onChange={(value) =>
-							onChange({
-								...itinerary,
-								body: value,
-							})
-						}
+						onChange={handleChangeBody}
 					/>
 					<Tabs
 						tabs={[
 							{
 								label: "일정표",
-								render: () => (
-									<TimeEventTable
-										arrivalDate={
-											new Date(itinerary.arrivalDate)
-										}
-										departureDate={
-											new Date(itinerary.departureDate)
-										}
-										events={events}
-										onClickSlot={handleOpenModalEventCreate}
-										onClickEvent={({ event }) => {
-											console.log(event);
-										}}
-									/>
-								),
+								render: TimeTable,
 							},
 							{
-								label: "스토리",
-								render: () => <div>타임라인</div>,
+								label: "지도",
+								render: Map,
 							},
 						]}
 					/>
@@ -199,6 +209,9 @@ const StateSelect = styled(Select)`
 	margin: 0.833rem;
 `;
 const PersonnelSelect = styled(Select)`
+	margin: 0.833rem;
+`;
+const DatePicker = styled(DateRangePicker)`
 	margin: 0.833rem;
 `;
 const SaveButton = styled(Button)`

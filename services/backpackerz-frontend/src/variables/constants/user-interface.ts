@@ -1,5 +1,11 @@
 import { ENUMS } from "@backpackerz/core";
 
+export const TITLE_MAX_LENGTH = 80;
+
+export const ITINERARY_DESCRIPTION_PLACEHOLDER = "여행을 간단하게 설명해주세요";
+
+export const ITINERARY_BODY_PLACEHOLDER = "여행을 간단하게 설명해주세요";
+
 export const STATE_OPTIONS = [
 	{
 		value: ENUMS.ItineraryState.Before,

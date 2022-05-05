@@ -23,7 +23,7 @@ const StyledButton = styled("button")`
 	background: ${palette.gray0};
 	border: 1px solid ${palette.gray6};
 	border-radius: 0.4rem;
-	padding: 10px;
+	padding: 12px;
 	text-align: left;
 	line-height: 1.5;
 	color: ${palette.gray8};
