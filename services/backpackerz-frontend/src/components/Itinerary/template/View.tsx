@@ -3,9 +3,8 @@ import Link from "next/link";
 import styled from "@emotion/styled";
 
 import { Types } from "@backpackerz/core";
-import { Editor } from "@backpackerz/components";
+import { BPStyle, Editor } from "@backpackerz/components";
 import useStoreSelector from "hooks/use-store-selector";
-import { mq } from "styles/mediaQuery";
 import * as UI_VARIABLES from "variables/constants/user-interface";
 
 type Props = {
@@ -96,7 +95,7 @@ const BodyBlock = styled.section`
 	max-width: 1200px;
 	margin: auto;
 	gap: 1rem;
-	${mq("xs", "lg")} {
+	${BPStyle.utils.mediaQuery("xs", "lg")} {
 		flex-direction: column;
 	}
 `;

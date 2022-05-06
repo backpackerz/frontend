@@ -2,7 +2,7 @@ import * as React from "react";
 import Link from "next/link";
 import styled from "@emotion/styled";
 
-import { palette } from "../../styles/palette";
+import { palette } from "@backpackerz/components/styles/theme";
 
 type Props = React.ComponentPropsWithoutRef<"h1"> & {
 	area?: "header" | "footer";

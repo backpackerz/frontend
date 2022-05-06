@@ -11,7 +11,7 @@ import OptionUnstyled, {
 } from "@mui/base/OptionUnstyled";
 import PopperUnstyled from "@mui/base/PopperUnstyled";
 
-import { palette } from "@backpackerz/components/styles/palette";
+import { palette } from "@backpackerz/components/styles/theme";
 
 const StyledButton = styled("button")`
 	font-size: 1.275rem;

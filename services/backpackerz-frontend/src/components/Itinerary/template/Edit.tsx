@@ -5,9 +5,11 @@ import { ko } from "date-fns/locale";
 
 import { Types } from "@backpackerz/core";
 import {
+	BPStyle,
 	Input,
 	Select,
 	Button,
+	Map,
 	Tabs,
 	Modal,
 	Timetable,
@@ -15,7 +17,6 @@ import {
 } from "@backpackerz/components";
 import { DateRangePicker } from "@backpackerz/datepicker";
 import { ItineraryState } from "@backpackerz/core/variables/enums";
-import { mq } from "styles/mediaQuery";
 import * as MODAL_KEYS from "variables/constants/modals";
 import * as UI_VARIABLES from "variables/constants/user-interface";
 
@@ -62,7 +63,7 @@ export default function ItineraryEditTemplate(props: Props) {
 		[itinerary.state],
 	);
 
-	const TimeTable = () => (
+	const TimeTablePanel = () => (
 		<TimeEventTable
 			arrivalDate={new Date(itinerary.arrivalDate)}
 			departureDate={new Date(itinerary.departureDate)}
@@ -73,7 +74,11 @@ export default function ItineraryEditTemplate(props: Props) {
 			}}
 		/>
 	);
-	const Map = () => <div>타임라인</div>;
+	const MapPanel = () => (
+		<div>
+			<Map />
+		</div>
+	);
 
 	const handleOpenModalEventCreate = ({ start, end }: any) => {
 		modal.show(
@@ -172,11 +177,11 @@ export default function ItineraryEditTemplate(props: Props) {
 						tabs={[
 							{
 								label: "일정표",
-								render: TimeTable,
+								render: TimeTablePanel,
 							},
 							{
 								label: "지도",
-								render: Map,
+								render: MapPanel,
 							},
 						]}
 					/>
@@ -201,7 +206,7 @@ const HeaderBlock = styled.header`
 const TitleInput = styled(Input)`
 	width: 100rem;
 	margin: 0.833rem;
-	${mq("xs", "lg")} {
+	${BPStyle.utils.mediaQuery("xs", "lg")} {
 		width: 100%;
 	}
 `;
@@ -230,7 +235,7 @@ const BodyBlock = styled.div`
 	}
 	-ms-overflow-style: none;
 	scrollbar-width: none;
-	${mq("xs", "lg")} {
+	${BPStyle.utils.mediaQuery("xs", "lg")} {
 		flex-direction: column;
 	}
 `;
@@ -241,7 +246,7 @@ const AsideBlock = styled.aside`
 	margin: 0.833em;
 	padding: 0.833em;
 	box-shadow: 0 2px 2px rgb(125 125 125 / 20%);
-	${mq("xs", "lg")} {
+	${BPStyle.utils.mediaQuery("xs", "lg")} {
 		width: auto;
 	}
 `;

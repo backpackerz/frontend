@@ -5,7 +5,7 @@ import ButtonUnstyled, {
 	ButtonUnstyledProps,
 } from "@mui/base/ButtonUnstyled";
 
-import { palette } from "@backpackerz/components/styles/palette";
+import { palette } from "@backpackerz/components/styles/theme";
 
 export type Props = React.ComponentPropsWithoutRef<"button"> &
 	ButtonUnstyledProps & {};

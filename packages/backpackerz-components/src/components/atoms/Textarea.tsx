@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "@emotion/styled";
 
-import { palette } from "../../styles/palette";
+import { palette } from "@backpackerz/components/styles/theme";
 
 export type Props = Omit<
 	React.ComponentPropsWithoutRef<"textarea">,

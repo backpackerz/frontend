@@ -9,7 +9,7 @@ import * as actions from "./actions";
 import { serialize } from "./serialize";
 import { deserialize } from "./deserialize";
 export { parseText } from "./deserialize";
-import { palette } from "@backpackerz/components/styles/palette";
+import { palette } from "@backpackerz/components/styles/theme";
 
 type Props = {
 	className?: string;

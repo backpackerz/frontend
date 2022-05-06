@@ -2,7 +2,7 @@ import * as React from "react";
 import styled from "@emotion/styled";
 
 import ItineraryCard, { Props as ItineraryCardProps } from "./Card";
-import { mq } from "styles/mediaQuery";
+import { BPStyle } from "@backpackerz/components";
 
 export default function ItineraryGrid(props: {
 	items: (ItineraryCardProps & { key: string | number })[];
@@ -36,19 +36,19 @@ const Wrapper = styled.div`
 
 const Grid = styled.div`
 	display: grid;
-	${mq("xs", "md")} {
+	${BPStyle.utils.mediaQuery("xs", "md")} {
 		grid-template-columns: repeat(1, 1fr);
 	}
-	${mq("md", "lg")} {
+	${BPStyle.utils.mediaQuery("md", "lg")} {
 		grid-template-columns: repeat(1, 1fr);
 	}
-	${mq("lg", "xl")} {
+	${BPStyle.utils.mediaQuery("lg", "xl")} {
 		grid-template-columns: repeat(2, 1fr);
 	}
-	${mq("xl", "xxl")} {
+	${BPStyle.utils.mediaQuery("xl", "xxl")} {
 		grid-template-columns: repeat(2, 1fr);
 	}
-	${mq("xxl", "xxxl")} {
+	${BPStyle.utils.mediaQuery("xxl", "xxxl")} {
 		grid-template-columns: repeat(3, 1fr);
 	}
 `;

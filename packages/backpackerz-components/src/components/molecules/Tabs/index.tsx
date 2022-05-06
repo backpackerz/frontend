@@ -1,15 +1,12 @@
 import * as React from "react";
 import styled from "@emotion/styled";
 import TabsUnstyled from "@mui/base/TabsUnstyled";
-import TabsListUnstyled, {
-	tabsListUnstyledClasses,
-	TabsListUnstyledProps,
-} from "@mui/base/TabsListUnstyled";
+import TabsListUnstyled from "@mui/base/TabsListUnstyled";
 import TabPanelUnstyled from "@mui/base/TabPanelUnstyled";
 import { buttonUnstyledClasses } from "@mui/base/ButtonUnstyled";
 import TabUnstyled, { tabUnstyledClasses } from "@mui/base/TabUnstyled";
 
-import { palette } from "@backpackerz/components/styles/palette";
+import { palette } from "@backpackerz/components/styles/theme";
 
 const Tab = styled(TabUnstyled)`
 	display: flex;

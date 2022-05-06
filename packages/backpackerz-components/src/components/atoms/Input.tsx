@@ -8,7 +8,7 @@ import ButtonUnstyled from "@mui/base/ButtonUnstyled";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
-import { palette } from "@backpackerz/components/styles/palette";
+import { palette } from "@backpackerz/components/styles/theme";
 
 const StyledInputRoot = styled.div(
 	() => `

@@ -3,8 +3,7 @@ import Link, { LinkProps } from "next/link";
 import styled from "@emotion/styled";
 import { format } from "date-fns";
 
-import { Editor } from "@backpackerz/components";
-import * as styledUtils from "styles/utils";
+import { BPStyle, Editor } from "@backpackerz/components";
 
 export type Props = LinkProps & {
 	heading: string;
@@ -55,7 +54,7 @@ const Heading = styled.h3`
 		&:hover {
 			color: ${(props) => props.theme.palette.gray6};
 		}
-		${styledUtils.ellipsis(1)}
+		${BPStyle.utils.ellipsis(1)}
 	}
 `;
 const Description = styled.p`
