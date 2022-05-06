@@ -30,6 +30,7 @@
 		"disable-scroll": "^0.6.0",
 		"html-react-parser": "^1.4.8",
 		"lodash": "^4.17.21",
+		"mapbox-gl": "^2.8.2",
 		"react-transition-group": "^4.4.2",
 		"slate": "^0.72.8",
 		"slate-react": "^0.72.8",
