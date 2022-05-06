@@ -5,6 +5,7 @@ export { default as Input } from "./components/atoms/Input";
 export { default as Label } from "./components/atoms/Label";
 export { default as Textarea } from "./components/atoms/Textarea";
 
+export { default as Map } from "./components/molecules/Map";
 export { default as Tabs } from "./components/molecules/Tabs";
 export * as Alert from "./components/molecules/Alert";
 export * as Modal from "./components/molecules/Modal";
