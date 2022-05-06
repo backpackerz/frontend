@@ -145,8 +145,8 @@ const DayColumnBlock = styled.div<{
 	dayLength: number;
 }>`
 	background-size: ${(props) => `1px ${2.5 * props.rowHeight}vh`};
-	min-width: 100px;
-	width: ${(props) => `calc((100% - 5rem) / ${props.dayLength})`};
+	min-width: 300px;
+	width: ${(props) => `calc(100%  / ${props.dayLength})`};
 	float: left;
 	background-color: #fff;
 	background-image: linear-gradient(rgba(0, 0, 0, 0.08) 50%, transparent 50%);

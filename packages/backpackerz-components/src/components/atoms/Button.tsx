@@ -1,68 +1,48 @@
 import * as React from "react";
 import styled from "@emotion/styled";
+import ButtonUnstyled, {
+	buttonUnstyledClasses,
+	ButtonUnstyledProps,
+} from "@mui/base/ButtonUnstyled";
 
-import { ButtonColorTypes, buttonTheme } from "styles/theme";
+import { palette } from "@backpackerz/components/styles/palette";
 
-export type Props = React.ComponentPropsWithoutRef<"button"> & {
-	color?: ButtonColorTypes;
-	shape?: "button" | "text";
-};
+export type Props = React.ComponentPropsWithoutRef<"button"> &
+	ButtonUnstyledProps & {};
+
+const CustomButton = styled(ButtonUnstyled)`
+	&.${buttonUnstyledClasses.root} {
+		padding: 8px 14px;
+		border-radius: 0.4rem;
+		background-color: ${palette.gray7};
+		color: ${palette.gray0};
+		font-family: IBM Plex Sans, sans-serif;
+		font-weight: bold;
+		font-size: 1.275rem;
+		transition: all 150ms ease;
+		cursor: pointer;
+		border: none;
+		&:hover {
+			background-color: ${palette.gray8}};
+		}
+	
+		&.${buttonUnstyledClasses.active} {
+			background-color: ${palette.gray8};
+		}
+	
+		&.${buttonUnstyledClasses.focusVisible} {
+			outline: 3px solid ${palette.gray4};
+			border-color: ${palette.gray8};
+		}
+
+		&.${buttonUnstyledClasses.disabled} {
+			opacity: 0.5;
+			cursor: not-allowed;
+		}
+	}
+`;
 
 export default function Button(props: Props) {
-	const {
-		children,
-		color = "darkGray",
-		shape = "button",
-		onClick,
-		...htmlProps
-	} = props;
-	const handleClick: React.MouseEventHandler<HTMLButtonElement> = (event) => {
-		onClick && onClick(event);
-	};
-	return (
-		<ButtonBlock
-			color={color}
-			shape={shape}
-			onClick={handleClick}
-			{...htmlProps}
-		>
-			{children}
-		</ButtonBlock>
-	);
+	const { children, ...htmlProps } = props;
+	return <CustomButton {...htmlProps}>{children}</CustomButton>;
 }
-
-const ButtonBlock = styled.button<
-	Required<{
-		color: ButtonColorTypes;
-		shape: Props["shape"];
-	}>
->`
-	display: inline-flex;
-	height: 3.4rem;
-	min-width: 7.6rem;
-	border: 0;
-	outline: none;
-
-	align-items: center;
-	justify-content: center;
-	padding-top: 0;
-	padding-left: 1.25rem;
-	padding-right: 1.25rem;
-	font-size: 1.4rem;
-	word-break: keep-all;
-	cursor: pointer;
-	transition: background 0.2s;
-	${(props) =>
-		props.shape === "button" &&
-		`
-			border-radius: 0.4rem;
-			${buttonTheme(props.color)}
-		`}
-	${(props) =>
-		props.shape === "text" &&
-		`
-			background: transparent;
-			&:focus {
-			}
-		`}
-`;

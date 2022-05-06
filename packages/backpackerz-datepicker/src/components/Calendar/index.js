@@ -67,7 +67,6 @@ class Calendar extends React.PureComponent {
 	}
 
 	handleClick(e) {
-		console.log(this);
 		if (!this.CalendarRef.current) return;
 		const inside = this.CalendarRef.current.contains(e.target);
 		if (inside) return;
@@ -532,15 +531,15 @@ class Calendar extends React.PureComponent {
 			...range,
 			color: range.color || rangeColors[i] || color,
 		}));
+		const handleMouseUp = () =>
+			this.setState({ drag: { status: false, range: {} } });
+		const handleMouseLeave = () =>
+			this.setState({ drag: { status: false, range: {} } });
 		return (
 			<div
 				className={classnames(this.styles.calendarWrapper, className)}
-				onMouseUp={() =>
-					this.setState({ drag: { status: false, range: {} } })
-				}
-				onMouseLeave={() => {
-					this.setState({ drag: { status: false, range: {} } });
-				}}
+				onMouseUp={handleMouseUp}
+				onMouseLeave={handleMouseLeave}
 				ref={this.CalendarRef}
 			>
 				{showDateDisplay && this.renderDateDisplay()}
@@ -733,14 +732,14 @@ Calendar.defaultProps = {
 	showPreview: true,
 	displayMode: "date",
 	months: 1,
-	color: "#3d91ff",
+	color: "#343A40",
 	scroll: {
 		enabled: false,
 	},
 	direction: "vertical",
 	maxDate: addYears(new Date(), 20),
 	minDate: addYears(new Date(), -100),
-	rangeColors: ["#3d91ff", "#3ecf8e", "#fed14c"],
+	rangeColors: ["#343A40", "#3ecf8e", "#fed14c"],
 	startDatePlaceholder: "Early",
 	endDatePlaceholder: "Continuous",
 	editableDateInputs: false,

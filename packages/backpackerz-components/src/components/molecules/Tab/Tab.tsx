@@ -13,6 +13,7 @@ export default function Tab(props: Props) {
 	const onClick = () => onChange && onChange(value);
 	return (
 		<Button
+			disabled
 			id={`tab-${value}`}
 			aria-selected={selected}
 			aria-controls={`tabpanel-${value}`}

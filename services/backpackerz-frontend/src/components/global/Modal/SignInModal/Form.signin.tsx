@@ -36,7 +36,8 @@ export default function FormSignin(props: Props) {
 			<Label htmlFor="email">Email</Label>
 			<Input
 				id="email"
-				type="text"
+				type="email"
+				autoComplete="email"
 				placeholder="Email"
 				value={email}
 				onChange={setEmail}
@@ -49,9 +50,7 @@ export default function FormSignin(props: Props) {
 				value={password}
 				onChange={setPassword}
 			/>
-			<Button onClick={toggleForm} shape="text">
-				백패커즈 계정이 없으신가요? →
-			</Button>
+			<Button onClick={toggleForm}>백패커즈 계정이 없으신가요? →</Button>
 			<Button onClick={handleSubmitSignIn}>로그인</Button>
 		</form>
 	);
