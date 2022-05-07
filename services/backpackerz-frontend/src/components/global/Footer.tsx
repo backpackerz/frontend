@@ -1,8 +1,7 @@
 import * as React from "react";
 import Link from "next/link";
-import styled from "@emotion/styled";
 
-import { Brand } from "@backpackerz/components";
+import { styled, Brand } from "@backpackerz/components";
 
 const MENU = {
 	TOP: [],
@@ -31,7 +30,7 @@ export default function Footer() {
 	);
 }
 
-const Item = styled.li`
+const Item = styled("li")`
 	& {
 		a {
 			cursor: pointer;
@@ -42,26 +41,26 @@ const Item = styled.li`
 	}
 `;
 
-const Menu = styled.ul`
+const Menu = styled("ul")`
 	& {
 		display: flex;
 		list-style: none;
 	}
 `;
 
-const Inner = styled.div`
+const Inner = styled("div")`
 	& {
 		display: flex;
 		flex-direction: column;
 	}
 `;
 
-const FooterBlock = styled.footer`
+const FooterBlock = styled("footer")`
 	& {
 		width: 100%;
 		margin: 5rem 0 0 0;
 		padding: 7.5rem 2rem;
 		font-size: 1.6rem;
-		background: ${(props) => props.theme.palette.gray2};
+		background: ${(props) => props.theme.palette.primary.light};
 	}
 `;

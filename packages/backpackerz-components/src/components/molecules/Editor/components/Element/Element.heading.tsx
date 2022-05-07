@@ -1,5 +1,5 @@
 import * as React from "react";
-import styled from "@emotion/styled";
+import { styled } from "@mui/material";
 import { RenderElementProps } from "slate-react";
 
 import { HeadingElement } from "../../@types";
@@ -17,7 +17,7 @@ function Element({ attributes, children, level }: Props) {
 		</ElementBlock>
 	);
 }
-const ElementBlock = styled.h1`
+const ElementBlock = styled("h1")`
 	font-size: ${(props) => {
 		switch (props.as) {
 			case "h1":

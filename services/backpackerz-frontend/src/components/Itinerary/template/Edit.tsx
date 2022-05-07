@@ -1,11 +1,12 @@
 import * as React from "react";
 import { useRouter } from "next/router";
-import styled from "@emotion/styled";
 import { ko } from "date-fns/locale";
 
 import { Types } from "@backpackerz/core";
+import { ItineraryState } from "@backpackerz/core/variables/enums";
 import {
-	BPStyle,
+	styles,
+	styled,
 	Input,
 	Select,
 	Button,
@@ -16,7 +17,6 @@ import {
 	Editor,
 } from "@backpackerz/components";
 import { DateRangePicker } from "@backpackerz/datepicker";
-import { ItineraryState } from "@backpackerz/core/variables/enums";
 import * as MODAL_KEYS from "variables/constants/modals";
 import * as UI_VARIABLES from "variables/constants/user-interface";
 
@@ -191,22 +191,22 @@ export default function ItineraryEditTemplate(props: Props) {
 	);
 }
 
-const Container = styled.div`
+const Container = styled("div")`
 	height: 100vh;
 	display: flex;
 	flex-direction: column;
 `;
-const HeaderBlock = styled.header`
+const HeaderBlock = styled("header")`
 	display: flex;
 	flex-wrap: wrap;
-	padding: 2.4em;
-	background-color: ${(props) => props.theme.palette.gray3};
+	padding: 0.8rem;
+	background-color: ${(props) => props.theme.palette.grey[50]};
 	z-index: 1;
 `;
 const TitleInput = styled(Input)`
 	width: 100rem;
 	margin: 0.833rem;
-	${BPStyle.utils.mediaQuery("xs", "lg")} {
+	${styles.mediaQuery("xs", "lg")} {
 		width: 100%;
 	}
 `;
@@ -223,7 +223,7 @@ const SaveButton = styled(Button)`
 	margin: 0.833rem 0.833rem 0.833rem auto;
 `;
 
-const BodyBlock = styled.div`
+const BodyBlock = styled("div")`
 	& {
 		flex: 1;
 		display: flex;
@@ -235,23 +235,23 @@ const BodyBlock = styled.div`
 	}
 	-ms-overflow-style: none;
 	scrollbar-width: none;
-	${BPStyle.utils.mediaQuery("xs", "lg")} {
+	${styles.mediaQuery("xs", "lg")} {
 		flex-direction: column;
 	}
 `;
-const AsideBlock = styled.aside`
+const AsideBlock = styled("aside")`
 	flex-shrink: 0;
 	height: min-content;
 	width: 332px;
 	margin: 0.833em;
 	padding: 0.833em;
 	box-shadow: 0 2px 2px rgb(125 125 125 / 20%);
-	${BPStyle.utils.mediaQuery("xs", "lg")} {
+	${styles.mediaQuery("xs", "lg")} {
 		width: auto;
 	}
 `;
 
-const DetailBlock = styled.div`
+const DetailBlock = styled("div")`
 	flex: 1;
 	display: flex;
 	flex-direction: column;

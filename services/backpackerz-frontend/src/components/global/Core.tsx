@@ -2,7 +2,7 @@ import * as React from "react";
 import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 
-import { BPStyle, Alert, Modal } from "@backpackerz/components";
+import { ThemeProvider, Alert, Modal } from "@backpackerz/components";
 import { modalConfig } from "./Modal/config";
 
 const { Template, Provider: AlertProvider, TRANSITIONS, POSITIONS } = Alert;
@@ -26,13 +26,13 @@ export default function Core({
 	return (
 		<QueryClientProvider client={queryClient}>
 			<Hydrate state={pageProps.dehydratedState}>
-				<BPStyle.ThemeProvider>
+				<ThemeProvider>
 					<AlertProvider template={Template} {...alertOptions}>
 						<Modal.Provider modals={modalConfig}>
 							{children}
 						</Modal.Provider>
 					</AlertProvider>
-				</BPStyle.ThemeProvider>
+				</ThemeProvider>
 			</Hydrate>
 			<ReactQueryDevtools initialIsOpen={false} />
 		</QueryClientProvider>

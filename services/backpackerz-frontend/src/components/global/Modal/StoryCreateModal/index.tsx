@@ -1,8 +1,7 @@
 import * as React from "react";
-import styled from "@emotion/styled";
 
 import { Story, StoryType } from "@backpackerz/core";
-import { Modal } from "@backpackerz/components";
+import { styled, Modal } from "@backpackerz/components";
 import BaseModal from "../base/BaseModal";
 import StepSelectType from "./Step.select.type";
 import StepSelectTransit from "./Step.select.transit";

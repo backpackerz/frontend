@@ -1,7 +1,7 @@
 import * as React from "react";
-import styled from "@emotion/styled";
 
 import { Types } from "@backpackerz/core";
+import { styled } from "@backpackerz/components";
 import ErrorBoundary from "components/global/ErrorBoundary";
 import ItineraryGrid from "./Grid";
 
@@ -37,16 +37,16 @@ export default function ItineraryGridSection(props: Props) {
 	);
 }
 
-const Heading = styled.h2`
+const Heading = styled("h2")`
 	margin: 6rem 2rem 2rem 0.8rem;
 	font-size: 2rem;
 	letter-spacing: 0.4rem;
 `;
 
-const Inner = styled.div`
+const Inner = styled("div")`
 	margin: -1rem;
 `;
 
-const WrapperBlock = styled.div`
+const WrapperBlock = styled("div")`
 	padding: 0 2.8rem;
 `;

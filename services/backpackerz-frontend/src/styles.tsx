@@ -1,6 +1,6 @@
 import * as React from "react";
 import { css, Global } from "@emotion/react";
-import { BPStyle } from "@backpackerz/components";
+import { styles } from "@backpackerz/components";
 
 const resetStyles = css`
 	html,
@@ -147,7 +147,7 @@ export const globalStyles = (
 			html {
 				font-size: 62.5%;
 				box-sizing: border-box;
-				${BPStyle.utils.mediaQuery("xs", "lg")} {
+				${styles.mediaQuery("xs", "lg")} {
 					font-size: 50%;
 				}
 			}

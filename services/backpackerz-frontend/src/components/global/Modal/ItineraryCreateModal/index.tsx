@@ -1,11 +1,11 @@
 import * as React from "react";
 import { useRouter } from "next/router";
-import styled from "@emotion/styled";
 import { addDays } from "date-fns";
 import { ko } from "date-fns/locale";
 
 import { Itinerary } from "@backpackerz/core";
 import {
+	styled,
 	Button,
 	Input,
 	Select,
