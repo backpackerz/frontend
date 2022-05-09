@@ -10,17 +10,6 @@
 		"isolatedModules": true,
 		"experimentalDecorators": true
 	},
-	"references": [
-		{
-			"path": "../../packages/backpackerz-core"
-		},
-		{
-			"path": "../../packages/backpackerz-components"
-		},
-		{
-			"path": "../../packages/backpackerz-datepicker"
-		}
-	],
 	"exclude": ["node_modules", "next.config.js", ".next", "**/*.stories.tsx"],
 	"include": ["next-env.d.ts", "types.d.ts", "**/*.ts", "**/*.tsx"]
 }
