@@ -2,6 +2,10 @@
 	"name": "backpackerz",
 	"version": "1.0.0",
 	"private": true,
+	"engines": {
+		"node": ">=14.17 <16",
+		"npm": "~8.3.20"
+	},
 	"browserslist": [
 		"defaults"
 	],
