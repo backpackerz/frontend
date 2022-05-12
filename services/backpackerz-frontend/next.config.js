@@ -12,6 +12,7 @@ const { parsed: env } = require("dotenv").config({
 });
 
 module.exports = withPlugins([withTM], {
+	distDir: "../../build",
 	env,
 	i18n: {
 		locales: ["ko-KR", "en-US"],
