@@ -1,11 +1,9 @@
 import * as React from "react";
 import Link from "next/link";
-import styled from "@emotion/styled";
 
 import { Types } from "@backpackerz/core";
-import { Editor } from "@backpackerz/components";
+import { styles, styled, Editor } from "@backpackerz/components";
 import useStoreSelector from "hooks/use-store-selector";
-import { mq } from "styles/mediaQuery";
 import * as UI_VARIABLES from "variables/constants/user-interface";
 
 type Props = {
@@ -60,18 +58,18 @@ export default function ItineraryViewTemplate(props: Props) {
 						</p>
 						{itinerary.state}
 					</Summary>
+					{JSON.stringify(itinerary as unknown as string)}
 				</Detail>
 			</BodyBlock>
-			{JSON.stringify(itinerary as unknown as string)}
 		</>
 	);
 }
 
-const BannerBlock = styled.section`
+const BannerBlock = styled("section")`
 	display: flex;
 	flex-direction: column;
 	height: 320px;
-	background-color: ${(props) => props.theme.palette.gray3};
+	background-color: ${(props) => props.theme.palette.primary.light};
 	.wrapper {
 		align-items: center;
 		width: 100%;
@@ -85,30 +83,30 @@ const BannerBlock = styled.section`
 	}
 `;
 
-const Title = styled.h1`
+const Title = styled("h1")`
 	font-size: 2.2rem;
 	text-align: center;
 	font-weight: 600;
 `;
 
-const BodyBlock = styled.section`
+const BodyBlock = styled("section")`
 	display: flex;
 	max-width: 1200px;
 	margin: auto;
 	gap: 1rem;
-	${mq("xs", "lg")} {
+	${styles.mediaQuery("xs", "lg")} {
 		flex-direction: column;
 	}
 `;
 
-const Aside = styled.aside`
+const Aside = styled("aside")`
 	height: 100%;
 	width: 240px;
 	padding: 1rem;
 	box-shadow: 0 2px 2px rgb(125 125 125 / 20%);
 `;
 
-const Detail = styled.div`
+const Detail = styled("div")`
 	flex: 1;
 	.body {
 		width: 100%;
@@ -127,12 +125,12 @@ const Detail = styled.div`
 	}
 `;
 
-const Summary = styled.div`
+const Summary = styled("div")`
 	padding: 1rem;
 	box-shadow: 0 2px 2px rgb(125 125 125 / 20%);
 `;
 
-const Description = styled.p`
+const Description = styled("p")`
 	width: 100%;
 	margin-top: 1rem;
 	font-size: 1.4rem;

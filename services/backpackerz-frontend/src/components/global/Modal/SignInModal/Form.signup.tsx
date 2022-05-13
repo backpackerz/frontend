@@ -70,9 +70,7 @@ export default function FormSignup(props: Props) {
 				value={nickname}
 				onChange={setNickname}
 			/>
-			<Button onClick={toggleForm} shape="text">
-				백패커즈 계정이 있습니다. →
-			</Button>
+			<Button onClick={toggleForm}>백패커즈 계정이 있습니다. →</Button>
 			<Button onClick={handleSubmitSignUp}>회원가입</Button>
 		</form>
 	);

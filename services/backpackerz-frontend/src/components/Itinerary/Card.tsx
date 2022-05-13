@@ -1,10 +1,8 @@
 import * as React from "react";
 import Link, { LinkProps } from "next/link";
-import styled from "@emotion/styled";
 import { format } from "date-fns";
 
-import { Editor } from "@backpackerz/components";
-import * as styledUtils from "styles/utils";
+import { styles, styled, Editor } from "@backpackerz/components";
 
 export type Props = LinkProps & {
 	heading: string;
@@ -39,47 +37,47 @@ export default function ItineraryCard(props: Props) {
 	);
 }
 
-const CardBlock = styled.article`
+const CardBlock = styled("article")`
 	display: inline-flex;
 	flex-direction: column;
 	height: 100%;
 `;
-const Heading = styled.h3`
+const Heading = styled("h3")`
 	margin: 0.833rem 0;
 	line-height: 2.4rem;
 	font-size: 2rem;
 	font-weight: 600;
-	color: ${(props) => props.theme.palette.gray9};
+	color: ${(props) => props.theme.palette.primary.dark};
 	cursor: pointer;
 	a {
 		&:hover {
-			color: ${(props) => props.theme.palette.gray6};
+			color: ${(props) => props.theme.palette.primary.dark};
 		}
-		${styledUtils.ellipsis(1)}
+		${styles.ellipsis(1)}
 	}
 `;
-const Description = styled.p`
+const Description = styled("p")`
 	margin: 0;
 	line-height: 1.4rem;
 	font-size: 1.4rem;
-	color: ${(props) => props.theme.palette.gray5};
+	color: ${(props) => props.theme.palette.primary.dark};
 `;
-const Body = styled.p`
+const Body = styled("p")`
 	flex: 1;
 	margin: 1.666rem 0;
 	line-height: 2.2rem;
 	font-size: 1.4rem;
 	text-indent: 0.7rem;
 	word-break: keep-all;
-	color: ${(props) => props.theme.palette.gray8};
+	color: ${(props) => props.theme.palette.primary.dark};
 `;
-const Author = styled.p`
+const Author = styled("p")`
 	margin: 0.833rem 0;
 	text-align: right;
-	color: ${(props) => props.theme.palette.gray6};
+	color: ${(props) => props.theme.palette.primary.dark};
 `;
-const UpdatedAt = styled.p`
+const UpdatedAt = styled("p")`
 	margin: 0.833rem 0;
 	text-align: right;
-	color: ${(props) => props.theme.palette.gray6};
+	color: ${(props) => props.theme.palette.primary.dark};
 `;

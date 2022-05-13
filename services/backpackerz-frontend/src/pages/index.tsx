@@ -1,4 +1,5 @@
 import * as React from "react";
+
 import { wrapper } from "modules";
 import DefaultLayout from "components/global/layouts/default";
 import HomeTemplate from "components/main/template/Home";

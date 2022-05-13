@@ -1,7 +1,6 @@
 import * as React from "react";
-import styled from "@emotion/styled";
 
-import { Modal } from "@backpackerz/components";
+import { styled, Modal } from "@backpackerz/components";
 import BaseModal from "../base/BaseModal";
 import FormSignin from "./Form.signin";
 import FormSignup from "./Form.signup";
@@ -47,7 +46,7 @@ export default React.forwardRef<HTMLDivElement, Modal.ModalProps>(
 	},
 );
 
-const WrapperSign = styled.div`
+const WrapperSign = styled("div")`
 	form {
 		display: flex;
 		flex-direction: column;

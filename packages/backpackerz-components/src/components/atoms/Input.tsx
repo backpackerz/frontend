@@ -1,5 +1,5 @@
 import * as React from "react";
-import styled from "@emotion/styled";
+import { styled } from "@mui/material";
 import InputUnstyled, {
 	inputUnstyledClasses,
 	InputUnstyledProps,
@@ -8,49 +8,48 @@ import ButtonUnstyled from "@mui/base/ButtonUnstyled";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
-import { palette } from "@backpackerz/components/styles/palette";
-
-const StyledInputRoot = styled.div(
-	() => `
+const StyledInputRoot = styled("div")(
+	({ theme }) => `
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		border: 1px solid ${palette.gray6};
+		border: 1px solid ${theme.palette.grey[500]};
 		border-radius: 0.4rem;
-		background: ${palette.gray0};
+		background: ${theme.palette.common.white};
 		font-family: IBM Plex Sans, sans-serif;
 		font-weight: 500;
+
 		&.${inputUnstyledClasses.focused} {
-			outline: 3px solid ${palette.gray4};
-			border-color: ${palette.gray8};
+			outline: 3px solid ${theme.palette.grey[400]};
+			border-color: ${theme.palette.grey[700]};
 		}
 
 		&:hover {
-			background: ${palette.gray0};
-			border-color: ${palette.gray8};
+			background: ${theme.palette.grey[50]};
+			border-color: ${theme.palette.grey[700]};
 		}
 `,
 );
 
-const StyledInputElement = styled.input(
-	() => `
+const StyledInputElement = styled("input")(
+	({ theme }) => `
 		flex-grow: 1;
 		padding: 12px 12px;
 		line-height: 1.5;
 		font-size: 1.275rem;
 		font-family: inherit;
 		font-weight: 400;
-		color: ${palette.gray9};
+		color: ${theme.palette.grey[900]};
 		background: inherit;
 		border: none;
 		border-radius: inherit;
 		outline: 0;
 		&:-webkit-autofill,
 		&:-webkit-autofill:focus {
-			box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0), inset 0 0 0 100px ${palette.gray0};
+			box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0), inset 0 0 0 100px ${theme.palette.grey[50]};
 		}
 		&:-webkit-autofill:hover {
-			box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0), inset 0 0 0 100px ${palette.gray0};
+			box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0), inset 0 0 0 100px ${theme.palette.grey[50]};
 		}
 	`,
 );
@@ -64,7 +63,7 @@ const IconButton = styled(ButtonUnstyled)`
 	cursor: pointer;
 `;
 
-const InputAdornment = styled.div`
+const InputAdornment = styled("div")`
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;

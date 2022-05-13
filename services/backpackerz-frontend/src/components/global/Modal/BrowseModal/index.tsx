@@ -1,7 +1,6 @@
 import * as React from "react";
-import styled from "@emotion/styled";
 
-import { Input, Modal } from "@backpackerz/components";
+import { styled, Input, Modal } from "@backpackerz/components";
 import BaseModal from "../base/BaseModal";
 
 export default React.forwardRef<HTMLDivElement, Modal.ModalProps>(

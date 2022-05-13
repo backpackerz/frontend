@@ -1,5 +1,5 @@
 import * as React from "react";
-import styled from "@emotion/styled";
+import { styled } from "@mui/material";
 import { ModalDefaultProps, ModalComponentType } from "../@types";
 
 const Modal: ModalComponentType = (
@@ -21,7 +21,7 @@ const Modal: ModalComponentType = (
 		</ModalBlock>
 	);
 };
-const ModalBlock = styled.div`
+const ModalBlock = styled("div")`
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -32,7 +32,8 @@ const ModalBlock = styled.div`
 	align-items: center;
 	z-index: 1000;
 `;
-const Overlay = styled.div`
+
+const Overlay = styled("div")`
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -41,7 +42,8 @@ const Overlay = styled.div`
 	background-color: rgba(0, 0, 0, 0.5);
 	z-index: 100000;
 `;
-const Container = styled.div`
+
+const Container = styled("div")`
 	position: relative;
 	display: flex;
 	flex-direction: column;
@@ -55,9 +57,13 @@ const Container = styled.div`
 	z-index: 100001;
 	transition-duration: 0.3s;
 `;
-const Header = styled.div``;
-const Body = styled.div`
+
+const Header = styled("div")``;
+
+const Body = styled("div")`
 	flex: 1;
 `;
-const Footer = styled.div``;
+
+const Footer = styled("div")``;
+
 export default React.forwardRef<HTMLDivElement, ModalDefaultProps>(Modal);

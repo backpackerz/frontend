@@ -11,21 +11,7 @@ import { BaseContext } from "next/dist/shared/lib/utils";
 import type { AppProps } from "next/app";
 import { DocumentProps } from "next/document";
 import { Store } from "redux";
-import "@emotion/react";
-import { palette } from "./src/styles/palette";
 
-declare module "@emotion/react" {
-	export interface Theme {
-		palette: typeof palette;
-		buttonColorMap: {
-			[color: string]: {
-				background: string;
-				color: string;
-				hoverBackground: string;
-			};
-		};
-	}
-}
 declare global {
 	type Nullable<T> = T | null;
 	type ValueOf<T> = T[keyof T];

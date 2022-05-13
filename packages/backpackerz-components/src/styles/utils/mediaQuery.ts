@@ -10,7 +10,7 @@ const Breakpoints = {
 	xxxl: 6,
 };
 
-function mq(
+export default function mq(
 	mn: keyof typeof Breakpoints,
 	mx?: Omit<keyof typeof Breakpoints, "xs">,
 ) {
@@ -25,5 +25,3 @@ function mq(
 	}
 	return `@media screen and (min-width: ${min}px) and (max-width: ${max}px)`;
 }
-
-export { mq };

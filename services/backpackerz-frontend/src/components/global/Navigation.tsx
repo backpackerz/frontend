@@ -1,8 +1,7 @@
 import * as React from "react";
-import styled from "@emotion/styled";
 
 import type { Types } from "@backpackerz/core";
-import { Brand, Button, Modal } from "@backpackerz/components";
+import { styled, Brand, Button, Modal } from "@backpackerz/components";
 import useSignOut from "hooks/use-sign-out";
 import useStoreSelector from "hooks/use-store-selector";
 import * as MODAL_KEYS from "variables/constants/modals";
@@ -60,19 +59,19 @@ export default function Navigation(props: Props) {
 	);
 }
 
-const Item = styled.li`
+const Item = styled("li")`
 	& + & {
 		margin-left: 0.4rem;
 	}
 `;
 
-const Menu = styled.ul`
+const Menu = styled("ul")`
 	display: flex;
 	list-style: none;
 	margin: 0 0 0 auto;
 `;
 
-const NavigationBlock = styled.nav`
+const NavigationBlock = styled("nav")`
 	position: sticky;
 	top: 0;
 	display: flex;

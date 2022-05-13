@@ -1,7 +1,6 @@
 import * as React from "react";
-import styled from "@emotion/styled";
 
-import { Modal } from "@backpackerz/components";
+import { styled, Modal } from "@backpackerz/components";
 
 export type Props = Modal.ModalProps & {
 	heading?: string;
@@ -47,7 +46,7 @@ const BaseModalBlock = styled(Modal.Component)`
 		}
 	}
 `;
-const Header = styled.div`
+const Header = styled("div")`
 	display: flex;
 	margin-bottom: 2rem;
 	.modal__btn-close {
@@ -72,7 +71,7 @@ const Header = styled.div`
 		transition-duration: 0.2s;
 	}
 `;
-const Heading = styled.h2`
+const Heading = styled("h2")`
 	line-height: 2.2rem;
 	font-size: 1.8rem;
 	font-weight: 600;

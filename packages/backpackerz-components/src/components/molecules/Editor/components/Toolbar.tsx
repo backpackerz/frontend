@@ -1,5 +1,5 @@
 import * as React from "react";
-import styled from "@emotion/styled";
+import { styled } from "@mui/material";
 import { Editor } from "slate";
 
 import * as Actions from "../actions";
@@ -39,7 +39,7 @@ export default function Toolbar(props: Props) {
 		</ToolbarBlock>
 	);
 }
-const ToolbarBlock = styled.div`
+const ToolbarBlock = styled("div")`
 	button {
 		& + button {
 			margin-left: 0.2rem;

@@ -1,5 +1,5 @@
 import * as React from "react";
-import styled from "@emotion/styled";
+import { styled } from "@mui/material";
 import SelectUnstyled, {
 	SelectUnstyledProps,
 	selectUnstyledClasses,
@@ -11,99 +11,102 @@ import OptionUnstyled, {
 } from "@mui/base/OptionUnstyled";
 import PopperUnstyled from "@mui/base/PopperUnstyled";
 
-import { palette } from "@backpackerz/components/styles/palette";
+const StyledButton = styled("button")(
+	({ theme }) => `
+		font-size: 1.275rem;
+		font-family: IBM Plex Sans, sans-serif;
+		font-weight: 400;
+		box-sizing: border-box;
+		min-height: calc(1.5em + 22px);
+		min-width: 320px;
+		background: ${theme.palette.common.white};
+		border: 1px solid ${theme.palette.grey[600]};
+		border-radius: 0.4rem;
+		padding: 12px;
+		text-align: left;
+		line-height: 1.5;
+		color: ${theme.palette.grey[800]};
 
-const StyledButton = styled("button")`
-	font-size: 1.275rem;
-	font-family: IBM Plex Sans, sans-serif;
-	font-weight: 400;
-	box-sizing: border-box;
-	min-height: calc(1.5em + 22px);
-	min-width: 320px;
-	background: ${palette.gray0};
-	border: 1px solid ${palette.gray6};
-	border-radius: 0.4rem;
-	padding: 12px;
-	text-align: left;
-	line-height: 1.5;
-	color: ${palette.gray8};
-
-	&:hover,
-	&[aria-expanded="true"] {
-		background: ${palette.gray0};
-		border-color: ${palette.gray8};
-	}
-
-	&.${selectUnstyledClasses.focusVisible} {
-		outline: 3px solid ${palette.gray4};
-		border-color: ${palette.gray8};
-	}
-
-	&.${selectUnstyledClasses.expanded} {
-		&::after {
-			content: "▴";
+		&:hover,
+		&[aria-expanded="true"] {
+			background: ${theme.palette.grey[50]};
+			border-color: ${theme.palette.grey[800]};
 		}
-	}
 
-	&::after {
-		content: "▾";
-		float: right;
-	}
-`;
+		&.${selectUnstyledClasses.focusVisible} {
+			outline: 3px solid ${theme.palette.grey[400]};
+			border-color: ${theme.palette.grey[800]};
+		}
 
-const StyledListbox = styled("ul")`
-	font-family: IBM Plex Sans, sans-serif;
-	font-size: 1.275rem;
-	box-sizing: border-box;
-	margin: 1rem 0 0 0;
-	padding: 5px;
-	min-width: 320px;
-	background: ${palette.gray0};
-	border: 1px solid ${palette.gray6};
-	border-radius: 0.75em;
-	color: ${palette.gray8};
-	overflow: auto;
-	outline: 0px;
-`;
+		&.${selectUnstyledClasses.expanded} {
+			&::after {
+				content: "▴";
+			}
+		}
 
-const StyledOption = styled(OptionUnstyled)`
-	list-style: none;
-	padding: 8px;
-	cursor: default;
-	color: ${palette.gray9};
+		&::after {
+			content: "▾";
+			float: right;
+		}`,
+);
 
-	& + & {
-		margin: 0.4rem 0 0 0;
-	}
+const StyledListbox = styled("ul")(
+	({ theme }) => `
+		font-family: IBM Plex Sans, sans-serif;
+		font-size: 1.275rem;
+		box-sizing: border-box;
+		margin: 1rem 0 0 0;
+		padding: 5px;
+		min-width: 320px;
+		background: ${theme.palette.common.white};
+		border: 1px solid ${theme.palette.grey[600]};
+		border-radius: 0.75em;
+		color: ${theme.palette.grey[800]};
+		overflow: auto;
+		outline: 0px;
+	`,
+);
 
-	&:last-of-type {
-		border-bottom: none;
-	}
+const StyledOption = styled(OptionUnstyled)(
+	({ theme }) => `
+		list-style: none;
+		padding: 8px;
+		cursor: default;
+		color: ${theme.palette.grey[900]};
 
-	&.${optionUnstyledClasses.selected} {
-		font-weight: 600;
-		color: ${palette.gray9};
-	}
+		& + & {
+			margin: 0.4rem 0 0 0;
+		}
 
-	&.${optionUnstyledClasses.highlighted} {
-		font-weight: 600;
-		color: ${palette.gray9};
-	}
+		&:last-of-type {
+			border-bottom: none;
+		}
 
-	&.${optionUnstyledClasses.highlighted}.${optionUnstyledClasses.selected} {
-		font-weight: 600;
-		color: ${palette.gray9};
-	}
+		&.${optionUnstyledClasses.selected} {
+			font-weight: 600;
+			color: ${theme.palette.grey[900]};
+		}
 
-	&.${optionUnstyledClasses.disabled} {
-		color: ${palette.gray9};
-	}
+		&.${optionUnstyledClasses.highlighted} {
+			font-weight: 600;
+			color: ${theme.palette.grey[900]};
+		}
 
-	&:hover:not(.${optionUnstyledClasses.disabled}) {
-		font-weight: 600;
-		color: ${palette.gray9};
-	}
-`;
+		&.${optionUnstyledClasses.highlighted}.${optionUnstyledClasses.selected} {
+			font-weight: 600;
+			color: ${theme.palette.grey[900]};
+		}
+
+		&.${optionUnstyledClasses.disabled} {
+			color: ${theme.palette.grey[900]};
+		}
+
+		&:hover:not(.${optionUnstyledClasses.disabled}) {
+			font-weight: 600;
+			color: ${theme.palette.grey[900]};
+		}
+	`,
+);
 
 const StyledPopper = styled(PopperUnstyled)`
 	z-index: 1;

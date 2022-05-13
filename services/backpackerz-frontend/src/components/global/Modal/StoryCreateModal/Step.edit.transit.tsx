@@ -1,8 +1,7 @@
 import * as React from "react";
-import styled from "@emotion/styled";
 
 import type { StoryType } from "@backpackerz/core";
-import { Button, Input } from "@backpackerz/components";
+import { styled, Button, Input } from "@backpackerz/components";
 
 type Value = {
 	type?: StoryType.Types;
@@ -52,7 +51,7 @@ export default function StepEditTransit(props: Props) {
 	);
 }
 
-const Step = styled.div`
+const Step = styled("div")`
 	display: flex;
 	flex-direction: column;
 	button + button {
