@@ -11,7 +11,7 @@
 
 ## Environment
 
-    node v14.17.5
+    node v14.19.0
 
     "next": "12.1.5"
     "react": "^18.0.0"
@@ -21,58 +21,10 @@
 
 #### backpackerz-core
 
--   itinerary
-    -   api
-    -   ...
--   session
--   story
--   user
--   ...
--   lib
-    -   http
--   variables
-    -   constants
-    -   enums
-
 #### backpackerz-components
 
-모든 컴포넌트 패키지를 여기에 위치하도록 변경
+#### backpackerz-datepicker
 
--   components
-    -   atoms
-        -   buttons
-        -   input
-        -   brand
-        -   ...
-    -   molecules
-        -   cars
-        -   grid
-        -   tab
-        -   ...
-    -   organisms
-        -   modal
-        -   editor
-        -   timetable
-        -   Calendar
--   hooks
--   lib
--   styles
--   variables
-    -   constants
-        -   user-interface
-        -   styles
-        -   ...
-    -   enums
+## services
 
 #### backpackerz-frontend
-
--   components
-    -   itinerary
-    -   user
-    -   ...
--   layouts
--   hooks
--   lib
--   modules (store)
--   styles
--   variables
