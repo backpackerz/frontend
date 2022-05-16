@@ -1,4 +1,6 @@
+import * as Constatnts from "./variables/constants";
 import * as Enums from "./variables/enums";
+import * as Validations from "./validation/schemas";
 import HTTP from "./http";
 
 export * from "./user/type.d";
@@ -20,7 +22,9 @@ declare module "." {
 		type Story = import("./story/type").StoryType.Story;
 	}
 }
+export const CONSTATANTS = Constatnts;
 export const ENUMS = Enums;
+export const VALIDATIONS = Validations;
 export const http = HTTP;
 export const User = {
 	service: ServiceUser,
@@ -35,7 +39,9 @@ export const Story = {
 	service: ServiceStory,
 };
 export default {
+	CONSTATANTS,
 	ENUMS,
+	VALIDATIONS,
 	http,
 	User,
 	Session,

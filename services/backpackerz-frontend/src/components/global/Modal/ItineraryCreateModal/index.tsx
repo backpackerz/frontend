@@ -11,7 +11,7 @@ import {
 	Select,
 	Label,
 	Alert,
-	Modal,
+	Types,
 } from "@backpackerz/components";
 import { DateRangePicker } from "@backpackerz/datepicker";
 
@@ -19,7 +19,7 @@ import ModalComponent from "../base/BaseModal";
 import * as MESSAGES from "variables/constants/messages";
 import * as UI_VARIABLES from "variables/constants/user-interface";
 
-export default React.forwardRef<HTMLDivElement, Modal.ModalProps>(
+export default React.forwardRef<HTMLDivElement, Types.Modal.DefaultProps>(
 	function ModalItineraryCreate(props, ref) {
 		const { onOverlayClick, onClose } = props;
 

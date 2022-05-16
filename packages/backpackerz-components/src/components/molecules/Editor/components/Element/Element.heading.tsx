@@ -2,11 +2,11 @@ import * as React from "react";
 import { styled } from "@mui/material";
 import { RenderElementProps } from "slate-react";
 
-import { HeadingElement } from "../../@types";
+import type { Editor } from "@backpackerz/components/types";
 
 export type Props = React.PropsWithChildren<
 	Pick<RenderElementProps, "attributes"> & {
-		level: HeadingElement["level"];
+		level: Editor.HeadingElement["level"];
 	}
 >;
 

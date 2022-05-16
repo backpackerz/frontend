@@ -1,13 +1,13 @@
 import * as React from "react";
 
 import { Story, StoryType } from "@backpackerz/core";
-import { styled, Modal } from "@backpackerz/components";
+import { styled, Types } from "@backpackerz/components";
 import BaseModal from "../base/BaseModal";
 import StepSelectType from "./Step.select.type";
 import StepSelectTransit from "./Step.select.transit";
 import StepEditTransit from "./Step.edit.transit";
 
-export type Props = Modal.ModalProps & {
+export type Props = Types.Modal.DefaultProps & {
 	slug: string;
 	start: Date;
 	end: Date;

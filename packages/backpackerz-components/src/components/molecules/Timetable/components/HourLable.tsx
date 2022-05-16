@@ -2,13 +2,13 @@ import * as React from "react";
 import styled from "@emotion/styled";
 import range from "lodash/range";
 
-import { HourLableProps, HoursListProps } from "../@types";
+import type { Timetable } from "@backpackerz/components/types";
 
 export const HoursList = ({
 	hoursInterval,
 	rowHeight,
 	renderHour,
-}: HoursListProps) => {
+}: Timetable.HoursListProps) => {
 	return range(hoursInterval.from, hoursInterval.to).map((hour: number) =>
 		renderHour({
 			hour: `${hour}:00`,
@@ -19,7 +19,7 @@ export const HoursList = ({
 	);
 };
 
-const HourLable: React.FC<HourLableProps> = ({
+const HourLable: React.FC<Timetable.HourLableProps> = ({
 	timeLabel,
 	hoursInterval,
 	renderHour,
@@ -38,7 +38,7 @@ const HourLableBlock = styled.div`
 	float: left;
 `;
 const Title = styled.div<{
-	rowHeight: HourLableProps["rowHeight"];
+	rowHeight: Timetable.HourLableProps["rowHeight"];
 }>`
 	display: flex;
 	justify-content: center;

@@ -1,11 +1,11 @@
 import * as React from "react";
 
 import Icon from "../../../atoms/Icons";
-import type { AlertOptions } from "../@types";
+import type { Alert } from "@backpackerz/components/types";
 
 export type Props = {
 	message: string;
-	options: AlertOptions;
+	options: Alert.Options;
 	style?: React.CSSProperties;
 	close: () => void;
 };

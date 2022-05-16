@@ -1,9 +1,9 @@
 import * as React from "react";
 
-import { styled, Input, Modal } from "@backpackerz/components";
+import { styled, Input, Types } from "@backpackerz/components";
 import BaseModal from "../base/BaseModal";
 
-export default React.forwardRef<HTMLDivElement, Modal.ModalProps>(
+export default React.forwardRef<HTMLDivElement, Types.Modal.DefaultProps>(
 	function ModalBrowse(props, ref) {
 		const { onOverlayClick, onClose } = props;
 

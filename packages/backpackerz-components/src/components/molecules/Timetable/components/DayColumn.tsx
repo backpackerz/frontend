@@ -6,13 +6,7 @@ import round from "lodash/round";
 import setHours from "date-fns/setHours";
 import setMinutes from "date-fns/setMinutes";
 
-import { DEFAULT_HOURS_INTERVAL } from "../@types/constants";
-import {
-	DayColumnProps,
-	Event,
-	EventsListProps,
-	EventSlotListProps,
-} from "../@types";
+import type { Timetable } from "@backpackerz/components/types";
 
 const TIME_STEP = 0.5;
 export const renderEventSlots = ({
@@ -21,7 +15,7 @@ export const renderEventSlots = ({
 	rowHeight,
 	renderSlot,
 	onClickSlot = () => undefined,
-}: EventSlotListProps) => {
+}: Timetable.EventSlotListProps) => {
 	const handleClickEventSlot = (hour: Number) => () => {
 		const isHalf = Boolean(Number(hour) % 1);
 		const startHours: Parameters<typeof date.setHours> = isHalf
@@ -55,8 +49,8 @@ const getEventPositionStyles = ({
 	hoursInterval,
 	rowHeight,
 }: {
-	event: Event;
-	hoursInterval: typeof DEFAULT_HOURS_INTERVAL;
+	event: Timetable.Event;
+	hoursInterval: Timetable.HoursInterval;
 	rowHeight: number;
 }) => {
 	let startOfDay = setMinutes(
@@ -84,8 +78,8 @@ const renderEvents = ({
 	renderEvent,
 	onClickEvent,
 	index,
-}: EventsListProps) => {
-	const handleClickEvent = (event: Event) => () => {
+}: Timetable.EventsListProps) => {
+	const handleClickEvent = (event: Timetable.Event) => () => {
 		onClickEvent && onClickEvent({ event });
 	};
 	const render = (events[index] || []).map((event) =>
@@ -116,7 +110,7 @@ const DayColumn = ({
 	onClickSlot,
 	onClickEvent,
 	index,
-}: DayColumnProps) => (
+}: Timetable.DayColumnProps) => (
 	<DayColumnBlock rowHeight={rowHeight} dayLength={eachDays.length}>
 		<Title rowHeight={rowHeight}>{label}</Title>
 		<Column>
@@ -141,7 +135,7 @@ const DayColumn = ({
 );
 
 const DayColumnBlock = styled.div<{
-	rowHeight: DayColumnProps["rowHeight"];
+	rowHeight: Timetable.DayColumnProps["rowHeight"];
 	dayLength: number;
 }>`
 	background-size: ${(props) => `1px ${2.5 * props.rowHeight}vh`};
@@ -152,7 +146,7 @@ const DayColumnBlock = styled.div<{
 	background-image: linear-gradient(rgba(0, 0, 0, 0.08) 50%, transparent 50%);
 `;
 const Title = styled.div<{
-	rowHeight: DayColumnProps["rowHeight"];
+	rowHeight: Timetable.DayColumnProps["rowHeight"];
 }>`
 	display: flex;
 	flex-direction: column;

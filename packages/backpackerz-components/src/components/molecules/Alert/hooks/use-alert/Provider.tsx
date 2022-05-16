@@ -13,8 +13,8 @@ import Transition from "../../components/Transition";
 import AlertTemplate, {
 	Props as TemplateProps,
 } from "../../components/Template";
-import { Alert, AlertOptions } from "../../@types";
 import { groupBy } from "@backpackerz/components/utils";
+import type { Alert } from "@backpackerz/components/types";
 
 export type Props = {
 	children?: React.ReactNode;
@@ -46,7 +46,7 @@ export default function Provider(props: Props) {
 	const root = React.useRef<HTMLDivElement>();
 	const alertContext = React.useRef<AlertContext>();
 	const timersId = React.useRef<NodeJS.Timeout[]>([]);
-	const [alerts, setAlerts] = React.useState<Alert[]>([]);
+	const [alerts, setAlerts] = React.useState<Alert.AlertType[]>([]);
 
 	React.useEffect(() => {
 		root.current = document.createElement("div");
@@ -60,7 +60,7 @@ export default function Provider(props: Props) {
 		};
 	}, []);
 
-	const remove = React.useCallback((alert: Alert) => {
+	const remove = React.useCallback((alert: Alert.AlertType) => {
 		setAlerts((currentAlerts) => {
 			const lengthBeforeRemove = currentAlerts.length;
 			const filteredAlerts = currentAlerts.filter(
@@ -84,7 +84,7 @@ export default function Provider(props: Props) {
 	}, [remove]);
 
 	const show = React.useCallback(
-		(message = "", options: AlertOptions = {}) => {
+		(message = "", options: Alert.Options = {}) => {
 			const id = Math.random().toString(36).substr(2, 9);
 
 			const alertOptions = {
@@ -98,7 +98,7 @@ export default function Provider(props: Props) {
 				id,
 				message,
 				options: alertOptions,
-			} as Alert;
+			} as Alert.AlertType;
 
 			alert.close = () => remove(alert);
 
@@ -124,7 +124,7 @@ export default function Provider(props: Props) {
 	);
 
 	const success = React.useCallback(
-		(message = "", options: AlertOptions = {}) => {
+		(message = "", options: Alert.Options = {}) => {
 			options.type = TYPES.SUCCESS;
 			return show(message, options);
 		},
@@ -132,7 +132,7 @@ export default function Provider(props: Props) {
 	);
 
 	const error = React.useCallback(
-		(message = "", options: AlertOptions = {}) => {
+		(message = "", options: Alert.Options = {}) => {
 			options.type = TYPES.ERROR;
 			return show(message, options);
 		},
@@ -140,7 +140,7 @@ export default function Provider(props: Props) {
 	);
 
 	const info = React.useCallback(
-		(message = "", options: AlertOptions = {}) => {
+		(message = "", options: Alert.Options = {}) => {
 			options.type = TYPES.INFO;
 			return show(message, options);
 		},
@@ -159,7 +159,7 @@ export default function Provider(props: Props) {
 
 	const alertsByPosition = groupBy(
 		alerts,
-		(alert: Alert) => alert.options.position,
+		(alert: Alert.AlertType) => alert.options.position,
 	);
 
 	return (
@@ -179,7 +179,7 @@ export default function Provider(props: Props) {
 								>
 									{alertsByPosition[position]
 										? alertsByPosition[position].map(
-												(alert: Alert) => (
+												(alert: Alert.AlertType) => (
 													<Transition
 														type={transition}
 														key={alert.id}

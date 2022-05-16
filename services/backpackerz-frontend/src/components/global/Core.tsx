@@ -2,7 +2,7 @@ import * as React from "react";
 import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 
-import { ThemeProvider, Alert, Modal } from "@backpackerz/components";
+import { ThemeProvider, Modal, Alert } from "@backpackerz/components";
 import { modalConfig } from "./Modal/config";
 
 const { Template, Provider: AlertProvider, TRANSITIONS, POSITIONS } = Alert;
