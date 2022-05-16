@@ -1,8 +1,9 @@
 import * as React from "react";
 import { styled } from "@mui/material";
-import { ModalDefaultProps, ModalComponentType } from "../@types";
 
-const Modal: ModalComponentType = (
+import type { Modal } from "@backpackerz/components/types";
+
+const BaseModal: Modal.ComponentType = (
 	{ className, onOverlayClick, headerRender, footerRender, children },
 	ref: React.ForwardedRef<HTMLDivElement>,
 ) => {
@@ -66,4 +67,4 @@ const Body = styled("div")`
 
 const Footer = styled("div")``;
 
-export default React.forwardRef<HTMLDivElement, ModalDefaultProps>(Modal);
+export default React.forwardRef<HTMLDivElement, Modal.DefaultProps>(BaseModal);

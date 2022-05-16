@@ -2,18 +2,12 @@ import * as React from "react";
 import { createPortal } from "react-dom";
 import disableScroll from "disable-scroll";
 
-import {
-	AppendModalProps,
-	ModalContext,
-	ModalOptions,
-	ModalType,
-	ProviderProps,
-} from "../../@types";
 import DefaultContext from "./Context";
 import useOverlay from "../useOverlay";
-import Modal from "../../components/Modal";
+import BaseModalComponent from "../../components/Modal";
+import type { Modal } from "@backpackerz/components/types";
 
-const AppendModal: React.FC<AppendModalProps> = ({
+const AppendModal: React.FC<Modal.AppendModalProps> = ({
 	children,
 	currentModal,
 	onOverlayClick,
@@ -23,7 +17,7 @@ const AppendModal: React.FC<AppendModalProps> = ({
 	...rest
 }) => {
 	const ref = React.useRef<HTMLDivElement>(null);
-	const ModalComponent = currentModal.component || Modal;
+	const ModalComponent = currentModal.component || BaseModalComponent;
 	useOverlay(true, close, ref);
 
 	if (typeof window === "undefined") return null;
@@ -43,12 +37,11 @@ function Provider({
 	children,
 	Context = DefaultContext,
 	modals = [],
-}: React.PropsWithChildren<ProviderProps>) {
+}: React.PropsWithChildren<Modal.ProviderProps>) {
 	const root = React.useRef<HTMLDivElement>();
-	const modalContext = React.useRef<ModalContext>();
-	const [currentModal, setcurrentModal] = React.useState<null | ModalType>(
-		null,
-	);
+	const modalContext = React.useRef<Modal.Context>();
+	const [currentModal, setcurrentModal] =
+		React.useState<null | Modal.ModalType>(null);
 	const [currentModalPayloads, setCurrentModalPayloads] = React.useState<{
 		[key in string]: any;
 	}>({});
@@ -78,8 +71,8 @@ function Provider({
 				options: {
 					...modal?.options,
 					...options,
-				} as ModalOptions,
-			} as ModalType;
+				} as Modal.Options,
+			} as Modal.ModalType;
 
 			if (modal.options.preventScroll) {
 				disableScroll.on();
@@ -117,7 +110,7 @@ function Provider({
 	modalContext.current = {
 		modals,
 		show,
-	} as ModalContext;
+	} as Modal.Context;
 
 	const ModalComponent = currentModal?.component;
 	return (

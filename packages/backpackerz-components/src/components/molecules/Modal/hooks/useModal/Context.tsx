@@ -1,8 +1,7 @@
-import { createContext, MutableRefObject } from "react";
-import { ModalContext } from "../../@types";
+import * as React from "react";
 
-const DefaultContext = createContext<null | MutableRefObject<
-	ModalContext | null | undefined
+import type { Modal } from "@backpackerz/components/types";
+
+export default React.createContext<null | React.MutableRefObject<
+	Modal.Context | null | undefined
 >>(null);
-
-export default DefaultContext;

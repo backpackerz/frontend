@@ -1,8 +1,8 @@
 import * as React from "react";
 
-import { styled, Modal } from "@backpackerz/components";
+import { styled, Modal, Types } from "@backpackerz/components";
 
-export type Props = Modal.ModalProps & {
+export type Props = Types.Modal.DefaultProps & {
 	heading?: string;
 };
 

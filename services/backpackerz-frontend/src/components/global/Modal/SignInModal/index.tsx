@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { styled, Modal } from "@backpackerz/components";
+import { styled, Types } from "@backpackerz/components";
 import BaseModal from "../base/BaseModal";
 import FormSignin from "./Form.signin";
 import FormSignup from "./Form.signup";
@@ -12,7 +12,7 @@ const FORMS = {
 	SIGN_UP: 1,
 } as const;
 
-export default React.forwardRef<HTMLDivElement, Modal.ModalProps>(
+export default React.forwardRef<HTMLDivElement, Types.Modal.DefaultProps>(
 	function ModalSign(props, ref) {
 		const { onOverlayClick, onClose } = props;
 
