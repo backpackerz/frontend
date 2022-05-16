@@ -1,8 +1,9 @@
-import { CodeElement, DefaultElement, HeadingElement } from "../@types";
-import { Editor, Element, Transforms, Text } from "slate";
+import { Editor as SlateEditor, Element, Transforms, Text } from "slate";
 
-export const isBoldMarkActive = (editor: Editor) => {
-	const [match] = Editor.nodes(editor, {
+import type { Editor } from "@backpackerz/components/types";
+
+export const isBoldMarkActive = (editor: SlateEditor) => {
+	const [match] = SlateEditor.nodes(editor, {
 		match: (n) =>
 			Text.matches(n as Text, {
 				bold: true,
@@ -13,8 +14,8 @@ export const isBoldMarkActive = (editor: Editor) => {
 	return !!match;
 };
 
-export const isCodeBlockActive = (editor: Editor) => {
-	const [match] = Editor.nodes(editor, {
+export const isCodeBlockActive = (editor: SlateEditor) => {
+	const [match] = SlateEditor.nodes(editor, {
 		match: (n) => Element.isElementType(n, "code"),
 	});
 
@@ -22,10 +23,10 @@ export const isCodeBlockActive = (editor: Editor) => {
 };
 
 export const isHeadingBlockActive = (
-	editor: Editor,
-	level: HeadingElement["level"],
+	editor: SlateEditor,
+	level: Editor.HeadingElement["level"],
 ) => {
-	const [match] = Editor.nodes(editor, {
+	const [match] = SlateEditor.nodes(editor, {
 		match: (n) => {
 			return (
 				Element.isElementType(n, "heading") &&
@@ -39,7 +40,7 @@ export const isHeadingBlockActive = (
 	return !!match;
 };
 
-export const toggleBoldMark = (editor: Editor) => {
+export const toggleBoldMark = (editor: SlateEditor) => {
 	const isActive = isBoldMarkActive(editor);
 	Transforms.setNodes(
 		editor,
@@ -48,23 +49,23 @@ export const toggleBoldMark = (editor: Editor) => {
 	);
 };
 
-export const toggleCodeBlock = (editor: Editor) => {
+export const toggleCodeBlock = (editor: SlateEditor) => {
 	const isActive = isCodeBlockActive(editor);
-	Transforms.setNodes<DefaultElement | CodeElement>(
+	Transforms.setNodes<Editor.DefaultElement | Editor.CodeElement>(
 		editor,
 		{ type: isActive ? "paragraph" : "code" },
-		{ match: (n) => Editor.isBlock(editor, n) },
+		{ match: (n) => SlateEditor.isBlock(editor, n) },
 	);
 };
 
 export const toggleHeadingBlock = (
-	editor: Editor,
-	level: HeadingElement["level"],
+	editor: SlateEditor,
+	level: Editor.HeadingElement["level"],
 ) => {
 	const isActive = isHeadingBlockActive(editor, level);
-	Transforms.setNodes<DefaultElement | HeadingElement>(
+	Transforms.setNodes<Editor.DefaultElement | Editor.HeadingElement>(
 		editor,
 		{ type: isActive ? "paragraph" : "heading", level },
-		{ match: (n) => Editor.isBlock(editor, n) },
+		{ match: (n) => SlateEditor.isBlock(editor, n) },
 	);
 };
