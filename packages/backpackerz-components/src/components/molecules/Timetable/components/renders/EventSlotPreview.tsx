@@ -3,9 +3,9 @@ import cx from "clsx";
 import styled from "@emotion/styled";
 import useHover from "../../../../../hooks/useHover";
 
-import { EventSlotPreviewProps } from "../../@types";
+import type { Timetable } from "@backpackerz/components/types";
 
-const EventSlotPreview: React.FC<EventSlotPreviewProps> = ({
+const EventSlotPreview: React.FC<Timetable.EventSlotPreviewProps> = ({
 	className,
 	date,
 	hour,

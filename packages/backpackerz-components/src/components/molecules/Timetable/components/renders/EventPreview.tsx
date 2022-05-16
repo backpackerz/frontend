@@ -2,9 +2,9 @@ import * as React from "react";
 import styled from "@emotion/styled";
 import format from "date-fns/format";
 
-import { EventPreviewProps } from "../../@types";
+import type { Timetable } from "@backpackerz/components/types";
 
-const EventPreview: React.FC<EventPreviewProps> = ({
+const EventPreview: React.FC<Timetable.EventPreviewProps> = ({
 	event,
 	defaultAttributes,
 }) => {

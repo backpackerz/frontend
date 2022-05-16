@@ -1,9 +1,9 @@
 import * as React from "react";
 import styled from "@emotion/styled";
 
-import { HourPreviewProps } from "../../@types";
+import type { Timetable } from "@backpackerz/components/types";
 
-const HourPreview: React.FC<HourPreviewProps> = ({
+const HourPreview: React.FC<Timetable.HourPreviewProps> = ({
 	hour,
 	defaultAttributes,
 }) => (

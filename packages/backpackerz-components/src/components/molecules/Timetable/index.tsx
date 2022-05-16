@@ -9,8 +9,9 @@ import { EventPreview } from "./components/renders/EventPreview";
 import { HourPreview } from "./components/renders/HourPreview";
 import { HourLable } from "./components/HourLable";
 import { DayColumn } from "./components/DayColumn";
-import { DEFAULT_HOURS_INTERVAL } from "./@types/constants";
-import { TimeTableProps } from "./@types";
+
+import { DEFAULT_HOURS_INTERVAL } from "./constants";
+import type { Timetable } from "@backpackerz/components/types";
 
 const getRowHeight = (from: number, to: number) => {
 	const numberOfRows = to - from + 1;
@@ -30,7 +31,7 @@ export const TimeTable = ({
 	renderHour = HourPreview,
 	onClickSlot,
 	onClickEvent,
-}: TimeTableProps) => {
+}: Timetable.TimeTableProps) => {
 	const [eachDays, setEachDays] = React.useState(
 		eachDayOfInterval({
 			start: new Date(departureDate),
