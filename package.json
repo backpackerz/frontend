@@ -14,6 +14,7 @@
 		"services/*"
 	],
 	"scripts": {
+		"postinstall": "yarn husky install",
 		"build": "yarn workspace backpackerz-frontend build",
 		"start": "yarn workspace backpackerz-frontend dev",
 		"start:prod": "yarn workspace backpackerz-frontend start",
