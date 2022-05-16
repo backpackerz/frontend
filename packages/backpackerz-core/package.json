@@ -7,7 +7,9 @@
 	"private": true,
 	"license": "ISC",
 	"scripts": {},
-	"dependencies": {},
+	"dependencies": {
+		"yup": "^0.32.11"
+	},
 	"devDependencies": {},
 	"peerDependencies": {
 		"react": "^17.0.0",
