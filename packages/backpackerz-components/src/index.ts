@@ -18,3 +18,5 @@ export * as Alert from "./components/molecules/Alert";
 export * as Modal from "./components/molecules/Modal";
 export { default as Timetable } from "./components/molecules/Timetable";
 export * as Editor from "./components/molecules/Editor";
+
+export * as Types from "./types";

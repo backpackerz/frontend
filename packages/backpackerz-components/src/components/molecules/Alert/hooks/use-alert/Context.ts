@@ -1,16 +1,17 @@
-import { createContext, MutableRefObject } from "react";
-import { Alert, AlertOptions } from "../../@types";
+import * as React from "react";
+
+import type { Alert } from "@backpackerz/components/types";
 
 export type AlertContext = {
-	alerts: Alert[];
-	show: (message: string, options?: Partial<AlertOptions>) => void;
-	success: (message: string, options?: Partial<AlertOptions>) => void;
-	error: (message: string, options?: Partial<AlertOptions>) => void;
-	info: (message: string, options?: Partial<AlertOptions>) => void;
-	remove: (alert: Alert) => void;
+	alerts: Alert.AlertType[];
+	show: (message: string, options?: Partial<Alert.Options>) => void;
+	success: (message: string, options?: Partial<Alert.Options>) => void;
+	error: (message: string, options?: Partial<Alert.Options>) => void;
+	info: (message: string, options?: Partial<Alert.Options>) => void;
+	remove: (alert: Alert.AlertType) => void;
 	removeAll: () => void;
 };
 
-export default createContext<MutableRefObject<AlertContext | null | undefined>>(
-	null!,
-);
+export default React.createContext<
+	React.MutableRefObject<AlertContext | null | undefined>
+>(null!);

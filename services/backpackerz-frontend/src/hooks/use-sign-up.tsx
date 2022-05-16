@@ -32,7 +32,6 @@ export default function useSignUp(props: Props) {
 				error.message = error.errors[0];
 			}
 			if (error instanceof Error) {
-				console.dir(error);
 				onFailed && onFailed(error);
 			}
 		}
