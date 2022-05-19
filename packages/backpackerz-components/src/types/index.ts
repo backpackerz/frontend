@@ -223,3 +223,9 @@ export namespace Timetable {
 		onClickEvent?: OnClickEvent;
 	};
 }
+
+export namespace Map {
+	export type Service = {
+		placesService: google.maps.places.PlacesService | undefined;
+	};
+}

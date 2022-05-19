@@ -1,5 +1,4 @@
 import * as React from "react";
-import { styled as muiStyled } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProviderProps } from "@mui/material/styles/ThemeProvider";
 import {
@@ -85,6 +84,7 @@ export const palette = {
 };
 
 export const defaultTheme = {
+	direction: "ltr",
 	zIndex: {
 		mobileStepper: 1,
 		speedDial: 1,
@@ -155,8 +155,6 @@ export const defaultTheme = {
 		},
 	},
 } as Theme;
-
-export const styled = muiStyled;
 
 type MakeOptional<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>;
 

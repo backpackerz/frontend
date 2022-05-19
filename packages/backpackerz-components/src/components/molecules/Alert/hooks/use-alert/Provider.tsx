@@ -7,7 +7,7 @@ import {
 	TRANSITIONS,
 	TYPES,
 } from "@backpackerz/components/variables/constants/alert";
-import DefaultContext, { AlertContext } from "./Context";
+import DefaultContext from "./Context";
 import Wrapper from "../../components/Wrapper";
 import Transition from "../../components/Transition";
 import AlertTemplate, {
@@ -44,7 +44,7 @@ export default function Provider(props: Props) {
 		...rest
 	} = props;
 	const root = React.useRef<HTMLDivElement>();
-	const alertContext = React.useRef<AlertContext>();
+	const alertContext = React.useRef<Alert.Context>();
 	const timersId = React.useRef<NodeJS.Timeout[]>([]);
 	const [alerts, setAlerts] = React.useState<Alert.AlertType[]>([]);
 
