@@ -1,69 +1,59 @@
-import React, { useRef, useEffect, useState } from "react";
-import styled from "@emotion/styled";
-import mapboxgl from "mapbox-gl";
+import * as React from "react";
+import { styled } from "@mui/material";
+import { Wrapper, Status } from "@googlemaps/react-wrapper";
+import { Libraries } from "@googlemaps/js-api-loader";
 
-import "mapbox-gl/dist/mapbox-gl.css";
+import Map from "./components/Map";
+import Marker from "./components/Marker";
+// import * as tsGuard from "@googlemaps/typescript-guards";
 
-mapboxgl.accessToken =
-	"pk.eyJ1IjoiazA2MDMxNTYiLCJhIjoiY2tieGUyZjdqMG90OTM0bXgwcWtuOHNibSJ9.4JlTbIlFErwYEKqBw1W7tQ";
+type Props = {
+	apiKey: string;
+	markers?: google.maps.LatLng[];
+	defaultZoom?: number;
+	defaultCenter?: google.maps.LatLngLiteral;
+	onIdle?: (event: google.maps.Map) => unknown;
+	onClick?: (event: google.maps.MapMouseEvent) => unknown;
+};
 
-export default function App() {
-	const mapContainer = useRef<HTMLDivElement>(null);
-	const map = useRef<mapboxgl.Map>();
-	const [lng, setLng] = useState(-70.9);
-	const [lat, setLat] = useState(42.35);
-	const [zoom, setZoom] = useState(9);
+const USE_LIBRARIES: Libraries = ["places"];
 
-	useEffect(() => {
-		if (map.current) return;
-		if (mapContainer.current)
-			map.current = new mapboxgl.Map({
-				container: mapContainer.current,
-				style: "mapbox://styles/mapbox/streets-v11",
-				center: [lng, lat],
-				zoom: zoom,
-			});
-	});
+export default function GoogleMap(props: Props) {
+	const {
+		apiKey,
+		markers = [],
+		defaultZoom,
+		defaultCenter = {
+			lat: 0,
+			lng: 0,
+		},
+		onIdle,
+		onClick,
+	} = props;
 
-	useEffect(() => {
-		if (!map.current) return; // wait for map to initialize
-		map.current.on("move", () => {
-			if (!map.current) return;
+	const options: google.maps.MapOptions = {
+		disableDefaultUI: true,
+		center: defaultCenter,
+		zoom: defaultZoom,
+	};
 
-			const center = map.current.getCenter();
+	const markerComponents = React.useMemo(
+		() => markers.map((latLng, i) => <Marker key={i} position={latLng} />),
+		[markers],
+	);
 
-			setLng(parseInt(center.lng.toFixed(4)));
-			setLat(parseInt(center.lat.toFixed(4)));
-			setZoom(parseInt(map.current.getZoom().toFixed(2)));
-		});
-	});
+	const render = (status: Status) => {
+		return <h1>{status}</h1>;
+	};
 
 	return (
-		<MapboxBlock>
-			<Sidebar>
-				Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
-			</Sidebar>
-			<MapBoxContainer ref={mapContainer} />
-		</MapboxBlock>
+		<Wrapper apiKey={apiKey} libraries={USE_LIBRARIES} render={render}>
+			<Map
+				onIdle={onIdle}
+				onClick={onClick}
+				options={options}
+				markers={markerComponents}
+			/>
+		</Wrapper>
 	);
 }
-
-const Sidebar = styled.div`
-	background-color: rgba(35, 55, 75, 0.9);
-	color: #fff;
-	padding: 6px 12px;
-	font-family: monospace;
-	z-index: 1;
-	position: absolute;
-	top: 0;
-	left: 0;
-	margin: 12px;
-	border-radius: 4px;
-`;
-
-const MapBoxContainer = styled.div`
-	height: 800px;
-`;
-const MapboxBlock = styled.div`
-	position: relative;
-`;

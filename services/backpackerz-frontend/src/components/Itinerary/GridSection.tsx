@@ -1,13 +1,14 @@
 import * as React from "react";
 
-import { Types } from "@backpackerz/core";
+import type { BackpackerzTypes } from "@backpackerz/core";
 import { styled } from "@backpackerz/components";
+
 import ErrorBoundary from "components/global/ErrorBoundary";
 import ItineraryGrid from "./Grid";
 
 export type Props = {
 	heading: string;
-	itineraries: Types.Itinerary[];
+	itineraries: BackpackerzTypes.Itinerary[];
 };
 
 export default function ItineraryGridSection(props: Props) {

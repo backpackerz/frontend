@@ -1,20 +1,18 @@
 import axios from "../http";
-import { ItineraryType } from "./type.d";
 import { itineraryTranslator } from "./request.translator";
+import { Entity, ItineraryCreateProps } from "@backpackerz/core/index.d";
 
-export async function createItinerary(
-	itinerary: ItineraryType.ItineraryCreateProps,
-) {
+export async function createItinerary(itinerary: ItineraryCreateProps) {
 	const { data } = await axios.post<{
-		itinerary: ItineraryType.Itinerary;
+		itinerary: Entity.Itinerary;
 	}>("/itineraries", itinerary);
 
 	return itineraryTranslator(data.itinerary);
 }
 
-export async function updateItinerary(itinerary: ItineraryType.Itinerary) {
+export async function updateItinerary(itinerary: Entity.Itinerary) {
 	const { data } = await axios.patch<{
-		itinerary: ItineraryType.Itinerary;
+		itinerary: Entity.Itinerary;
 	}>(`/itineraries/${itinerary.slug}`, {
 		title: itinerary.title,
 		description: itinerary.description,
@@ -31,7 +29,7 @@ export async function updateItinerary(itinerary: ItineraryType.Itinerary) {
 
 export async function getItineraries() {
 	const { data } = await axios.get<{
-		itineraries: ItineraryType.Itinerary[];
+		itineraries: Entity.Itinerary[];
 	}>("/itineraries/list");
 
 	return data.itineraries.map((itinerary) => itineraryTranslator(itinerary));
@@ -39,7 +37,7 @@ export async function getItineraries() {
 
 export async function getItineraryDetail(slug: string) {
 	const { data } = await axios.get<{
-		itinerary: ItineraryType.Itinerary;
+		itinerary: Entity.Itinerary;
 	}>(`/itineraries/${slug}`);
 
 	return itineraryTranslator(data.itinerary);

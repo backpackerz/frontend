@@ -1,9 +1,11 @@
 import { useContext, useMemo } from "react";
-import DefaultContext, { AlertContext } from "./Context";
+
+import DefaultContext from "./Context";
+import type { Alert } from "@backpackerz/components/types";
 
 export default function useAlert(
 	context?: typeof DefaultContext,
-): AlertContext {
+): Alert.Context {
 	const alertContext = useContext(context || DefaultContext);
 
 	const alert = useMemo(() => {

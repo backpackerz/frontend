@@ -1,15 +1,14 @@
 {
-	"name": "docs",
+	"name": "packpackerz-docs",
 	"version": "0.1.0",
 	"private": true,
-	"description": "Docs",
+	"description": "backpackerz docs",
 	"scripts": {
 		"dev": "start-storybook -p 6006",
 		"build": "build-storybook"
 	},
 	"dependencies": {},
 	"devDependencies": {
-		"@babel/core": "^7.17.5",
 		"@storybook/addon-actions": "^6.4.19",
 		"@storybook/addon-essentials": "^6.4.19",
 		"@storybook/addon-interactions": "^6.4.19",
@@ -21,9 +20,6 @@
 		"babel-loader": "^8.2.3",
 		"eslint": "8.9.0",
 		"eslint-config-next": "12.1.0",
-		"next": "12.1.0",
-		"react": "17.0.2",
-		"react-dom": "17.0.2",
 		"webpack": "^5.69.1"
 	}
 }

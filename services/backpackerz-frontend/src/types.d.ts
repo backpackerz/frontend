@@ -12,6 +12,25 @@ import type { AppProps } from "next/app";
 import { DocumentProps } from "next/document";
 import { Store } from "redux";
 
+export declare namespace Backpackerz {
+	export declare namespace Store {
+		type Error = {
+			statusCode: number;
+			message: string;
+			timestamp: string;
+			path: string;
+		};
+
+		type State<E> = {
+			entity?: E;
+			type?: string;
+			currentRequestId?: string;
+			loading: "idle" | "pending" | "succeeded" | "failed";
+			error?: BackpackerzStore.Error;
+		};
+	}
+}
+
 declare global {
 	type Nullable<T> = T | null;
 	type ValueOf<T> = T[keyof T];

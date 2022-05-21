@@ -1,7 +1,7 @@
-import { ItineraryType } from "./type.d";
+import { Entity } from "@backpackerz/core/index.d";
 
 export function itineraryTranslator(
-	itinerary: ItineraryType.Itinerary,
-): ItineraryType.Itinerary {
+	itinerary: Entity.Itinerary,
+): Entity.Itinerary {
 	return itinerary;
 }

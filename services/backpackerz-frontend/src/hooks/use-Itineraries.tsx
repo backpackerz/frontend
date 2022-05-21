@@ -2,11 +2,13 @@ import { dehydrate, QueryClient, useQuery } from "react-query";
 
 import { Itinerary } from "@backpackerz/core";
 
+const KEY = "itineraries";
+
 const fetcher = () => Itinerary.service.getItineraries();
 
 export async function useItinerariesServer() {
 	const queryClient = new QueryClient();
-	await queryClient.prefetchQuery(["itineraries"], fetcher);
+	await queryClient.prefetchQuery([KEY], fetcher);
 	return {
 		dehydratedState: {
 			dehydratedState: dehydrate(queryClient),
@@ -15,10 +17,12 @@ export async function useItinerariesServer() {
 }
 
 export default function useItineraries() {
-	return useQuery(["itineraries"], fetcher, {
+	return useQuery([KEY], fetcher, {
 		initialData: [],
-		staleTime: 60 * 10000,
 		keepPreviousData: true,
+		staleTime: 60 * 1000 * 5,
+		refetchOnMount: false,
+		refetchOnWindowFocus: false,
 		useErrorBoundary: (error: any) => error.response?.status >= 500,
 	});
 }

@@ -3,7 +3,12 @@ import ellipsis from "./styles/utils/ellipsis";
 
 export { defaultTheme, ThemeProvider } from "./styles/theme";
 export const styles = { mediaQuery, ellipsis };
-export { styled } from "./styles/theme";
+export * from "@mui/material/styles";
+
+export * as Icon from "@mui/icons-material";
+
+export { default as IconButton } from "@mui/material/IconButton";
+export { default as Divider } from "@mui/material/Divider";
 
 export { default as Select } from "./components/atoms/Select";
 export { default as Brand } from "./components/atoms/Brand";
@@ -12,6 +17,8 @@ export { default as Input } from "./components/atoms/Input";
 export { default as Label } from "./components/atoms/Label";
 
 export { default as Drawer } from "./components/molecules/Drawer";
+export type { Props as DrawerProps } from "./components/molecules/Drawer";
+
 export { default as Map } from "./components/molecules/Map";
 export { default as Tabs } from "./components/molecules/Tabs";
 export * as Alert from "./components/molecules/Alert";

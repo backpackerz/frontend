@@ -1,11 +1,13 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
 import MuiDrawer, { DrawerProps } from "@mui/material/Drawer";
+import Box from "@mui/material/Box";
 
-export default function Drawer(props: React.PropsWithChildren<DrawerProps>) {
-	const { children } = props;
+export type Props = React.PropsWithChildren<DrawerProps>;
+
+export default function Drawer(props: Props) {
+	const { children, ...drawerProps } = props;
 	return (
-		<MuiDrawer anchor={"left"} open={true}>
+		<MuiDrawer {...drawerProps}>
 			<Box role="presentation">{children}</Box>
 		</MuiDrawer>
 	);

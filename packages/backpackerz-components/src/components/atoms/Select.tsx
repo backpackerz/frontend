@@ -140,7 +140,9 @@ export default function Select(props: Props<any>) {
 	return (
 		<CustomSelect defaultValue={defaultValue} {...htmlProps}>
 			{options.map((option) => (
-				<StyledOption {...option}>{option.label}</StyledOption>
+				<StyledOption {...option} key={option.value}>
+					{option.label}
+				</StyledOption>
 			))}
 		</CustomSelect>
 	);

@@ -2,7 +2,7 @@ import * as React from "react";
 import { useRouter } from "next/router";
 import { ko } from "date-fns/locale";
 
-import { Types } from "@backpackerz/core";
+import type { BackpackerzTypes } from "@backpackerz/core";
 import { ItineraryState } from "@backpackerz/core/variables/enums";
 import {
 	styles,
@@ -17,17 +17,43 @@ import {
 	Editor,
 } from "@backpackerz/components";
 import { DateRangePicker } from "@backpackerz/datepicker";
+import EditDrawer from "../EditDrawer";
 import * as MODAL_KEYS from "variables/constants/modals";
 import * as UI_VARIABLES from "variables/constants/user-interface";
+import ConditionallyRender from "components/global/ConditionallyRender";
 
 type Props = {
-	itinerary: Types.Itinerary;
-	onChange: (itinerary: Types.Itinerary) => unknown;
+	itinerary: BackpackerzTypes.Itinerary;
+	onChange: (itinerary: BackpackerzTypes.Itinerary) => unknown;
 	onClickSave: () => unknown;
 	children?: never;
 };
 
 const defaultProps = {};
+
+const MapPanel = () => {
+	const [markers, setMarkers] = React.useState<google.maps.LatLng[]>([]);
+	const onClick = (event: google.maps.MapMouseEvent) => {
+		setMarkers([...markers, event.latLng!]);
+	};
+	return (
+		<div style={{ height: "100%", width: "100%" }}>
+			<ConditionallyRender client>
+				{JSON.stringify(markers)}
+				<Map
+					apiKey={process.env.GOOGLE_MAP_API_KEY!}
+					defaultZoom={7}
+					defaultCenter={{
+						lat: 0,
+						lng: 0,
+					}}
+					markers={markers}
+					onClick={onClick}
+				/>
+			</ConditionallyRender>
+		</div>
+	);
+};
 
 export default function ItineraryEditTemplate(props: Props) {
 	const { itinerary, onChange, onClickSave } = { ...defaultProps, ...props };
@@ -73,11 +99,6 @@ export default function ItineraryEditTemplate(props: Props) {
 				console.log(event);
 			}}
 		/>
-	);
-	const MapPanel = () => (
-		<div>
-			<Map />
-		</div>
 	);
 
 	const handleOpenModalEventCreate = ({ start, end }: any) => {
@@ -155,12 +176,15 @@ export default function ItineraryEditTemplate(props: Props) {
 					/>
 				</div>
 			</HeaderBlock>
+
+			<EditDrawer></EditDrawer>
 			<BodyBlock>
-				<AsideBlock>
+				<MapPanel />
+				{/* <AsideBlock>
 					<Button onClick={() => router.back()}>뒤로가기</Button>
 					<SaveButton onClick={onClickSave}>저장하기</SaveButton>
-				</AsideBlock>
-				<DetailBlock>
+				</AsideBlock> */}
+				{/* <DetailBlock>
 					<DescriptionInput
 						placeholder={
 							UI_VARIABLES.ITINERARY_DESCRIPTION_PLACEHOLDER
@@ -185,7 +209,7 @@ export default function ItineraryEditTemplate(props: Props) {
 							},
 						]}
 					/>
-				</DetailBlock>
+				</DetailBlock> */}
 			</BodyBlock>
 		</Container>
 	);
@@ -202,6 +226,7 @@ const HeaderBlock = styled("header")`
 	padding: 0.8rem;
 	background-color: ${(props) => props.theme.palette.grey[50]};
 	z-index: 1;
+	margin-left: 64px;
 `;
 const TitleInput = styled(Input)`
 	width: 100rem;
@@ -238,6 +263,7 @@ const BodyBlock = styled("div")`
 	${styles.mediaQuery("xs", "lg")} {
 		flex-direction: column;
 	}
+	margin-left: 64px;
 `;
 const AsideBlock = styled("aside")`
 	flex-shrink: 0;

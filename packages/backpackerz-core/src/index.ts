@@ -3,23 +3,18 @@ import * as Enums from "./variables/enums";
 import * as Validations from "./validation/schemas";
 import HTTP from "./http";
 
-export * from "./user/type.d";
 import ServiceUser from "./user/service";
-
-export * from "./session/type.d";
 import ServiceSession from "./session/service";
-
-export * from "./itinerary/type.d";
 import ServiceItinerary from "./itinerary/service";
-
-export * from "./story/type.d";
 import ServiceStory from "./story/service";
 
+import Types from "@backpackerz/core/index.d";
+
 declare module "." {
-	namespace Types {
-		type User = import("./user/type").UserType.User;
-		type Itinerary = import("./itinerary/type").ItineraryType.Itinerary;
-		type Story = import("./story/type").StoryType.Story;
+	namespace BackpackerzTypes {
+		type User = Types.Entity.User;
+		type Itinerary = Types.Entity.Itinerary;
+		type Story = Types.Entity.Story;
 	}
 }
 export const CONSTATANTS = Constatnts;

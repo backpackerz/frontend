@@ -1,13 +1,13 @@
 import * as React from "react";
 
-import type { Types } from "@backpackerz/core";
+import type { BackpackerzTypes } from "@backpackerz/core";
 import { styled, Brand, Button, Modal } from "@backpackerz/components";
 import useSignOut from "hooks/use-sign-out";
 import useStoreSelector from "hooks/use-store-selector";
 import * as MODAL_KEYS from "variables/constants/modals";
 
 type Props = {
-	user?: Types.User;
+	user?: BackpackerzTypes.User;
 };
 
 export default function Navigation(props: Props) {

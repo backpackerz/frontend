@@ -1,9 +1,11 @@
-import { BackpackerzStore } from "modules/types";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { Session, Types, SessionType } from "@backpackerz/core";
 import { AxiosError, AxiosResponse } from "axios";
 
-export const initialState: BackpackerzStore.State<Types.User> = {
+import type { BackpackerzTypes } from "@backpackerz/core";
+import { Session } from "@backpackerz/core";
+import { Backpackerz } from "types";
+
+export const initialState: Backpackerz.Store.State<BackpackerzTypes.User> = {
 	entity: undefined,
 	type: undefined,
 	loading: "idle",
@@ -12,8 +14,8 @@ export const initialState: BackpackerzStore.State<Types.User> = {
 };
 
 const AsyncActionLogin = createAsyncThunk<
-	Types.User,
-	SessionType.LoginProps,
+	BackpackerzTypes.User,
+	Pick<BackpackerzTypes.User, "email" | "password">,
 	{
 		rejectValue: AxiosResponse["data"];
 	}
@@ -39,7 +41,7 @@ const AsyncActionLogout = createAsyncThunk<
 });
 
 const AsyncActionCurrentUser = createAsyncThunk<
-	Types.User,
+	BackpackerzTypes.User,
 	void,
 	{
 		rejectValue: AxiosResponse["data"];

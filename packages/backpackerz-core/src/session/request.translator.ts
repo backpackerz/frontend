@@ -1,5 +1,5 @@
-import { UserType } from "../user/type.d";
+import { Entity } from "@backpackerz/core/index.d";
 
-export function userTranslator(user: UserType.User): UserType.User {
+export function userTranslator(user: Entity.User): Entity.User {
 	return user;
 }

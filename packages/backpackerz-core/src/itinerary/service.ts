@@ -4,16 +4,14 @@ import {
 	getItineraryDetail,
 	getItineraries,
 } from "./request.api";
-import { ItineraryType } from "./type.d";
+import { Entity, ItineraryCreateProps } from "@backpackerz/core/index.d";
 
 export default class ItineraryService {
-	static async createItinerary(
-		itinerary: ItineraryType.ItineraryCreateProps,
-	) {
+	static async createItinerary(itinerary: ItineraryCreateProps) {
 		const itinerary_2 = await createItinerary(itinerary);
 		return itinerary_2;
 	}
-	static async updateItinerary(itinerary: ItineraryType.Itinerary) {
+	static async updateItinerary(itinerary: Entity.Itinerary) {
 		const itinerary_2 = await updateItinerary(itinerary);
 		return itinerary_2;
 	}

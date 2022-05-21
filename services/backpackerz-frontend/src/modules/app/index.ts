@@ -1,6 +1,8 @@
-import { BackpackerzStore } from "modules/types";
-import { Types } from "@backpackerz/core";
 import { combineReducers } from "redux";
+
+import type { BackpackerzTypes } from "@backpackerz/core";
+import { Backpackerz } from "types";
+
 import {
 	reducer as UserReducer,
 	actions as UserActions,
@@ -8,7 +10,7 @@ import {
 } from "./user";
 
 export type stateType = {
-	user: BackpackerzStore.State<Types.User>;
+	user: Backpackerz.Store.State<BackpackerzTypes.User>;
 };
 
 export const initialState = {

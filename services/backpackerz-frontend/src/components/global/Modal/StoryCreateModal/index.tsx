@@ -1,7 +1,9 @@
 import * as React from "react";
 
-import { Story, StoryType } from "@backpackerz/core";
+import { Story } from "@backpackerz/core";
+import type { BackpackerzTypes } from "@backpackerz/core";
 import { styled, Types } from "@backpackerz/components";
+
 import BaseModal from "../base/BaseModal";
 import StepSelectType from "./Step.select.type";
 import StepSelectTransit from "./Step.select.transit";
@@ -20,13 +22,13 @@ export default React.forwardRef<HTMLDivElement, Props>(
 		const [step, setStep] = React.useState<number>(0);
 		const [story, setStory] = React.useState<{
 			itinerarySlug: string;
-			type?: StoryType.Story["type"];
+			type?: BackpackerzTypes.Story["type"];
 			title: string;
 			description: string;
 			body: string;
 			startTime: Date;
 			endTime: Date;
-			transit?: StoryType.Transit;
+			transit?: BackpackerzTypes.Story["transit"];
 			startPoint: string;
 			destination: string;
 		}>({

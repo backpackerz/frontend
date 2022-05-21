@@ -1,13 +1,13 @@
 import * as React from "react";
 import Link from "next/link";
 
-import { Types } from "@backpackerz/core";
+import type { BackpackerzTypes } from "@backpackerz/core";
 import { styles, styled, Editor } from "@backpackerz/components";
 import useStoreSelector from "hooks/use-store-selector";
 import * as UI_VARIABLES from "variables/constants/user-interface";
 
 type Props = {
-	itinerary: Types.Itinerary;
+	itinerary: BackpackerzTypes.Itinerary;
 	children?: never;
 };
 
