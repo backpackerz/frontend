@@ -1,14 +1,14 @@
-import { UserType } from "./type.d";
 import { createUser, getUserDetail } from "./request.api";
+import { Entity, UserCreateProps } from "@backpackerz/core/index.d";
 
 export default class UserService {
-	static createUser(user: UserType.UserCreateProps) {
-		return createUser(user).then((user: UserType.User) => {
+	static createUser(user: UserCreateProps) {
+		return createUser(user).then((user: Entity.User) => {
 			return user;
 		});
 	}
 	static getUserDetail(id: number) {
-		return getUserDetail(id).then((user: UserType.User) => {
+		return getUserDetail(id).then((user: Entity.User) => {
 			return user;
 		});
 	}

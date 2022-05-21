@@ -1,8 +1,8 @@
-import { SessionType } from "./type.d";
 import { login, logout, getCurrentUser } from "./request.api";
+import { SessionCreateProps } from "@backpackerz/core/index.d";
 
 export default class SessionService {
-	static async login(payloads: SessionType.LoginProps) {
+	static async login(payloads: SessionCreateProps) {
 		const user = await login(payloads);
 		return user;
 	}

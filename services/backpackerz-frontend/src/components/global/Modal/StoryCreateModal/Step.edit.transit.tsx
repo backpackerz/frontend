@@ -1,11 +1,11 @@
 import * as React from "react";
 
-import type { StoryType } from "@backpackerz/core";
 import { styled, Button, Input } from "@backpackerz/components";
+import type { BackpackerzTypes } from "@backpackerz/core";
 
 type Value = {
-	type?: StoryType.Types;
-	transit?: StoryType.Transit;
+	type?: BackpackerzTypes.Story["type"];
+	transit?: BackpackerzTypes.Story["transit"];
 	title: string;
 	description: string;
 	startPoint?: string;

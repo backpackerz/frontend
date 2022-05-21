@@ -1,9 +1,9 @@
 import axios from "../http";
-import { UserType } from "./type.d";
 import { userTranslator } from "./request.translator";
+import { Entity, UserCreateProps } from "@backpackerz/core/index.d";
 
-export async function createUser(payloads: UserType.UserCreateProps) {
-	const { data } = await axios.post<{ user: UserType.User }>(
+export async function createUser(payloads: UserCreateProps) {
+	const { data } = await axios.post<{ user: Entity.User }>(
 		"/users",
 		payloads,
 	);
@@ -11,9 +11,7 @@ export async function createUser(payloads: UserType.UserCreateProps) {
 }
 
 export function getUserDetail(id: number) {
-	return axios
-		.get<{ user: UserType.User }>(`/users/${id}`)
-		.then(({ data }) => {
-			return userTranslator(data.user);
-		});
+	return axios.get<{ user: Entity.User }>(`/users/${id}`).then(({ data }) => {
+		return userTranslator(data.user);
+	});
 }

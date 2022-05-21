@@ -8,8 +8,16 @@
 		"strict": true,
 		"moduleResolution": "node",
 		"isolatedModules": true,
-		"experimentalDecorators": true
+		"experimentalDecorators": true,
+		"outDir": "../../build/"
 	},
-	"exclude": ["node_modules", "next.config.js", ".next", "**/*.stories.tsx"],
-	"include": ["next-env.d.ts", "types.d.ts", "**/*.ts", "**/*.tsx"]
+	"exclude": [
+		"node_modules",
+		"next.config.js",
+		"jest.config.js",
+		".next",
+		"**/*.stories.tsx",
+		"build"
+	],
+	"include": ["next-env.d.ts", "src/types.d.ts", "**/*.ts", "**/*.tsx"]
 }

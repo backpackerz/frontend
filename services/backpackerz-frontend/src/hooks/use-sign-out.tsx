@@ -1,6 +1,8 @@
 import * as React from "react";
-import { Types } from "@backpackerz/core";
-import { BackpackerzStore } from "modules/types";
+
+import type { BackpackerzTypes } from "@backpackerz/core";
+
+import { Backpackerz } from "types";
 import { useDispatch } from "modules";
 import { actions } from "modules/app/user";
 import useStoreSelector from "hooks/use-store-selector";
@@ -9,12 +11,12 @@ type Props = {
 	onIdle?: () => unknown;
 	onPending?: () => unknown;
 	onSucceeded?: () => unknown;
-	onFailed?: (error: BackpackerzStore.Error) => unknown;
+	onFailed?: (error: Backpackerz.Store.Error) => unknown;
 };
 
 export default function useSignOut(
 	props?: Props,
-): [() => void, BackpackerzStore.State<Types.User>] {
+): [() => void, Backpackerz.Store.State<BackpackerzTypes.User>] {
 	const dispatch = useDispatch();
 	const state = useStoreSelector((state) => state.app.user);
 

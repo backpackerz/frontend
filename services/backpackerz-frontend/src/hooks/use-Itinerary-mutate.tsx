@@ -1,9 +1,10 @@
 import { useMutation } from "react-query";
 
-import { Types, Itinerary } from "@backpackerz/core";
+import { Itinerary } from "@backpackerz/core";
+import type { BackpackerzTypes } from "@backpackerz/core";
 
 export default function useItineraryMutate() {
-	return useMutation((newItinerary: Types.Itinerary) =>
+	return useMutation((newItinerary: BackpackerzTypes.Itinerary) =>
 		Itinerary.service.updateItinerary(newItinerary),
 	);
 }

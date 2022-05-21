@@ -4,17 +4,17 @@ export enum ItineraryState {
 	After = "After",
 }
 export enum StoryType {
-	Transit,
-	Spot,
+	Transit = "Transit",
+	Spot = "Spot",
 }
 export enum StoryTransits {
-	Air,
-	Train,
-	Metro,
-	Bus,
-	Walk,
-	Taxi,
-	Ship,
-	Car,
-	Etc,
+	Air = "Air",
+	Train = "Train",
+	Metro = "Metro",
+	Bus = "Bus",
+	Walk = "Walk",
+	Taxi = "Taxi",
+	Ship = "Ship",
+	Car = "Car",
+	Etc = "Etc",
 }

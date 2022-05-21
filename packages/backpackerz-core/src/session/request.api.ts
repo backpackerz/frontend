@@ -1,10 +1,9 @@
 import axios from "../http";
-import { SessionType } from "./type.d";
-import { UserType } from "../user/type.d";
 import { userTranslator } from "./request.translator";
+import { Entity, SessionCreateProps } from "@backpackerz/core/index.d";
 
-export async function login(payloads: SessionType.LoginProps) {
-	const response = await axios.post<{ user: UserType.User }>(
+export async function login(payloads: SessionCreateProps) {
+	const response = await axios.post<{ user: Entity.User }>(
 		"/auth/login",
 		payloads,
 	);
@@ -16,6 +15,6 @@ export async function logout() {
 }
 
 export async function getCurrentUser() {
-	const response = await axios.get<{ user: UserType.User }>("/auth");
+	const response = await axios.get<{ user: Entity.User }>("/auth");
 	return userTranslator(response.data.user);
 }

@@ -2,7 +2,7 @@ import * as React from "react";
 import { useRouter } from "next/router";
 import { ko } from "date-fns/locale";
 
-import { Types } from "@backpackerz/core";
+import type { BackpackerzTypes } from "@backpackerz/core";
 import { ItineraryState } from "@backpackerz/core/variables/enums";
 import {
 	styles,
@@ -23,8 +23,8 @@ import * as UI_VARIABLES from "variables/constants/user-interface";
 import ConditionallyRender from "components/global/ConditionallyRender";
 
 type Props = {
-	itinerary: Types.Itinerary;
-	onChange: (itinerary: Types.Itinerary) => unknown;
+	itinerary: BackpackerzTypes.Itinerary;
+	onChange: (itinerary: BackpackerzTypes.Itinerary) => unknown;
 	onClickSave: () => unknown;
 	children?: never;
 };
@@ -41,7 +41,7 @@ const MapPanel = () => {
 			<ConditionallyRender client>
 				{JSON.stringify(markers)}
 				<Map
-					apiKey="AIzaSyDDwm9s5WuOKaKvRPdMrb0eCIDwuCafOug"
+					apiKey={process.env.GOOGLE_MAP_API_KEY!}
 					defaultZoom={7}
 					defaultCenter={{
 						lat: 0,
