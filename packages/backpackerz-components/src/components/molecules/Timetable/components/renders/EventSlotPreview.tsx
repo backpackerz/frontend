@@ -1,7 +1,7 @@
 import * as React from "react";
 import cx from "clsx";
 import styled from "@emotion/styled";
-import useHover from "../../../../../hooks/useHover";
+import useHover from "../../../../../hooks/use-hover";
 
 import type { Timetable } from "@backpackerz/components/types";
 

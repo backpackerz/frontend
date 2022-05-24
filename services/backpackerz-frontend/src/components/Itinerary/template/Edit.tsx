@@ -15,6 +15,7 @@ import {
 	Modal,
 	Timetable,
 	Editor,
+	useCurrentLocation,
 } from "@backpackerz/components";
 import { DateRangePicker } from "@backpackerz/datepicker";
 import EditDrawer from "../EditDrawer";
@@ -32,7 +33,25 @@ type Props = {
 const defaultProps = {};
 
 const MapPanel = () => {
+	const { location: currentLocation, error: currentError } =
+		useCurrentLocation({
+			enableHighAccuracy: true,
+			timeout: 1000 * 60 * 1,
+			maximumAge: 1000 * 3600 * 24,
+		});
+	const [center, setCenter] = React.useState({
+		lat: 0,
+		lng: 0,
+	});
 	const [markers, setMarkers] = React.useState<google.maps.LatLng[]>([]);
+
+	React.useEffect(() => {
+		setCenter({
+			lat: currentLocation?.latitude || 0,
+			lng: currentLocation?.longitude || 0,
+		});
+	}, [currentLocation]);
+
 	const onClick = (event: google.maps.MapMouseEvent) => {
 		setMarkers([...markers, event.latLng!]);
 	};
@@ -42,11 +61,8 @@ const MapPanel = () => {
 				{JSON.stringify(markers)}
 				<Map
 					apiKey={process.env.GOOGLE_MAP_API_KEY!}
-					defaultZoom={7}
-					defaultCenter={{
-						lat: 0,
-						lng: 0,
-					}}
+					defaultZoom={15}
+					defaultCenter={center}
 					markers={markers}
 					onClick={onClick}
 				/>

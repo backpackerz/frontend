@@ -27,3 +27,7 @@ export { default as Timetable } from "./components/molecules/Timetable";
 export * as Editor from "./components/molecules/Editor";
 
 export * as Types from "./types";
+
+// hooks
+
+export { default as useCurrentLocation } from "./hooks/use-current-location";
