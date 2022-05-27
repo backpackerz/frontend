@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { Button, Input, Label, Alert } from "@backpackerz/components";
 
-import useSignIn from "hooks/use-sign-in";
+import useLogin from "hooks/use-user-login";
 import * as MESSAGES from "variables/constants/messages";
 
 type Props = {
@@ -16,19 +16,25 @@ export default function FormSignin(props: Props) {
 	const [email, setEmail] = React.useState<string>("");
 	const [password, setPassword] = React.useState<string>("");
 	const alert = Alert.useAlert();
-	const [signin] = useSignIn({
-		onFailed: (error) => {
-			error && alert.show(error.message);
-		},
-		onSucceeded: () => {
-			alert.show(MESSAGES.SIGN_IN_SUCCEED);
-			close();
-		},
-	});
+	const login = useLogin();
 
 	const handleSubmitSignIn = async (e: React.FormEvent) => {
 		e.preventDefault();
-		signin(email, password);
+		login.mutate(
+			{
+				email,
+				password,
+			},
+			{
+				onSuccess: () => {
+					alert.show(MESSAGES.SIGN_IN_SUCCEED);
+					close();
+				},
+				onError: (error) => {
+					error && alert.show(error.message);
+				},
+			},
+		);
 	};
 
 	return (

@@ -11,7 +11,7 @@ type Props = {
 
 export default function DefaultLayout(props: Props) {
 	const { children } = props;
-	const { entity: user } = useStoreSelector((state) => state.app.user);
+	const user = useStoreSelector((state) => state.app.user.data);
 	return (
 		<LayoutContainer>
 			<Navigation user={user} />

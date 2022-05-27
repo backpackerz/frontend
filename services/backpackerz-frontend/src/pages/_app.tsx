@@ -1,7 +1,8 @@
 import Head from "next/head";
 import App, { AppContext } from "next/app";
 
-import { http } from "@backpackerz/core";
+import { http, Session } from "@backpackerz/core";
+
 import Core from "components/global/Core";
 import { wrapper, actions } from "modules";
 import { globalStyles } from "../styles";
@@ -22,10 +23,8 @@ export default wrapper.withRedux(
 					const cookie = ctx.req ? ctx.req.headers.cookie || "" : "";
 					http.defaults.headers.common["Cookie"] = "";
 					http.defaults.headers.common["Cookie"] = cookie;
-
-					store
-						.dispatch(actions.AsyncActionCurrentUser())
-						.then((_) => store.dispatch(actions.idle()));
+					const user = await Session.service.getCurrentUser();
+					store.dispatch(actions.set(user));
 				}
 				return {
 					pageProps: {

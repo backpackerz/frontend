@@ -1,36 +1,22 @@
 import * as redux from "react-redux";
-import {
-	Action,
-	AnyAction,
-	configureStore,
-	combineReducers,
-} from "@reduxjs/toolkit";
-import { ThunkAction } from "redux-thunk";
+import { AnyAction, configureStore, combineReducers } from "@reduxjs/toolkit";
 import { Context, createWrapper, HYDRATE } from "next-redux-wrapper";
 
 import {
 	reducer as UserReducer,
 	actions as UserActions,
 	initialState as UserInitialState,
+	InitialState as UserInitialStateType,
 } from "./app/user";
-
-import { Backpackerz } from "types";
-import type { BackpackerzTypes } from "@backpackerz/core";
 
 type InitialState = {
 	app: {
-		user: Backpackerz.Store.AsyncState<BackpackerzTypes.User>;
+		user: UserInitialStateType;
 	};
 };
 export type Store = ReturnType<(context: Context) => typeof store>;
 export type AppDispatch = Store["dispatch"];
 export type RootState = ReturnType<Store["getState"]>;
-export type AppThunk<ReturnType = void> = ThunkAction<
-	ReturnType,
-	RootState,
-	unknown,
-	Action<string>
->;
 
 const initialState: InitialState = {
 	app: {

@@ -1,6 +1,6 @@
 import * as MODAL_KEYS from "variables/constants/modals";
 import BrowseModal from "./BrowseModal";
-import SignInModal from "./SignInModal";
+import SignModal from "./SignModal";
 import ItineraryCreateModal from "./ItineraryCreateModal";
 import CreateStoryModal from "./StoryCreateModal";
 
@@ -19,7 +19,7 @@ export const modalConfig = [
 			preventScroll: true,
 			closeOnOverlayClick: true,
 		},
-		component: SignInModal,
+		component: SignModal,
 	},
 	{
 		type: MODAL_KEYS.MODAL_ITINERARY_CREATE,

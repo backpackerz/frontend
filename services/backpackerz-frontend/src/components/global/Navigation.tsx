@@ -2,8 +2,8 @@ import * as React from "react";
 
 import type { BackpackerzTypes } from "@backpackerz/core";
 import { styled, Brand, Button, Modal } from "@backpackerz/components";
-import useSignOut from "hooks/use-sign-out";
-import useStoreSelector from "hooks/use-store-selector";
+
+import useLogout from "hooks/use-user-logout";
 import * as MODAL_KEYS from "variables/constants/modals";
 
 type Props = {
@@ -13,25 +13,24 @@ type Props = {
 export default function Navigation(props: Props) {
 	const { user } = props;
 
-	const [signout] = useSignOut();
-	const { entity } = useStoreSelector((state) => state.app.user);
+	const logout = useLogout();
 	const modal = Modal.useModal();
 
-	const handleOpenModalExplorer = () => {
+	const handleOpenModalExplorer = () =>
 		modal.show({ type: MODAL_KEYS.MODAL_BROWSE });
-	};
-	const handleOpenModalItineraryCreate = () => {
-		if (!entity) modal.show({ type: MODAL_KEYS.MODAL_LOGIN });
-		else {
-			modal.show({ type: MODAL_KEYS.MODAL_ITINERARY_CREATE });
-		}
-	};
-	const handleOpenModalLogin = () => {
+
+	const handleOpenModalItineraryCreate = React.useCallback(() => {
+		modal.show({
+			type: user
+				? MODAL_KEYS.MODAL_ITINERARY_CREATE
+				: MODAL_KEYS.MODAL_LOGIN,
+		});
+	}, [user]);
+
+	const handleOpenModalLogin = () =>
 		modal.show({ type: MODAL_KEYS.MODAL_LOGIN });
-	};
-	const handleOpenModalLogout = () => {
-		signout();
-	};
+
+	const handleOpenModalLogout = () => logout.mutate();
 
 	return (
 		<NavigationBlock>

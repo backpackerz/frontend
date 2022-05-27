@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { Button, Input, Label, Alert } from "@backpackerz/components";
-import useSignUp from "hooks/use-sign-up";
+import useJoin from "hooks/use-user-join";
 import * as MESSAGES from "variables/constants/messages";
 
 type Props = {
@@ -17,24 +17,27 @@ export default function FormSignup(props: Props) {
 	const [passwordCheck, setPasswordCheck] = React.useState<string>("");
 	const [nickname, setNickname] = React.useState<string>("");
 	const alert = Alert.useAlert();
-	const [signup] = useSignUp({
-		onSucceeded: () => {
-			alert.show(MESSAGES.SIGN_UP_SUCCEED);
-			toggleForm();
-		},
-		onFailed: (error) => {
-			alert.error(error.message);
-		},
-	});
+	const join = useJoin();
 
 	const handleSubmitSignUp = async (e: React.FormEvent) => {
 		e.preventDefault();
-		await signup({
-			email,
-			password,
-			passwordCheck,
-			nickname,
-		});
+		join.mutate(
+			{
+				email,
+				password,
+				passwordCheck,
+				nickname,
+			},
+			{
+				onSuccess: () => {
+					alert.show(MESSAGES.SIGN_UP_SUCCEED);
+					toggleForm();
+				},
+				onError: (error) => {
+					alert.error(error.message);
+				},
+			},
+		);
 	};
 	return (
 		<form>

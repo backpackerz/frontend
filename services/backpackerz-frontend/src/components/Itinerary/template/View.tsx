@@ -14,7 +14,7 @@ type Props = {
 export default function ItineraryViewTemplate(props: Props) {
 	const { itinerary } = props;
 
-	const { entity: user } = useStoreSelector((state) => state.app.user);
+	const user = useStoreSelector((state) => state.app.user.data);
 
 	return (
 		<>
