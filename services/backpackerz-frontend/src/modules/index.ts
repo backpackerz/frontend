@@ -19,7 +19,7 @@ import type { BackpackerzTypes } from "@backpackerz/core";
 
 type InitialState = {
 	app: {
-		user: Backpackerz.Store.State<BackpackerzTypes.User>;
+		user: Backpackerz.Store.AsyncState<BackpackerzTypes.User>;
 	};
 };
 export type Store = ReturnType<(context: Context) => typeof store>;

@@ -15,7 +15,7 @@ type Props = {
 
 export default function useSignOut(
 	props?: Props,
-): [() => void, Backpackerz.Store.State<BackpackerzTypes.User>] {
+): [() => void, Backpackerz.Store.AsyncState<BackpackerzTypes.User>] {
 	const dispatch = useDispatch();
 	const state = useStoreSelector((state) => state.app.user);
 

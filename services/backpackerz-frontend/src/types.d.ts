@@ -21,7 +21,7 @@ export declare namespace Backpackerz {
 			path: string;
 		};
 
-		type State<E> = {
+		type AsyncState<E> = {
 			entity?: E;
 			type?: string;
 			currentRequestId?: string;

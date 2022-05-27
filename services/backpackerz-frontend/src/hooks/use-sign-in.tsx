@@ -17,7 +17,7 @@ export default function useSignIn(
 	props?: Props,
 ): [
 	(email: string, password: string) => void,
-	Backpackerz.Store.State<BackpackerzTypes.User>,
+	Backpackerz.Store.AsyncState<BackpackerzTypes.User>,
 ] {
 	const dispatch = useDispatch();
 	const state = useStoreSelector((state) => state.app.user);

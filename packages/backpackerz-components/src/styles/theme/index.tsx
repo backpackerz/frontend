@@ -86,14 +86,14 @@ export const palette = {
 export const defaultTheme = {
 	direction: "ltr",
 	zIndex: {
-		mobileStepper: 1,
-		speedDial: 1,
-		appBar: 1,
-		drawer: 1,
-		modal: 1,
-		snackbar: 1,
-		tooltip: 1,
-		fab: 1,
+		mobileStepper: 10,
+		speedDial: 10,
+		appBar: 10,
+		drawer: 10,
+		modal: 10,
+		snackbar: 10,
+		tooltip: 10,
+		fab: 10,
 	},
 	palette: {
 		mode: "light",

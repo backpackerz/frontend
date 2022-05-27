@@ -53,12 +53,21 @@ const MapPanel = () => {
 	}, [currentLocation]);
 
 	const onClick = (event: google.maps.MapMouseEvent) => {
+		console.log(event);
 		setMarkers([...markers, event.latLng!]);
 	};
 	return (
 		<div style={{ height: "100%", width: "100%" }}>
 			<ConditionallyRender client>
-				{JSON.stringify(markers)}
+				{markers.map((marker) => (
+					<button
+						onClick={() =>
+							setMarkers(markers.filter((m) => m != marker))
+						}
+					>
+						{JSON.stringify(marker)}
+					</button>
+				))}
 				<Map
 					apiKey={process.env.GOOGLE_MAP_API_KEY!}
 					defaultZoom={15}
@@ -193,7 +202,7 @@ export default function ItineraryEditTemplate(props: Props) {
 				</div>
 			</HeaderBlock>
 
-			<EditDrawer></EditDrawer>
+			<EditDrawer>예산</EditDrawer>
 			<BodyBlock>
 				<MapPanel />
 				{/* <AsideBlock>

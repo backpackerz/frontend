@@ -5,13 +5,14 @@ import type { BackpackerzTypes } from "@backpackerz/core";
 import { Session } from "@backpackerz/core";
 import { Backpackerz } from "types";
 
-export const initialState: Backpackerz.Store.State<BackpackerzTypes.User> = {
-	entity: undefined,
-	type: undefined,
-	loading: "idle",
-	currentRequestId: undefined,
-	error: undefined,
-};
+export const initialState: Backpackerz.Store.AsyncState<BackpackerzTypes.User> =
+	{
+		entity: undefined,
+		type: undefined,
+		loading: "idle",
+		currentRequestId: undefined,
+		error: undefined,
+	};
 
 const AsyncActionLogin = createAsyncThunk<
 	BackpackerzTypes.User,
