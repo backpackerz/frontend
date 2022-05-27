@@ -3,8 +3,7 @@ import App, { AppContext } from "next/app";
 
 import { http } from "@backpackerz/core";
 import Core from "components/global/Core";
-import { wrapper } from "modules";
-import { actions } from "modules/app/user";
+import { wrapper, actions } from "modules";
 import { globalStyles } from "../styles";
 
 const METADATA = {

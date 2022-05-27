@@ -3,8 +3,7 @@ import * as React from "react";
 import type { BackpackerzTypes } from "@backpackerz/core";
 
 import { Backpackerz } from "types";
-import { useDispatch } from "modules";
-import { actions } from "modules/app/user";
+import { useDispatch, actions } from "modules";
 import useStoreSelector from "hooks/use-store-selector";
 
 type Props = {
