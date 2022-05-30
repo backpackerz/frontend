@@ -3,7 +3,7 @@ import * as React from "react";
 import type { BackpackerzTypes } from "@backpackerz/core";
 import { styled } from "@backpackerz/components";
 
-import ErrorBoundary from "components/global/ErrorBoundary";
+import ErrorBoundary from "components/ErrorBoundary";
 import ItineraryGrid from "./Grid";
 
 export type Props = {

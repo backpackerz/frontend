@@ -3,7 +3,7 @@ import App, { AppContext } from "next/app";
 
 import { http, Session } from "@backpackerz/core";
 
-import Core from "components/global/Core";
+import Core from "components/Core";
 import { wrapper, actions } from "modules";
 import { globalStyles } from "../styles";
 
@@ -23,8 +23,10 @@ export default wrapper.withRedux(
 					const cookie = ctx.req ? ctx.req.headers.cookie || "" : "";
 					http.defaults.headers.common["Cookie"] = "";
 					http.defaults.headers.common["Cookie"] = cookie;
-					const user = await Session.service.getCurrentUser();
-					store.dispatch(actions.set(user));
+					Session.service
+						.getCurrentUser()
+						.then((user) => store.dispatch(actions.set(user)))
+						.catch(() => store.dispatch(actions.set(undefined)));
 				}
 				return {
 					pageProps: {

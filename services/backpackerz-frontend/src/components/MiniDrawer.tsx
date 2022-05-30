@@ -3,18 +3,22 @@ import { Theme, CSSObject } from "@mui/material/styles";
 import {
 	styled,
 	useTheme,
-	Drawer,
+	Drawer as BaseDrawer,
 	DrawerProps,
 	Icon,
 	IconButton,
 	Divider,
 } from "@backpackerz/components";
 
-const drawerOpenWidth = 240;
-const drawerCloseWidth = 80;
+export type Props = React.PropsWithChildren<
+	DrawerProps & {
+		drawerOpenWidth: number;
+		drawerCloseWidth: number;
+	}
+>;
 
-const openedMixin = (theme: Theme): CSSObject => ({
-	width: drawerOpenWidth,
+const openedMixin = (width: number, theme: Theme): CSSObject => ({
+	width: width,
 	transition: theme.transitions.create("width", {
 		easing: theme.transitions.easing.sharp,
 		duration: theme.transitions.duration.enteringScreen,
@@ -22,16 +26,13 @@ const openedMixin = (theme: Theme): CSSObject => ({
 	overflowX: "hidden",
 });
 
-const closedMixin = (theme: Theme): CSSObject => ({
+const closedMixin = (width: number, theme: Theme): CSSObject => ({
 	transition: theme.transitions.create("width", {
 		easing: theme.transitions.easing.sharp,
 		duration: theme.transitions.duration.leavingScreen,
 	}),
 	overflowX: "hidden",
-	width: drawerCloseWidth,
-	[theme.breakpoints.up("sm")]: {
-		width: `calc(${theme.spacing(8)} + 1px)`,
-	},
+	width: width,
 });
 
 const DrawerHeader = styled("div")(({ theme }) => ({
@@ -39,41 +40,35 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 	alignItems: "center",
 	justifyContent: "flex-end",
 	padding: theme.spacing(0, 1),
-	// necessary for content to be below app bar
 	...theme.mixins.toolbar,
 }));
 
-const MiniDrawer = styled(Drawer, {
-	shouldForwardProp: (prop) => prop !== "open",
-})(({ theme, open }) => ({
+const Drawer = styled(BaseDrawer, {
+	shouldForwardProp: (prop: string) =>
+		!["open", "drawerOpenWidth", "drawerCloseWidth"].includes(prop),
+})<Props>(({ theme, open, drawerOpenWidth, drawerCloseWidth }) => ({
 	width: drawerOpenWidth,
 	flexShrink: 0,
 	whiteSpace: "nowrap",
 	boxSizing: "border-box",
 	...(open && {
-		...openedMixin(theme),
-		"& .MuiDrawer-paper": openedMixin(theme),
+		...openedMixin(drawerOpenWidth, theme),
+		"& .MuiDrawer-paper": openedMixin(drawerOpenWidth, theme),
 	}),
 	...(!open && {
-		...closedMixin(theme),
-		"& .MuiDrawer-paper": closedMixin(theme),
+		...closedMixin(drawerCloseWidth, theme),
+		"& .MuiDrawer-paper": closedMixin(drawerCloseWidth, theme),
 	}),
 }));
 
-export type Props = React.PropsWithChildren<DrawerProps>;
-
-export default function EditDrawer(props: Props) {
-	const { children } = props;
+export default function MiniDrawer(props: Props) {
+	const { children, drawerOpenWidth, drawerCloseWidth } = props;
 	const theme = useTheme();
 	const [open, setOpen] = React.useState(false);
 
-	const handleDrawerOpen = () => {
-		setOpen(true);
-	};
+	const handleDrawerOpen = () => setOpen(true);
 
-	const handleDrawerClose = () => {
-		setOpen(false);
-	};
+	const handleDrawerClose = () => setOpen(false);
 
 	const ToggleButton = React.useCallback(
 		() => (
@@ -87,12 +82,17 @@ export default function EditDrawer(props: Props) {
 		[open, theme.direction],
 	);
 	return (
-		<MiniDrawer variant="permanent" open={open}>
+		<Drawer
+			variant="permanent"
+			open={open}
+			drawerOpenWidth={drawerOpenWidth}
+			drawerCloseWidth={drawerCloseWidth}
+		>
 			<DrawerHeader>
 				<ToggleButton />
 			</DrawerHeader>
 			<Divider />
 			{children}
-		</MiniDrawer>
+		</Drawer>
 	);
 }

@@ -2,8 +2,8 @@ import * as React from "react";
 
 import { styled } from "@backpackerz/components";
 import useStoreSelector from "hooks/use-store-selector";
-import Navigation from "components/global/Navigation";
-import Footer from "components/global/Footer";
+import Navigation from "components/layouts/Navigation";
+import Footer from "components/layouts/Footer";
 
 type Props = {
 	children?: React.ReactNode;

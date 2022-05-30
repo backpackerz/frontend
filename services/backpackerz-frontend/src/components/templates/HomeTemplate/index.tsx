@@ -2,7 +2,7 @@ import * as React from "react";
 
 import type { BackpackerzTypes } from "@backpackerz/core";
 
-import ItinerariesGridSection from "components/Itinerary/GridSection";
+import ItinerariesGridSection from "components/templates/HomeTemplate/GridSection";
 
 type Props = {
 	sections: { heading: string; itineraries: BackpackerzTypes.Itinerary[] }[];

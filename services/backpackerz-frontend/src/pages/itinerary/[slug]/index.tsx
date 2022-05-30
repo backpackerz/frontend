@@ -3,8 +3,8 @@ import { GetServerSidePropsContext } from "next";
 import { useRouter } from "next/router";
 
 import { wrapper } from "modules";
-import DefaultLayout from "components/global/layouts/default";
-import ItineraryViewTemplate from "components/Itinerary/template/View";
+import DefaultLayout from "components/layouts/DefaultLayout";
+import ItineraryViewTemplate from "components/templates/Itinerary/ViewTemplate";
 import useItinerary, { useItineraryServer } from "hooks/use-Itinerary";
 
 export const getServerSideProps = wrapper.getServerSideProps(
