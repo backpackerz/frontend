@@ -2,13 +2,15 @@ import * as React from "react";
 import { styled } from "@mui/material";
 
 import useGoogleMap from "../hooks/use-google-map";
-import Header from "../components/Header";
+import MapHeader from "../components/MapHeader";
+import { Props as MarkerProps } from "./Marker";
+import MarkerPopper from "./MarkerPopper";
 
 type Props = React.PropsWithChildren<{
 	className?: string;
 	style?: React.CSSProperties;
 	options?: google.maps.MapOptions;
-	markers?: React.ReactChild[];
+	markerComponents?: React.ReactElement<MarkerProps>[];
 	onIdle?: (map: google.maps.Map) => unknown;
 	onClick?: (event: google.maps.MapMouseEvent) => unknown;
 }>;
@@ -17,9 +19,9 @@ export default function Map(props: Props) {
 	const {
 		className,
 		style,
-		children,
 		options = {},
-		markers,
+		markerComponents,
+		children,
 		onIdle,
 		onClick,
 	} = props;
@@ -35,38 +37,41 @@ export default function Map(props: Props) {
 			if (onClick) {
 				map.addListener("click", onClick);
 			}
-
 			if (onIdle) {
 				map.addListener("idle", () => onIdle(map));
 			}
 		}
 	}, [map, onClick, onIdle]);
 
-	const renderMarkers = React.useMemo(
+	const bindMarkers = React.useMemo(
 		() =>
 			map &&
-			React.Children.map(markers, (child) => {
+			React.Children.map(markerComponents, (child) => {
 				if (React.isValidElement(child)) {
-					return React.cloneElement(child, { map });
+					return React.cloneElement(child, {
+						map,
+						title: "title",
+						popper: <MarkerPopper />,
+					});
 				}
 			}),
-		[map, markers],
+		[map, markerComponents],
 	);
 
 	return (
 		<Wrapper className={className} style={style}>
-			<MapHeader map={map} service={service} />
-			<MapView ref={ref} />
-			{renderMarkers}
+			<Header map={map} service={service} />
+			<View ref={ref} />
+			{bindMarkers}
 		</Wrapper>
 	);
 }
-const MapHeader = styled(Header)`
+const Header = styled(MapHeader)`
 	position: absolute;
 	top: 0;
 	z-index: 1;
 `;
-const MapView = styled("div")`
+const View = styled("div")`
 	flex-grow: 1;
 `;
 const Wrapper = styled("div")`

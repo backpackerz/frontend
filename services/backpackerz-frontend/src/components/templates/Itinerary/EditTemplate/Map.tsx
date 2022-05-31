@@ -27,13 +27,15 @@ export default function Map() {
 	}, [currentLocation]);
 
 	const onClick = (event: google.maps.MapMouseEvent) => {
+		console.log(event);
 		setMarkers([...markers, event.latLng!]);
 	};
 	return (
 		<div style={{ height: "100%", width: "100%" }}>
 			<ConditionallyRender client>
-				{markers.map((marker) => (
+				{markers.map((marker, i) => (
 					<button
+						key={i}
 						onClick={() =>
 							setMarkers(markers.filter((m) => m != marker))
 						}

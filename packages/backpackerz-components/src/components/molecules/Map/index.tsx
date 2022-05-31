@@ -16,6 +16,7 @@ type Props = {
 	onClick?: (event: google.maps.MapMouseEvent) => unknown;
 };
 
+const USE_VERSION = "3.49";
 const USE_LIBRARIES: Libraries = ["places"];
 
 export default function GoogleMap(props: Props) {
@@ -36,23 +37,25 @@ export default function GoogleMap(props: Props) {
 		center: defaultCenter,
 		zoom: defaultZoom,
 	};
-
+	const render = (status: Status) => {
+		return <h1>{status}</h1>;
+	};
 	const markerComponents = React.useMemo(
 		() => markers.map((latLng, i) => <Marker key={i} position={latLng} />),
 		[markers],
 	);
-
-	const render = (status: Status) => {
-		return <h1>{status}</h1>;
-	};
-
 	return (
-		<Wrapper apiKey={apiKey} libraries={USE_LIBRARIES} render={render}>
+		<Wrapper
+			version={USE_VERSION}
+			libraries={USE_LIBRARIES}
+			apiKey={apiKey}
+			render={render}
+		>
 			<Map
 				onIdle={onIdle}
 				onClick={onClick}
 				options={options}
-				markers={markerComponents}
+				markerComponents={markerComponents}
 			/>
 		</Wrapper>
 	);

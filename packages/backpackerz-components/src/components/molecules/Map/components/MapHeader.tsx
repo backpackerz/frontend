@@ -13,7 +13,7 @@ type Props = {
 	service: Map.Service;
 };
 
-export default React.memo(function Header(props: Props) {
+export default React.memo(function MapHeader(props: Props) {
 	const { map, service } = props;
 	const [query, setQuery] = React.useState("");
 	const [result, setResult] = React.useState<
