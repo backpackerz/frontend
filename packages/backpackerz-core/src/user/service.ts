@@ -1,15 +1,19 @@
-import { createUser, getUserDetail } from "./request.api";
-import { Entity, UserCreateProps } from "@backpackerz/core/index.d";
+import * as Api from "./request.api";
+import { UserJoinProps } from "@backpackerz/core/index.d";
+import { userJoinSchema } from "@backpackerz/core/validation/schemas";
 
 export default class UserService {
-	static createUser(user: UserCreateProps) {
-		return createUser(user).then((user: Entity.User) => {
-			return user;
+	static async createUser(user: UserJoinProps) {
+		const validatedUser = await userJoinSchema.validate(user, {
+			abortEarly: false,
 		});
+		const result = await Api.createUser(validatedUser);
+
+		return result;
 	}
-	static getUserDetail(id: number) {
-		return getUserDetail(id).then((user: Entity.User) => {
-			return user;
-		});
+	static async getUserDetail(id: number) {
+		const result = await Api.getUserDetail(id);
+
+		return result;
 	}
 }

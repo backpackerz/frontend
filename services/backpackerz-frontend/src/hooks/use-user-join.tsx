@@ -1,29 +1,13 @@
 import { useMutation } from "react-query";
 
-import { VALIDATIONS, User } from "@backpackerz/core";
+import { User, BackpackerzTypes } from "@backpackerz/core";
 
-type Props = {
-	email: string;
-	password: string;
-	passwordCheck: string;
-	nickname: string;
-};
-const fetcher = ({ email, password, nickname }: Props) =>
-	User.service.createUser({
-		email,
-		password,
-		nickname,
-	});
-
-const validate = (props: Props) =>
-	VALIDATIONS.signUpSchema.validate(props, {
-		abortEarly: false,
-	});
+const fetcher = (props: BackpackerzTypes.UserJoinProps) =>
+	User.service.createUser(props);
 
 export default function useJoin() {
 	return useMutation({
-		mutationFn: (props: Props) =>
-			validate(props).then((props) => fetcher(props)),
+		mutationFn: fetcher,
 		useErrorBoundary: (error: any) => error.response?.status >= 500,
 		onMutate: async (variables) => {
 			return {};

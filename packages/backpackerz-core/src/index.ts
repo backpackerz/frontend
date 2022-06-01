@@ -15,6 +15,8 @@ declare module "." {
 		type User = Types.Entity.User;
 		type Itinerary = Types.Entity.Itinerary;
 		type Story = Types.Entity.Story;
+		type UserJoinProps = Types.UserJoinProps;
+		type UserLoginProps = Types.UserLoginProps;
 	}
 }
 export const CONSTATANTS = Constatnts;

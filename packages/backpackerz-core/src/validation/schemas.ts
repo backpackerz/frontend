@@ -1,8 +1,10 @@
-import { object, string, ref } from "yup";
-
+import { object, number, string, ref, SchemaOf } from "yup";
 import { USER_VALIDATION_ERROR_MESSAGE } from "../variables/constants";
 
-export const userSchema = object().shape({
+export const userSchema: SchemaOf<
+	Pick<Backpackerz.Entity.User, "id" | "email" | "password" | "nickname">
+> = object().shape({
+	id: number().required(),
 	email: string()
 		.required(USER_VALIDATION_ERROR_MESSAGE.EMAIL_IS_REQUIRED)
 		.email(USER_VALIDATION_ERROR_MESSAGE.INVALID_EMAIL_FORMAT),
@@ -14,11 +16,16 @@ export const userSchema = object().shape({
 	),
 });
 
-export const signUpSchema = userSchema.shape({
-	passwordCheck: string()
-		.required(USER_VALIDATION_ERROR_MESSAGE.PASSWORD_CHECK_IS_REQUIRED)
-		.oneOf(
-			[ref("password")],
-			USER_VALIDATION_ERROR_MESSAGE.PASSWORD_CHECK_IS_NOT_EQUAL,
-		),
-});
+export const sessionCreateSchema: SchemaOf<Backpackerz.UserLoginProps> =
+	userSchema.pick(["email", "password"]);
+
+export const userJoinSchema: SchemaOf<Backpackerz.UserJoinProps> = userSchema
+	.pick(["email", "password", "nickname"])
+	.shape({
+		passwordCheck: string()
+			.required(USER_VALIDATION_ERROR_MESSAGE.PASSWORD_CHECK_IS_REQUIRED)
+			.oneOf(
+				[ref("password")],
+				USER_VALIDATION_ERROR_MESSAGE.PASSWORD_CHECK_IS_NOT_EQUAL,
+			),
+	});

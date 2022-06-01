@@ -1,17 +1,13 @@
-import { createStoryTransit, createStorySpot } from "./request.api";
-import { Entity, StoryCreateProps } from "@backpackerz/core/index.d";
+import * as Api from "./request.api";
+import { StoryCreateProps } from "@backpackerz/core/index.d";
 
 export default class StoryService {
-	static createStory(story: StoryCreateProps) {
-		switch (story.type) {
-			case "Transit":
-				return createStoryTransit(story).then((story: Entity.Story) => {
-					return story;
-				});
-			case "Spot":
-				return createStorySpot(story).then((story: Entity.Story) => {
-					return story;
-				});
-		}
+	static async createStory(story: StoryCreateProps) {
+		const result = await {
+			Transit: Api.createStoryTransit,
+			Spot: Api.createStorySpot,
+		}[story.type](story);
+
+		return result;
 	}
 }

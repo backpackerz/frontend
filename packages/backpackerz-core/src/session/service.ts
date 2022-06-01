@@ -1,16 +1,18 @@
-import { login, logout, getCurrentUser } from "./request.api";
-import { SessionCreateProps } from "@backpackerz/core/index.d";
+import * as Api from "./request.api";
+import { UserLoginProps } from "@backpackerz/core/index.d";
 
 export default class SessionService {
-	static async login(payloads: SessionCreateProps) {
-		const user = await login(payloads);
-		return user;
+	static async login(payloads: UserLoginProps) {
+		const result = await Api.login(payloads);
+
+		return result;
 	}
 	static async logout() {
-		await logout();
+		await Api.logout();
 	}
 	static async getCurrentUser() {
-		const user = await getCurrentUser();
-		return user;
+		const result = await Api.getCurrentUser();
+
+		return result;
 	}
 }

@@ -1,26 +1,25 @@
-import {
-	createItinerary,
-	updateItinerary,
-	getItineraryDetail,
-	getItineraries,
-} from "./request.api";
+import * as Api from "./request.api";
 import { Entity, ItineraryCreateProps } from "@backpackerz/core/index.d";
 
 export default class ItineraryService {
 	static async createItinerary(itinerary: ItineraryCreateProps) {
-		const itinerary_2 = await createItinerary(itinerary);
-		return itinerary_2;
+		const result = await Api.createItinerary(itinerary);
+
+		return result;
 	}
 	static async updateItinerary(itinerary: Entity.Itinerary) {
-		const itinerary_2 = await updateItinerary(itinerary);
-		return itinerary_2;
+		const result = await Api.updateItinerary(itinerary);
+
+		return result;
 	}
 	static async getItineraries() {
-		const itineraries = await getItineraries();
-		return itineraries;
+		const result = await Api.getItineraries();
+
+		return result;
 	}
 	static async getItineraryDetail(slug: string) {
-		const itinerary = await getItineraryDetail(slug);
-		return itinerary;
+		const result = await Api.getItineraryDetail(slug);
+
+		return result;
 	}
 }

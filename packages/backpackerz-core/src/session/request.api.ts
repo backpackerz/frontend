@@ -1,8 +1,8 @@
 import axios from "../http";
 import { userTranslator } from "./request.translator";
-import { Entity, SessionCreateProps } from "@backpackerz/core/index.d";
+import { Entity, UserLoginProps } from "@backpackerz/core/index.d";
 
-export async function login(payloads: SessionCreateProps) {
+export async function login(payloads: UserLoginProps) {
 	const response = await axios.post<{ user: Entity.User }>(
 		"/auth/login",
 		payloads,

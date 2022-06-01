@@ -9,7 +9,7 @@ declare namespace Backpackerz {
 			id: number;
 			email: string;
 			nickname: string;
-			password?: string;
+			password: string;
 			itineraries: Itinerary[];
 			// stories!: StoryEntity[];
 		};
@@ -52,11 +52,15 @@ declare namespace Backpackerz {
 			user: User;
 		};
 	}
-	export type UserCreateProps =
-		//
-		Pick<Entity.User, "email" | "password" | "nickname">;
 
-	export type SessionCreateProps = Pick<Entity.User, "email" | "password">;
+	export type UserLoginProps = Pick<Entity.User, "email" | "password">;
+
+	export type UserJoinProps = Pick<
+		Entity.User,
+		"email" | "password" | "nickname"
+	> & {
+		passwordCheck: string;
+	};
 
 	export type ItineraryCreateProps = {
 		title: string;

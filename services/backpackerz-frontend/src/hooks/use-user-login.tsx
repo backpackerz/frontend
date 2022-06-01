@@ -1,23 +1,17 @@
 import { useMutation } from "react-query";
 
-import { Session } from "@backpackerz/core";
+import { Session, BackpackerzTypes } from "@backpackerz/core";
 
 import { useDispatch, actions } from "modules";
 
-type Props = {
-	email: string;
-	password: string;
-};
-
-const fetcher = ({ email, password }: Props) =>
+const fetcher = ({ email, password }: BackpackerzTypes.UserLoginProps) =>
 	Session.service.login({ email, password });
 
 export default function useLogin() {
 	const dispatch = useDispatch();
 
 	return useMutation({
-		mutationFn: ({ email, password }: Props) =>
-			fetcher({ email, password }),
+		mutationFn: fetcher,
 		useErrorBoundary: (error: any) => error.response?.status >= 500,
 		onMutate: async (variables) => {
 			return {};
