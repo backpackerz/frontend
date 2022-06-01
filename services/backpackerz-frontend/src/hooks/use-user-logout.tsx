@@ -16,10 +16,10 @@ export default function useLogout() {
 			return {};
 		},
 		onSuccess: (result, variables, context) => {
-			dispatch(actions.set(undefined));
+			dispatch(actions.user.set(undefined));
 		},
 		onError: (error, variables, context) => {
-			dispatch(actions.set(undefined));
+			dispatch(actions.user.set(undefined));
 		},
 	});
 }

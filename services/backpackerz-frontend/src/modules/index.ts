@@ -9,9 +9,17 @@ import {
 	InitialState as UserInitialStateType,
 } from "./app/user";
 
+import {
+	reducer as ItineraryReducer,
+	actions as ItineraryActions,
+	initialState as ItineraryInitialState,
+	InitialState as ItineraryInitialStateType,
+} from "./app/itinerary";
+
 type InitialState = {
 	app: {
 		user: UserInitialStateType;
+		itinerary: ItineraryInitialStateType;
 	};
 };
 export type Store = ReturnType<(context: Context) => typeof store>;
@@ -21,6 +29,7 @@ export type RootState = ReturnType<Store["getState"]>;
 const initialState: InitialState = {
 	app: {
 		user: UserInitialState,
+		itinerary: ItineraryInitialState,
 	},
 };
 const reducer = (state: InitialState = initialState, action: AnyAction) => {
@@ -32,6 +41,7 @@ const reducer = (state: InitialState = initialState, action: AnyAction) => {
 			return combineReducers({
 				app: combineReducers({
 					user: UserReducer,
+					itinerary: ItineraryReducer,
 				}),
 			})(state, action);
 		}
@@ -49,8 +59,12 @@ export const wrapper = createWrapper(() => store, {
 	deserializeState: (state) => JSON.parse(state),
 });
 
-export const useDispatch = () => redux.useDispatch<typeof store.dispatch>();
+export const useDispatch = () => redux.useDispatch<AppDispatch>();
+
+export const useSelector: redux.TypedUseSelectorHook<RootState> =
+	redux.useSelector;
 
 export const actions = {
-	...UserActions,
+	user: UserActions,
+	itinerary: ItineraryActions,
 };

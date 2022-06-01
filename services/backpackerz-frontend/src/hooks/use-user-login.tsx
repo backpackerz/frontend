@@ -17,10 +17,10 @@ export default function useLogin() {
 			return {};
 		},
 		onSuccess: (result, variables, context) => {
-			dispatch(actions.set(result));
+			dispatch(actions.user.set(result));
 		},
 		onError: (error, variables, context) => {
-			dispatch(actions.set(undefined));
+			dispatch(actions.user.set(undefined));
 		},
 	});
 }

@@ -5,7 +5,7 @@ import type { BackpackerzTypes } from "@backpackerz/core";
 import { styles, styled, Modal, Timetable } from "@backpackerz/components";
 import EditHeader from "./EditHeader";
 import EditDrawer from "./EditDrawer";
-import Map from "./Map";
+import EditMap from "./EditMap";
 import * as MODAL_KEYS from "variables/constants/modals";
 
 type Props = {
@@ -66,7 +66,7 @@ export default function ItineraryEditTemplate(props: Props) {
 				drawerCloseWidth={drawerCloseWidth}
 			/>
 			<BodyBlock>
-				<Map />
+				<EditMap />
 			</BodyBlock>
 		</Container>
 	);
