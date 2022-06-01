@@ -1,5 +1,5 @@
-# `backpackerz-components`
+# Backpackerz components
 
 ## description
 
-backpackerz의 컴포넌트 workspace
+backpackerz의 UI 컴포넌트 패키지입니다.
