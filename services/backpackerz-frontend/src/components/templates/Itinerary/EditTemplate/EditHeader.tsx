@@ -5,21 +5,51 @@ import type { BackpackerzTypes } from "@backpackerz/core";
 import { ItineraryState } from "@backpackerz/core/variables/enums";
 import { styles, styled, Input, Select, Editor } from "@backpackerz/components";
 import { DateRangePicker } from "@backpackerz/datepicker";
+import useItineraryMutate from "hooks/use-Itinerary-mutate";
 import * as UI_VARIABLES from "variables/constants/user-interface";
+
 type Props = {
 	itinerary: BackpackerzTypes.Itinerary;
-	onChange: (itinerary: BackpackerzTypes.Itinerary) => unknown;
 };
 export default function EditHeader(props: Props) {
-	const { itinerary, onChange } = props;
+	const { itinerary } = props;
 
-	const dateRanges = [
+	const [dateRanges, setDateRanges] = React.useState([
 		{
 			startDate: new Date(itinerary.departureDate),
 			endDate: new Date(itinerary.arrivalDate),
 			key: "selection",
 		},
-	];
+	]);
+
+	const mutation = useItineraryMutate();
+
+	const mutateItinerary = (
+		key: keyof Backpackerz.ItineraryUpdateProps,
+		value: Backpackerz.ItineraryUpdateProps[typeof key],
+	) =>
+		mutation.mutate({
+			...itinerary,
+			[key]: value,
+		});
+
+	const handleSaveTitle: React.FocusEventHandler<HTMLInputElement> = (
+		event,
+	) => mutateItinerary("title", event.target.value);
+
+	const handleSaveDescription: React.FocusEventHandler<HTMLInputElement> = (
+		event,
+	) => mutateItinerary("description", event.target.value);
+
+	const handleSaveBody: React.FocusEventHandler<HTMLInputElement> = (event) =>
+		mutateItinerary("body", event.target.value);
+
+	const handleSaveState = (value: ItineraryState) => {
+		mutateItinerary("state", value);
+	};
+
+	const handleSavePersonnel = (value: number) =>
+		mutateItinerary("personnel", value);
 
 	const defaultValueState = React.useMemo(
 		() =>
@@ -29,69 +59,43 @@ export default function EditHeader(props: Props) {
 		[itinerary.state],
 	);
 
-	const handleChangeTitle = (value: string) =>
-		onChange({
-			...itinerary,
-			title: value,
-		});
-	const handleChangeDescription = (value: string) =>
-		onChange({
-			...itinerary,
-			description: value,
-		});
-	const handleChangeBody = (value: string) =>
-		onChange({
-			...itinerary,
-			body: value,
-		});
-	const handleChangeState = (value: ItineraryState) =>
-		onChange({
-			...itinerary,
-			state: value,
-		});
-	const handleChangePersonnel = (value: number) =>
-		onChange({
-			...itinerary,
-			personnel: value,
-		});
-	const handleChangeDateRange = ({ selection }: any) =>
-		onChange({
-			...itinerary,
-			departureDate: selection.startDate,
-			arrivalDate: selection.endDate,
-		});
+	// const handleChangeDateRange = ({ selection }: any) =>
+	// 	onChange({
+	// 		...itinerary,
+	// 		departureDate: selection.startDate,
+	// 		arrivalDate: selection.endDate,
+	// 	});
 	return (
 		<HeaderBlock>
 			<TitleInput
-				value={itinerary.title}
+				defaultValue={itinerary.title}
 				maxLength={UI_VARIABLES.TITLE_MAX_LENGTH}
-				onChange={handleChangeTitle}
+				onBlur={handleSaveTitle}
 			/>
 			<DescriptionInput
+				defaultValue={itinerary.description}
 				placeholder={UI_VARIABLES.ITINERARY_DESCRIPTION_PLACEHOLDER}
-				value={itinerary.description}
-				onChange={handleChangeDescription}
+				onBlur={handleSaveDescription}
 			/>
 			<BodyEditor
 				placeholder={UI_VARIABLES.ITINERARY_BODY_PLACEHOLDER}
 				value={itinerary.body}
-				onChange={handleChangeBody}
 			/>
 			<div>
 				<StateSelect
 					options={UI_VARIABLES.STATE_OPTIONS}
 					defaultValue={defaultValueState}
-					onChange={handleChangeState}
+					onChange={handleSaveState}
 				/>
 				<PersonnelSelect
 					options={UI_VARIABLES.PERSONNEL_OPTIONS}
 					defaultValue={itinerary.personnel}
-					onChange={handleChangePersonnel}
+					onChange={handleSavePersonnel}
 				/>
 				<DatePicker
 					locale={ko}
 					ranges={dateRanges}
-					onChange={handleChangeDateRange}
+					// onChange={handleChangeDateRange}
 					moveRangeOnFirstSelection={false}
 					months={1}
 					direction="horizontal"

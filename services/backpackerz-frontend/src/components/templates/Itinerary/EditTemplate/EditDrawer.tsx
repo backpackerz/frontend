@@ -3,17 +3,15 @@ import MiniDrawer, { Props } from "components/MiniDrawer";
 import { actions, useDispatch, useSelector } from "modules";
 
 export default function EditDrawer(props: Props) {
-	const { zoom, center, markers } = useSelector(
-		(state) => state.app.itinerary.data,
-	);
+	const map = useSelector((state) => state.app.map.data);
 	const dispatch = useDispatch();
 
 	const handleRemoveMarker = (marker: google.maps.LatLng) => () => {
-		dispatch(actions.itinerary.removeMarker(marker));
+		dispatch(actions.map.removeMarker(marker));
 	};
 	const buttons = (
 		<div>
-			{markers.map((marker, i) => (
+			{map.markers.map((marker, i) => (
 				<button
 					style={{ display: "block" }}
 					key={i}

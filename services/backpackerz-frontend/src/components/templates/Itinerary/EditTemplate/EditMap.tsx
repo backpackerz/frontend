@@ -11,16 +11,15 @@ const getCurrentLocationOptions = {
 };
 
 export default function EditMap() {
-	const { zoom, center, markers } = useSelector(
-		(state) => state.app.itinerary.data,
-	);
+	const map = useSelector((state) => state.app.map.data);
 	const dispatch = useDispatch();
+
 	const { location: currentLocation, error: currentError } =
 		useCurrentLocation(getCurrentLocationOptions);
 
 	React.useEffect(() => {
 		dispatch(
-			actions.itinerary.setCenter({
+			actions.map.setCenter({
 				lat: currentLocation?.latitude || 0,
 				lng: currentLocation?.longitude || 0,
 			}),
@@ -28,20 +27,20 @@ export default function EditMap() {
 	}, [currentLocation]);
 
 	const handleIdle = (map: google.maps.Map) => {
-		dispatch(actions.itinerary.setZoom(map.getZoom()));
-		dispatch(actions.itinerary.setCenter(map.getCenter()));
+		dispatch(actions.map.setZoom(map.getZoom()));
+		dispatch(actions.map.setCenter(map.getCenter()?.toJSON()));
 	};
 	const handleAddMarker = (event: google.maps.MapMouseEvent) => {
-		dispatch(actions.itinerary.addMarker(event.latLng?.toJSON()));
+		dispatch(actions.map.addMarker(event.latLng?.toJSON()));
 	};
 	return (
 		<div style={{ height: "100%", width: "100%" }}>
 			<ConditionallyRender client>
 				<Map
 					apiKey={process.env.GOOGLE_MAP_API_KEY!}
-					defaultZoom={zoom}
-					defaultCenter={center}
-					markers={markers}
+					defaultZoom={map.zoom}
+					defaultCenter={map.center}
+					markers={map.markers}
 					onClick={handleAddMarker}
 					onIdle={handleIdle}
 				/>

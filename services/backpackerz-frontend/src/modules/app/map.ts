@@ -31,7 +31,7 @@ export const initialState: InitialState = {
 };
 
 const slice = createSlice<InitialState, SliceCaseReducers<InitialState>>({
-	name: "itinerary",
+	name: "map",
 	initialState,
 	reducers: {
 		setZoom(state, { payload }: PayloadAction<number>) {

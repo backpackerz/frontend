@@ -1,6 +1,10 @@
 import axios from "../http";
 import { itineraryTranslator } from "./request.translator";
-import { Entity, ItineraryCreateProps } from "@backpackerz/core/index.d";
+import {
+	Entity,
+	ItineraryCreateProps,
+	ItineraryUpdateProps,
+} from "@backpackerz/core/index.d";
 
 export async function createItinerary(itinerary: ItineraryCreateProps) {
 	const { data } = await axios.post<{
@@ -10,15 +14,14 @@ export async function createItinerary(itinerary: ItineraryCreateProps) {
 	return itineraryTranslator(data.itinerary);
 }
 
-export async function updateItinerary(itinerary: Entity.Itinerary) {
+export async function updateItinerary(itinerary: ItineraryUpdateProps) {
 	const { data } = await axios.patch<{
 		itinerary: Entity.Itinerary;
 	}>(`/itineraries/${itinerary.slug}`, {
 		title: itinerary.title,
 		description: itinerary.description,
 		body: itinerary.body,
-		stories: itinerary.stories,
-		tags: itinerary.tags,
+		// state: itinerary.state,
 		personnel: itinerary.personnel,
 		departureDate: itinerary.departureDate,
 		arrivalDate: itinerary.arrivalDate,

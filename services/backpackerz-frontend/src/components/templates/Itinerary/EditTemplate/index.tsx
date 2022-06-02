@@ -10,8 +10,6 @@ import * as MODAL_KEYS from "variables/constants/modals";
 
 type Props = {
 	itinerary: BackpackerzTypes.Itinerary;
-	onChange: (itinerary: BackpackerzTypes.Itinerary) => unknown;
-	onClickSave: () => unknown;
 	children?: never;
 };
 
@@ -19,25 +17,28 @@ const drawerOpenWidth = 240;
 const drawerCloseWidth = 80;
 
 export default function ItineraryEditTemplate(props: Props) {
-	const { itinerary, onChange, onClickSave } = props;
+	const { itinerary } = props;
 
 	const router = useRouter();
 	const modal = Modal.useModal();
 
 	const events = React.useMemo(
-		() => [
-			itinerary.stories.map((story) => {
-				return {
-					id: story.id,
-					title: story.title,
-					type: story.type,
-					description: story.description,
-					body: story.body,
-					startTime: new Date(story.startTime),
-					endTime: new Date(story.endTime),
-				};
-			}),
-		],
+		() =>
+			itinerary?.stories
+				? [
+						itinerary.stories.map((story) => {
+							return {
+								id: story.id,
+								title: story.title,
+								type: story.type,
+								description: story.description,
+								body: story.body,
+								startTime: new Date(story.startTime),
+								endTime: new Date(story.endTime),
+							};
+						}),
+				  ]
+				: [],
 		[itinerary],
 	);
 
@@ -60,7 +61,7 @@ export default function ItineraryEditTemplate(props: Props) {
 	);
 	return (
 		<Container>
-			<EditHeader itinerary={itinerary} onChange={onChange} />
+			<EditHeader itinerary={itinerary} />
 			<EditDrawer
 				drawerOpenWidth={drawerOpenWidth}
 				drawerCloseWidth={drawerCloseWidth}

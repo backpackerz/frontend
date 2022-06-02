@@ -19,8 +19,8 @@ declare namespace Backpackerz {
 			title: string;
 			description: string;
 			body: string;
-			departureDate: string;
-			arrivalDate: string;
+			departureDate: Date;
+			arrivalDate: Date;
 			period: number;
 			personnel: number;
 			state: ENUMS.ItineraryState;
@@ -71,11 +71,11 @@ declare namespace Backpackerz {
 	export type ItineraryUpdateProps = {
 		slug: string;
 		title: string;
-		description?: string;
-		body?: string;
-		stories?: [];
-		tags?: [];
-		// state?: ItineraryState;
+		description: string;
+		body: string;
+		// stories?: [];
+		// tags?: [];
+		state: ENUMS.ItineraryState;
 		personnel: number;
 		departureDate: Date;
 		arrivalDate: Date;

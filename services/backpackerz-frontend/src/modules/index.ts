@@ -10,16 +10,16 @@ import {
 } from "./app/user";
 
 import {
-	reducer as ItineraryReducer,
-	actions as ItineraryActions,
-	initialState as ItineraryInitialState,
-	InitialState as ItineraryInitialStateType,
-} from "./app/itinerary";
+	reducer as MapReducer,
+	actions as MapActions,
+	initialState as MapInitialState,
+	InitialState as MapInitialStateType,
+} from "./app/map";
 
 type InitialState = {
 	app: {
 		user: UserInitialStateType;
-		itinerary: ItineraryInitialStateType;
+		map: MapInitialStateType;
 	};
 };
 export type Store = ReturnType<(context: Context) => typeof store>;
@@ -29,7 +29,7 @@ export type RootState = ReturnType<Store["getState"]>;
 const initialState: InitialState = {
 	app: {
 		user: UserInitialState,
-		itinerary: ItineraryInitialState,
+		map: MapInitialState,
 	},
 };
 const reducer = (state: InitialState = initialState, action: AnyAction) => {
@@ -41,7 +41,7 @@ const reducer = (state: InitialState = initialState, action: AnyAction) => {
 			return combineReducers({
 				app: combineReducers({
 					user: UserReducer,
-					itinerary: ItineraryReducer,
+					map: MapReducer,
 				}),
 			})(state, action);
 		}
@@ -66,5 +66,5 @@ export const useSelector: redux.TypedUseSelectorHook<RootState> =
 
 export const actions = {
 	user: UserActions,
-	itinerary: ItineraryActions,
+	map: MapActions,
 };

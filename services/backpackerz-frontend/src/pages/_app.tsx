@@ -25,8 +25,10 @@ export default wrapper.withRedux(
 					http.defaults.headers.common["Cookie"] = cookie;
 					Session.service
 						.getCurrentUser()
-						.then((user) => store.dispatch(actions.set(user)))
-						.catch(() => store.dispatch(actions.set(undefined)));
+						.then((user) => store.dispatch(actions.user.set(user)))
+						.catch(() =>
+							store.dispatch(actions.user.set(undefined)),
+						);
 				}
 				return {
 					pageProps: {
